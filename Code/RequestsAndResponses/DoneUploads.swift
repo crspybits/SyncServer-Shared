@@ -16,24 +16,24 @@ import PerfectLib
 
 // As part of normal processing, increments the current master version for the user. Calling DoneUploads a second time (immediately after the first) results in 0 files being transferred. i.e., `numberUploadsTransferred` will be 0 for the result of the second operation. This is not considered an error, and the masterVersion is still incremented in this case.
 
-class DoneUploadsRequest : NSObject, RequestMessage {
+public class DoneUploadsRequest : NSObject, RequestMessage {
     // MARK: Properties for use in request message.
     
     // Overall version for files for the specific user; assigned by the server.
-    static let masterVersionKey = "masterVersion"
-    var masterVersion:MasterVersionInt!
+    public static let masterVersionKey = "masterVersion"
+    public var masterVersion:MasterVersionInt!
     
 #if DEBUG
     // Give a time value in seconds -- after the lock is obtained, the server for sleep for this lock to test locking operation.
-    static let testLockSyncKey = "testLockSync"
-    var testLockSync:Int32?
+    public static let testLockSyncKey = "testLockSync"
+    public var testLockSync:Int32?
 #endif
     
-    func nonNilKeys() -> [String] {
+    public func nonNilKeys() -> [String] {
         return [DoneUploadsRequest.masterVersionKey]
     }
     
-    func allKeys() -> [String] {
+    public func allKeys() -> [String] {
 #if DEBUG
         return self.nonNilKeys() + [DoneUploadsRequest.testLockSyncKey]
 #else
@@ -41,7 +41,7 @@ class DoneUploadsRequest : NSObject, RequestMessage {
 #endif
     }
     
-    required init?(json: JSON) {
+    public required init?(json: JSON) {
         super.init()
         
         self.masterVersion = Decoder.decode(int64ForKey: DoneUploadsRequest.masterVersionKey)(json)
@@ -59,12 +59,12 @@ class DoneUploadsRequest : NSObject, RequestMessage {
     }
     
 #if SERVER
-    required convenience init?(request: RouterRequest) {
+    public required convenience init?(request: RouterRequest) {
         self.init(json: request.queryParameters)
     }
 #endif
     
-    func toJSON() -> JSON? {
+    public func toJSON() -> JSON? {
         var result = [
             DoneUploadsRequest.masterVersionKey ~~> self.masterVersion
         ]
@@ -77,7 +77,7 @@ class DoneUploadsRequest : NSObject, RequestMessage {
     }
 }
 
-class DoneUploadsResponse : ResponseMessage {
+public class DoneUploadsResponse : ResponseMessage {
     public var responseType: ResponseType {
         return .json
     }
@@ -85,30 +85,30 @@ class DoneUploadsResponse : ResponseMessage {
     // There are two possible non-error responses to DoneUploads:
     
     // 1) On successful operation, this gives the number of uploads entries transferred to the FileIndex.
-    static let numberUploadsTransferredKey = "numberUploadsTransferred"
-    var numberUploadsTransferred:Int32?
+    public static let numberUploadsTransferredKey = "numberUploadsTransferred"
+    public var numberUploadsTransferred:Int32?
     
     // 2) If the master version for the user on the server had been previously incremented to a value different than the masterVersion value in the request, this key will be present in the response-- with the new value of the master version. The doneUploads operation was not attempted in this case.
-    static let masterVersionUpdateKey = "masterVersionUpdate"
-    var masterVersionUpdate:MasterVersionInt?
+    public static let masterVersionUpdateKey = "masterVersionUpdate"
+    public var masterVersionUpdate:MasterVersionInt?
     
     // TODO: *1* Make sure we're using this on the client.
     // If present, this reports an error situation on the server. Can only occur if there were pending UploadDeletion's.
-    static let numberDeletionErrorsKey = "numberDeletionErrors"
-    var numberDeletionErrors:Int32?
+    public static let numberDeletionErrorsKey = "numberDeletionErrors"
+    public var numberDeletionErrors:Int32?
     
-    required init?(json: JSON) {
+    public required init?(json: JSON) {
         self.numberUploadsTransferred = Decoder.decode(int32ForKey: DoneUploadsResponse.numberUploadsTransferredKey)(json)
         self.masterVersionUpdate = Decoder.decode(int64ForKey: DoneUploadsResponse.masterVersionUpdateKey)(json)
         self.numberDeletionErrors = Decoder.decode(int32ForKey: DoneUploadsResponse.numberDeletionErrorsKey)(json)
     }
     
-    convenience init?() {
+    public convenience init?() {
         self.init(json:[:])
     }
     
     // MARK: - Serialization
-    func toJSON() -> JSON? {
+    public func toJSON() -> JSON? {
         return jsonify([
             DoneUploadsResponse.masterVersionUpdateKey ~~> self.masterVersionUpdate,
             DoneUploadsResponse.numberUploadsTransferredKey ~~> self.numberUploadsTransferred,

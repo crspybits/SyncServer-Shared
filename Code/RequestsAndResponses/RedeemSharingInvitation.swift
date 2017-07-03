@@ -13,11 +13,11 @@ import Gloss
 import Kitura
 #endif
 
-class RedeemSharingInvitationRequest : NSObject, RequestMessage {
-    static let sharingInvitationUUIDKey = "sharingInvitationUUID"
-    var sharingInvitationUUID:String!
+public class RedeemSharingInvitationRequest : NSObject, RequestMessage {
+    public static let sharingInvitationUUIDKey = "sharingInvitationUUID"
+    public var sharingInvitationUUID:String!
 
-    required init?(json: JSON) {
+    public required init?(json: JSON) {
         super.init()
         
         self.sharingInvitationUUID = RedeemSharingInvitationRequest.sharingInvitationUUIDKey <~~ json
@@ -30,40 +30,40 @@ class RedeemSharingInvitationRequest : NSObject, RequestMessage {
     }
     
 #if SERVER
-    required convenience init?(request: RouterRequest) {
+    public required convenience init?(request: RouterRequest) {
         self.init(json: request.queryParameters)
     }
 #endif
     
-    func nonNilKeys() -> [String] {
+    public func nonNilKeys() -> [String] {
         return [RedeemSharingInvitationRequest.sharingInvitationUUIDKey]
     }
     
-    func allKeys() -> [String] {
+    public func allKeys() -> [String] {
         return self.nonNilKeys()
     }
     
-    func toJSON() -> JSON? {
+    public func toJSON() -> JSON? {
         return jsonify([
             RedeemSharingInvitationRequest.sharingInvitationUUIDKey ~~> self.sharingInvitationUUID
         ])
     }
 }
 
-class RedeemSharingInvitationResponse : ResponseMessage {
+public class RedeemSharingInvitationResponse : ResponseMessage {
     public var responseType: ResponseType {
         return .json
     }
     
-    required init?(json: JSON) {
+    public required init?(json: JSON) {
     }
     
-    convenience init?() {
+    public convenience init?() {
         self.init(json:[:])
     }
     
     // MARK: - Serialization
-    func toJSON() -> JSON? {
+    public func toJSON() -> JSON? {
         return jsonify([
         ])
     }

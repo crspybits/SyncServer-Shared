@@ -16,14 +16,14 @@ import PerfectLib
 
 // Request an index of all files that have been uploaded with UploadFile and committed using DoneUploads by the user-- queries the meta data on the sync server.
 
-class FileIndexRequest : NSObject, RequestMessage {
+public class FileIndexRequest : NSObject, RequestMessage {
 #if DEBUG
     // Give a time value in seconds -- the server for sleep to test failure of API calls.
-    static let testServerSleepKey = "testServerSleep"
-    var testServerSleep:Int32?
+    public static let testServerSleepKey = "testServerSleep"
+    public var testServerSleep:Int32?
 #endif
  
-    required init?(json: JSON) {
+    public required init?(json: JSON) {
         super.init()
 #if DEBUG
         self.testServerSleep = Decoder.decode(int32ForKey: FileIndexRequest.testServerSleepKey)(json)
@@ -41,7 +41,7 @@ class FileIndexRequest : NSObject, RequestMessage {
         }
     }
 
-    func toJSON() -> JSON? {
+    public func toJSON() -> JSON? {
         var result = [JSON?]()
         
 #if DEBUG
@@ -52,12 +52,12 @@ class FileIndexRequest : NSObject, RequestMessage {
     }
     
 #if SERVER
-    required convenience init?(request: RouterRequest) {
+    public required convenience init?(request: RouterRequest) {
         self.init(json: request.queryParameters)
     }
 #endif
     
-    func allKeys() -> [String] {
+    public func allKeys() -> [String] {
 #if DEBUG
         return self.nonNilKeys() + [FileIndexRequest.testServerSleepKey]
 #else
@@ -65,7 +65,7 @@ class FileIndexRequest : NSObject, RequestMessage {
 #endif
     }
     
-    func nonNilKeys() -> [String] { return [] }
+    public func nonNilKeys() -> [String] { return [] }
 }
 
 class FileIndexResponse : ResponseMessage {
@@ -73,22 +73,22 @@ class FileIndexResponse : ResponseMessage {
         return .json
     }
     
-    static let masterVersionKey = "masterVersion"
-    var masterVersion:MasterVersionInt!
+    public static let masterVersionKey = "masterVersion"
+    public var masterVersion:MasterVersionInt!
     
-    static let fileIndexKey = "fileIndex"
-    var fileIndex:[FileInfo]?
+    public static let fileIndexKey = "fileIndex"
+    public var fileIndex:[FileInfo]?
     
-    required init?(json: JSON) {
+    public required init?(json: JSON) {
         self.masterVersion = Decoder.decode(int64ForKey: FileIndexResponse.masterVersionKey)(json)
         self.fileIndex = FileIndexResponse.fileIndexKey <~~ json
     }
     
-    convenience init?() {
+    public convenience init?() {
         self.init(json:[:])
     }
     
-    func toJSON() -> JSON? {
+    public func toJSON() -> JSON? {
         return jsonify([
             FileIndexResponse.masterVersionKey ~~> self.masterVersion,
             FileIndexResponse.fileIndexKey ~~> self.fileIndex

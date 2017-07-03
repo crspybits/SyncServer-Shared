@@ -13,7 +13,7 @@ import PerfectLib
 
 extension String {
 #if SERVER
-    func toJSONDictionary() -> [String:Any]? {
+    public func toJSONDictionary() -> [String:Any]? {
         guard let data = self.data(using: String.Encoding.utf8) else {
             return nil
         }
@@ -36,7 +36,7 @@ extension String {
     }
 #endif
 
-    func escape() -> String? {
+    public func escape() -> String? {
         return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
     }
 }

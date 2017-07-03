@@ -15,18 +15,18 @@ import Kitura
 
 // Request an index of file uploads (UploadFile) and upload deletions (UploadDeleletion) -- queries the meta data on the sync server. The uploads are specific both to the user and the deviceUUID of the user.
 
-class GetUploadsRequest : NSObject, RequestMessage {
+public class GetUploadsRequest : NSObject, RequestMessage {
     // MARK: Properties for use in request message.
     
-    func nonNilKeys() -> [String] {
+    public func nonNilKeys() -> [String] {
         return []
     }
     
-    func allKeys() -> [String] {
+    public func allKeys() -> [String] {
         return self.nonNilKeys()
     }
     
-    required init?(json: JSON) {
+    public required init?(json: JSON) {
         super.init()
         
 #if SERVER
@@ -37,35 +37,35 @@ class GetUploadsRequest : NSObject, RequestMessage {
     }
     
 #if SERVER
-    required convenience init?(request: RouterRequest) {
+    public required convenience init?(request: RouterRequest) {
         self.init(json: request.queryParameters)
     }
 #endif
 
-    func toJSON() -> JSON? {
+    public func toJSON() -> JSON? {
         return jsonify([
         ])
     }
 }
 
-class GetUploadsResponse : ResponseMessage {
+public class GetUploadsResponse : ResponseMessage {
     public var responseType: ResponseType {
         return .json
     }
     
-    static let uploadsKey = "uploads"
+    public static let uploadsKey = "uploads"
     var uploads:[FileInfo]?
     
-    required init?(json: JSON) {
+    public required init?(json: JSON) {
         self.uploads = GetUploadsResponse.uploadsKey <~~ json
     }
     
-    convenience init?() {
+    public convenience init?() {
         self.init(json:[:])
     }
     
     // MARK: - Serialization
-    func toJSON() -> JSON? {
+    public func toJSON() -> JSON? {
         return jsonify([
             GetUploadsResponse.uploadsKey ~~> self.uploads
         ])

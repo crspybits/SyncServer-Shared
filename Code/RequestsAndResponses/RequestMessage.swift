@@ -27,7 +27,7 @@ public protocol RequestMessage : NSObjectProtocol, Encodable, Decodable {
 
 // See http://stackoverflow.com/questions/43794228/getting-the-value-of-a-property-using-its-string-name-in-pure-swift-using-refle
 // Don't pass this an unwrapped optional. i.e., unwrap an optional before you pass it.
-func valueFor(property:String, of object:Any) -> Any? {
+public func valueFor(property:String, of object:Any) -> Any? {
     func isNilDescendant(_ any: Any?) -> Bool {
         return String(describing: any) == "Optional(nil)"
     }
@@ -42,11 +42,11 @@ func valueFor(property:String, of object:Any) -> Any? {
 }
 
 public extension RequestMessage {
-    func allKeys() -> [String] {
+    public func allKeys() -> [String] {
         return []
     }
 
-    func nonNilKeys() -> [String] {
+    public func nonNilKeys() -> [String] {
         return []
     }
     
@@ -59,7 +59,7 @@ public extension RequestMessage {
         return unwrap(first.value)
     }
     
-    func urlParameters() -> String? {
+    public func urlParameters() -> String? {
         // 6/9/17; I was previously using `valueFor` method, and not just converting to a dict. Can't recall why. However, this started giving me grief when I started using dates.
         guard let jsonDict = toJSON() else {
 #if SERVER
@@ -99,7 +99,7 @@ public extension RequestMessage {
         }
     }
     
-    func propertyHasValue(propertyName:String) -> Bool {
+    public func propertyHasValue(propertyName:String) -> Bool {
         if valueFor(property: propertyName, of: self) == nil {
             return false
         }
@@ -109,7 +109,7 @@ public extension RequestMessage {
     }
     
     // Returns false if any of the properties do not have value.
-    func propertiesHaveValues(propertyNames:[String]) -> Bool {
+    public func propertiesHaveValues(propertyNames:[String]) -> Bool {
         for propertyName in propertyNames {
             if !self.propertyHasValue(propertyName: propertyName) {
                 let message = "Property: \(propertyName) does not have a value"

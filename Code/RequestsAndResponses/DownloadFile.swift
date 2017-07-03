@@ -13,29 +13,29 @@ import Gloss
 import Kitura
 #endif
 
-class DownloadFileRequest : NSObject, RequestMessage {
+public class DownloadFileRequest : NSObject, RequestMessage {
     // MARK: Properties for use in request message.
     
-    static let fileUUIDKey = "fileUUID"
-    var fileUUID:String!
+    public static let fileUUIDKey = "fileUUID"
+    public var fileUUID:String!
     
     // This must indicate the current version of the file in the FileIndex.
-    static let fileVersionKey = "fileVersion"
-    var fileVersion:FileVersionInt!
+    public static let fileVersionKey = "fileVersion"
+    public var fileVersion:FileVersionInt!
     
     // Overall version for files for the specific user; assigned by the server.
-    static let masterVersionKey = "masterVersion"
-    var masterVersion:MasterVersionInt!
+    public static let masterVersionKey = "masterVersion"
+    public var masterVersion:MasterVersionInt!
     
-    func nonNilKeys() -> [String] {
+    public func nonNilKeys() -> [String] {
         return [DownloadFileRequest.fileUUIDKey, DownloadFileRequest.fileVersionKey, DownloadFileRequest.masterVersionKey]
     }
     
-    func allKeys() -> [String] {
+    public func allKeys() -> [String] {
         return self.nonNilKeys()
     }
     
-    required init?(json: JSON) {
+    public required init?(json: JSON) {
         super.init()
         
         self.fileUUID = DownloadFileRequest.fileUUIDKey <~~ json
@@ -53,12 +53,12 @@ class DownloadFileRequest : NSObject, RequestMessage {
     }
     
 #if SERVER
-    required convenience init?(request: RouterRequest) {
+    public required convenience init?(request: RouterRequest) {
         self.init(json: request.queryParameters)
     }
 #endif
     
-    func toJSON() -> JSON? {
+    public func toJSON() -> JSON? {
         return jsonify([
             DownloadFileRequest.fileUUIDKey ~~> self.fileUUID,
             DownloadFileRequest.masterVersionKey ~~> self.masterVersion,
@@ -72,30 +72,30 @@ class DownloadFileResponse : ResponseMessage {
         return .data(data: data)
     }
     
-    static let appMetaDataKey = "appMetaData"
-    var appMetaData:String?
+    public static let appMetaDataKey = "appMetaData"
+    public var appMetaData:String?
     
-    var data:Data?
+    public var data:Data?
     
-    static let fileSizeBytesKey = "fileSizeBytes"
-    var fileSizeBytes:Int64?
+    public static let fileSizeBytesKey = "fileSizeBytes"
+    public var fileSizeBytes:Int64?
     
     // If the master version for the user on the server has been incremented, this key will be present in the response-- with the new value of the master version. The download was not attempted in this case.
-    static let masterVersionUpdateKey = "masterVersionUpdate"
-    var masterVersionUpdate:MasterVersionInt?
+    public static let masterVersionUpdateKey = "masterVersionUpdate"
+    public var masterVersionUpdate:MasterVersionInt?
     
-    required init?(json: JSON) {
+    public required init?(json: JSON) {
         self.masterVersionUpdate = Decoder.decode(int64ForKey: DownloadFileResponse.masterVersionUpdateKey)(json)
         self.appMetaData = DownloadFileResponse.appMetaDataKey <~~ json
         self.fileSizeBytes = Decoder.decode(int64ForKey: DownloadFileResponse.fileSizeBytesKey)(json)
     }
     
-    convenience init?() {
+    public convenience init?() {
         self.init(json:[:])
     }
     
     // MARK: - Serialization
-    func toJSON() -> JSON? {
+    public func toJSON() -> JSON? {
         return jsonify([
             DownloadFileResponse.masterVersionUpdateKey ~~> self.masterVersionUpdate,
             DownloadFileResponse.appMetaDataKey ~~> self.appMetaData,

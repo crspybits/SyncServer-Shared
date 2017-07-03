@@ -14,35 +14,35 @@ import Kitura
 #endif
 
 public class FileInfo : Encodable, Decodable, CustomStringConvertible, Filenaming {
-    static let fileUUIDKey = "fileUUID"
-    var fileUUID: String!
+    public static let fileUUIDKey = "fileUUID"
+    public var fileUUID: String!
     
-    static let deviceUUIDKey = "deviceUUID"
-    var deviceUUID: String?
+    public static let deviceUUIDKey = "deviceUUID"
+    public var deviceUUID: String?
     
-    static let creationDateKey = "creationDate"
-    var creationDate: Date?
+    public static let creationDateKey = "creationDate"
+    public var creationDate: Date?
  
-    static let updateDateKey = "updateDate"
-    var updateDate: Date?
+    public static let updateDateKey = "updateDate"
+    public var updateDate: Date?
     
-    static let cloudFolderNameKey = "cloudFolderName"
-    var cloudFolderName: String?
+    public static let cloudFolderNameKey = "cloudFolderName"
+    public var cloudFolderName: String?
     
-    static let mimeTypeKey = "mimeType"
-    var mimeType: String?
+    public static let mimeTypeKey = "mimeType"
+    public var mimeType: String?
     
-    static let appMetaDataKey = "appMetaData"
-    var appMetaData: String?
+    public static let appMetaDataKey = "appMetaData"
+    public var appMetaData: String?
     
-    static let deletedKey = "deleted"
-    var deleted:Bool! = false
+    public static let deletedKey = "deleted"
+    public var deleted:Bool! = false
     
-    static let fileVersionKey = "fileVersion"
-    var fileVersion: FileVersionInt!
+    public static let fileVersionKey = "fileVersion"
+    public var fileVersion: FileVersionInt!
     
-    static let fileSizeBytesKey = "fileSizeBytes"
-    var fileSizeBytes: Int64!
+    public static let fileSizeBytesKey = "fileSizeBytes"
+    public var fileSizeBytes: Int64!
     
     public var description: String {
         return "fileUUID: \(fileUUID); deviceUUID: \(String(describing: deviceUUID)); creationDate: \(String(describing: creationDate)); updateDate: \(String(describing: updateDate)); mimeTypeKey: \(String(describing: mimeType)); appMetaData: \(String(describing: appMetaData)); deleted: \(deleted); fileVersion: \(fileVersion); fileSizeBytes: \(fileSizeBytes); cloudFolderName: \(String(describing: cloudFolderName))"
@@ -65,7 +65,7 @@ public class FileInfo : Encodable, Decodable, CustomStringConvertible, Filenamin
         self.updateDate = Decoder.decode(dateForKey: FileInfo.updateDateKey, dateFormatter: dateFormatter)(json)
     }
     
-    convenience init?() {
+    public convenience init?() {
         self.init(json:[:])
     }
     

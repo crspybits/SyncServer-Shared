@@ -35,11 +35,11 @@ public enum SharingPermission : String {
     case write // aka upload; includes read
     case admin // read, write, and invite
 
-    static func maxStringLength() -> Int {
+    public static func maxStringLength() -> Int {
         return max(SharingPermission.read.rawValue.characters.count, SharingPermission.write.rawValue.characters.count, SharingPermission.admin.rawValue.characters.count)
     }
     
-    func hasMinimumPermission(_ min:SharingPermission) -> Bool {
+    public func hasMinimumPermission(_ min:SharingPermission) -> Bool {
         switch self {
         case .read:
             // Users with read permission can do only read operations.

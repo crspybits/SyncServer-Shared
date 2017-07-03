@@ -17,53 +17,53 @@ import Kitura
 /* If an attempt is made to upload the same file more than once, the second (or third etc.) attempts don't actually upload the file to cloud storage-- if we have an entry in the Uploads repository. The effect from the POV of the caller is same as if the file was uploaded. We don't consider this an error to help in error recovery.
 (We don't actually upload the file more than once to the cloud service because Google Drive doesn't play well with uploading the same named file more than once, and to help in error recovery, plus the design of the server only makes an Uploads entry if we have successfully uploaded the file to the cloud service.)
 */
-class UploadFileRequest : NSObject, RequestMessage, Filenaming {
+public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
     // MARK: Properties for use in request message.
     
     // Assigned by client.
-    static let fileUUIDKey = "fileUUID"
-    var fileUUID:String!
+    public static let fileUUIDKey = "fileUUID"
+    public var fileUUID:String!
     
-    static let mimeTypeKey = "mimeType"
-    var mimeType:String!
+    public static let mimeTypeKey = "mimeType"
+    public var mimeType:String!
     
     // A root-level folder in the cloud file service.
-    static let cloudFolderNameKey = "cloudFolderName"
-    var cloudFolderName:String!
+    public static let cloudFolderNameKey = "cloudFolderName"
+    public var cloudFolderName:String!
     
-    static let appMetaDataKey = "appMetaData"
-    var appMetaData:String!
+    public static let appMetaDataKey = "appMetaData"
+    public var appMetaData:String!
     
-    static let fileVersionKey = "fileVersion"
-    var fileVersion:FileVersionInt!
+    public static let fileVersionKey = "fileVersion"
+    public var fileVersion:FileVersionInt!
     
     // Overall version for files for the specific user; assigned by the server.
-    static let masterVersionKey = "masterVersion"
-    var masterVersion:MasterVersionInt!
+    public static let masterVersionKey = "masterVersion"
+    public var masterVersion:MasterVersionInt!
     
     // The value given for the following two dates using its key in `init?(json: JSON)` needs to be a UTC Date String formatted with DateExtras.date(<YourDate>, toFormat: .DATETIME)
-    static let creationDateKey = "creationDate"
-    var creationDate:Date!
+    public static let creationDateKey = "creationDate"
+    public var creationDate:Date!
     
-    static let updateDateKey = "updateDate"
-    var updateDate:Date!
+    public static let updateDateKey = "updateDate"
+    public var updateDate:Date!
     
     // MARK: Properties NOT used in the request message.
     
-    var data = Data()
-    var sizeOfDataInBytes:Int!
+    public var data = Data()
+    public var sizeOfDataInBytes:Int!
     
-    func nonNilKeys() -> [String] {
+    public func nonNilKeys() -> [String] {
         return [UploadFileRequest.fileUUIDKey, UploadFileRequest.mimeTypeKey, UploadFileRequest.cloudFolderNameKey, UploadFileRequest.fileVersionKey, UploadFileRequest.masterVersionKey, UploadFileRequest.creationDateKey, UploadFileRequest.updateDateKey]
     }
     
-    func allKeys() -> [String] {
+    public func allKeys() -> [String] {
         return self.nonNilKeys() + [UploadFileRequest.appMetaDataKey]
     }
     
     
     
-    required init?(json: JSON) {
+    public required init?(json: JSON) {
         super.init()
         
         self.fileUUID = UploadFileRequest.fileUUIDKey <~~ json
@@ -89,7 +89,7 @@ class UploadFileRequest : NSObject, RequestMessage, Filenaming {
     }
 
 #if SERVER
-    required convenience init?(request: RouterRequest) {
+    public required convenience init?(request: RouterRequest) {
         self.init(json: request.queryParameters)
         do {
             // TODO: *4* Eventually this needs to be converted into stream processing where a stream from client is passed along to Google Drive or some other cloud service-- so not all of the file has to be read onto the server. For big files this will crash the server.
@@ -101,7 +101,7 @@ class UploadFileRequest : NSObject, RequestMessage, Filenaming {
     }
 #endif
     
-    func toJSON() -> JSON? {
+    public func toJSON() -> JSON? {
         let dateFormatter = DateExtras.getDateFormatter(format: .DATETIME)
 
         return jsonify([
@@ -117,30 +117,30 @@ class UploadFileRequest : NSObject, RequestMessage, Filenaming {
     }
 }
 
-class UploadFileResponse : ResponseMessage {
+public class UploadFileResponse : ResponseMessage {
     public var responseType: ResponseType {
         return .json
     }
     
     // On a successful upload, this will be present in the response.
-    static let sizeKey = "sizeInBytes"
-    var size:Int64?
+    public static let sizeKey = "sizeInBytes"
+    public var size:Int64?
     
     // If the master version for the user on the server has been incremented, this key will be present in the response-- with the new value of the master version. The upload was not attempted in this case.
-    static let masterVersionUpdateKey = "masterVersionUpdate"
-    var masterVersionUpdate:MasterVersionInt?
+    public static let masterVersionUpdateKey = "masterVersionUpdate"
+    public var masterVersionUpdate:MasterVersionInt?
     
-    required init?(json: JSON) {
+    public required init?(json: JSON) {
         self.size = Decoder.decode(int64ForKey: UploadFileResponse.sizeKey)(json)
         self.masterVersionUpdate = Decoder.decode(int64ForKey: UploadFileResponse.masterVersionUpdateKey)(json)        
     }
     
-    convenience init?() {
+    public convenience init?() {
         self.init(json:[:])
     }
     
     // MARK: - Serialization
-    func toJSON() -> JSON? {
+    public func toJSON() -> JSON? {
         return jsonify([
             UploadFileResponse.sizeKey ~~> self.size,
             UploadFileResponse.masterVersionUpdateKey ~~> self.masterVersionUpdate

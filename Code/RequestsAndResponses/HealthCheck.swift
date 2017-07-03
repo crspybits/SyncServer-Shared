@@ -13,37 +13,37 @@ import Gloss
 import Kitura
 #endif
 
-class HealthCheckRequest : NSObject, RequestMessage {
-    required init?(json: JSON) {
+public class HealthCheckRequest : NSObject, RequestMessage {
+    public required init?(json: JSON) {
         super.init()
     }
     
 #if SERVER
-    required convenience init?(request: RouterRequest) {
+    public required convenience init?(request: RouterRequest) {
         self.init(json: request.queryParameters)
     }
 #endif
     
-    func toJSON() -> JSON? {
+    public func toJSON() -> JSON? {
         return jsonify([
         ])
     }
 }
 
-class HealthCheckResponse : ResponseMessage {
+public class HealthCheckResponse : ResponseMessage {
     public var responseType: ResponseType {
         return .json
     }
 
-    required init?(json: JSON) {
+    public required init?(json: JSON) {
     }
     
-    convenience init?() {
+    public convenience init?() {
         self.init(json:[:])
     }
     
     // MARK: - Serialization
-    func toJSON() -> JSON? {
+    public func toJSON() -> JSON? {
         return jsonify([
         ])
     }
