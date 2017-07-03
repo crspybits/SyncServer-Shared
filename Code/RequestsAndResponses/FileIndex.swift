@@ -68,7 +68,7 @@ public class FileIndexRequest : NSObject, RequestMessage {
     public func nonNilKeys() -> [String] { return [] }
 }
 
-class FileIndexResponse : ResponseMessage {
+public class FileIndexResponse : ResponseMessage {
     public var responseType: ResponseType {
         return .json
     }

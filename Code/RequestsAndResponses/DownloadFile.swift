@@ -67,7 +67,7 @@ public class DownloadFileRequest : NSObject, RequestMessage {
     }
 }
 
-class DownloadFileResponse : ResponseMessage {
+public class DownloadFileResponse : ResponseMessage {
     public var responseType: ResponseType {
         return .data(data: data)
     }

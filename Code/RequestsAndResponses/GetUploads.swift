@@ -54,7 +54,7 @@ public class GetUploadsResponse : ResponseMessage {
     }
     
     public static let uploadsKey = "uploads"
-    var uploads:[FileInfo]?
+    public var uploads:[FileInfo]?
     
     public required init?(json: JSON) {
         self.uploads = GetUploadsResponse.uploadsKey <~~ json
