@@ -1,0 +1,20 @@
+# 1) Update the .podspec with the new version number
+
+# 2) validate the pod, without downloading
+pod lib lint --sources="https://github.com/crspybits/Specs.git,https://github.com/CocoaPods/Specs.git" --allow-warnings
+
+# 3) then push updated revision of pod to its repo
+
+git add -A && git commit -m "Release 0.0.29: Re-enabling Core Data lightweight migration."
+git tag 0.0.29
+git push --tags
+
+# 4) validate the pod, with downloading
+pod spec lint --allow-warnings
+
+# 5) Then, to push my podspec to my Specs repo:
+# See also: ls ~/.cocoapods/repos/
+# These need to be done from the relevant directory, e.g., SMCoreLib
+
+pod repo push crspybits-specs SMCoreLib.podspec --allow-warnings
+
