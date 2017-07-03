@@ -5,8 +5,8 @@ pod lib lint --sources="https://github.com/crspybits/Specs.git,https://github.co
 
 # 3) then push updated revision of pod to its repo
 
-git add -A && git commit -m "Release 0.0.29: Re-enabling Core Data lightweight migration."
-git tag 0.0.29
+git add -A && git commit -m "Some comments..."
+git tag 0.0.3
 git push --tags
 
 # 4) validate the pod, with downloading
@@ -16,5 +16,5 @@ pod spec lint --allow-warnings
 # See also: ls ~/.cocoapods/repos/
 # These need to be done from the relevant directory, e.g., SMCoreLib
 
-pod repo push crspybits-specs SMCoreLib.podspec --allow-warnings
+pod repo push crspybits-specs SyncServer-Shared.podspec --allow-warnings
 
