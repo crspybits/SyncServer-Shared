@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SyncServer-Shared"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "Swift code shared between the SyncServerII server and iOS client"
   s.description  = <<-DESC
   	Swift code shared between the SyncServerII server and iOS client
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
     'OTHER_SWIFT_FLAGS[config=Debug]' => '-DDEBUG',
   }
 
-  s.source_files  = "Code/**/*.{swift}"
+  s.source_files  = "Sources/**/*.{swift}"
 
   s.requires_arc = true
 
