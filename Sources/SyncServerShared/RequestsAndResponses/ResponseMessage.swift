@@ -14,7 +14,7 @@ case json
 case data(data: Data?)
 }
 
-public protocol ResponseMessage : Encodable, Decodable {
+public protocol ResponseMessage : Gloss.Encodable, Gloss.Decodable {
     init?(json: JSON)
     var responseType:ResponseType {get}
 }

@@ -13,7 +13,7 @@ import Gloss
 import Kitura
 #endif
 
-public class FileInfo : Encodable, Decodable, CustomStringConvertible, Filenaming {
+public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertible, Filenaming {
     public static let fileUUIDKey = "fileUUID"
     public var fileUUID: String!
     

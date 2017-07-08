@@ -51,7 +51,7 @@ public class CreateSharingInvitationRequest : NSObject, RequestMessage {
     }
 }
 
-public extension Encoder {
+public extension Gloss.Encoder {
     public static func encodeSharingPermission(key: String, value: SharingPermission?) -> JSON? {
             
         if let value = value {
@@ -62,7 +62,7 @@ public extension Encoder {
     }
 }
 
-public extension Decoder {
+public extension Gloss.Decoder {
     // The sharing permission in the json can be a string or SharingPermission.
     public static func decodeSharingPermission(key: String, json: JSON) -> SharingPermission? {
             

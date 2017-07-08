@@ -35,6 +35,7 @@ public class ServerConstants {
 
     public enum AuthTokenType : String {
         case GoogleToken
+        case FacebookToken
     }
 }
 

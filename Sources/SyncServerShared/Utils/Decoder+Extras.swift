@@ -11,7 +11,7 @@ import Gloss
 
 // This extension is here because (a) the Kitura RouterRequest queryParameters property returns integers as strings (i.e., quoted), and (b) Gloss doesn't interpret strings as integers by default.
 
-public extension Decoder {
+public extension Gloss.Decoder {
     // Attempt to convert a String to an Int of type T
     private static func decodeStringAsInt<T: Integer>(json: JSON, toInt:(String) -> T?, keyPath: String, keyPathDelimiter: String) -> T? {
     
