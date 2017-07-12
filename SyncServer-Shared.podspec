@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/crspybits/SyncServer-Shared.git", :tag => "#{s.version}" }
   
   s.pod_target_xcconfig = {
-    'OTHER_SWIFT_FLAGS[config=Debug]' => '-DDEBUG',
+    'OTHER_SWIFT_FLAGS[config=Debug]' => '-DDEBUG'
   }
 
   s.source_files  = "Sources/**/*.{swift}"
