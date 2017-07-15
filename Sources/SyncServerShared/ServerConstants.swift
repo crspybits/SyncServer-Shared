@@ -9,20 +9,16 @@
 // These are shared with client apps
 
 public class ServerConstants {
-    // HTTP request header authentication keys
-    public static let httpUsernameKey = "Kitura-username"
-    //public static let httpEmailKey = "Kitura-email"
+    // Generic HTTP request header authentication keys; the values for these keys are duplicated from Kitura (they didn't give named constants).
     public static let XTokenTypeKey = "X-token-type"
-
-    // Generic authorization keys
-    public static let HTTPOAuth2AccessTokenKey = "Kitura-access-token"
+    public static let HTTPOAuth2AccessTokenKey = "access_token"
     
     // HTTP request header keys specific to Google
-    public static let GoogleHTTPServerAuthCodeKey = "Kitura-server-auth-code"
+    public static let GoogleHTTPServerAuthCodeKey = "SyncServer-Google-server-auth-code"
 
 #if DEBUG
     // Give this key any string value to test failing of an endpoint.
-    public static let httpRequestEndpointFailureTestKey = "FailureTest"
+    public static let httpRequestEndpointFailureTestKey = "SyncServer-FailureTest"
 #endif
     
     // HTTP: request header key
