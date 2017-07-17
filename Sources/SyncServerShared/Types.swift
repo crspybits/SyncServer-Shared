@@ -67,3 +67,12 @@ public enum SharingPermission : String {
     }
 }
 
+public struct SignInType: OptionSet {
+    public let rawValue: Int
+    
+    public init(rawValue: Int) { self.rawValue = rawValue }
+    
+    public static let owningUser = SignInType(rawValue: 1 << 0)
+    public static let sharingUser = SignInType(rawValue: 1 << 1)
+    public static let both:SignInType = [.owningUser, .sharingUser]
+}
