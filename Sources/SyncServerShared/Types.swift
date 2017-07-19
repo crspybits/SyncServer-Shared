@@ -76,3 +76,13 @@ public struct SignInType: OptionSet {
     public static let sharingUser = SignInType(rawValue: 1 << 1)
     public static let both:SignInType = [.owningUser, .sharingUser]
 }
+
+// Both SignInType and UserType because UserType disallows `both`.
+public enum UserType : String {
+    case sharing // user is sharing data
+    case owning // user owns the data
+
+    public static func maxStringLength() -> Int {
+        return max(UserType.sharing.rawValue.characters.count, UserType.owning.rawValue.characters.count)
+    }
+}

@@ -49,11 +49,21 @@ public struct ServerEndpoint {
     // This specifies the need for a short duration lock on the operation.
     public let needsLock:Bool
     
-    // An authentication operation requires that token generation take place. e.g., for Google Sign In, the endpoint is giving a serverAuthCode.
-    public let generateTokens:Bool
+    public enum UserTypeSource {
+        case this(UserType)
+        case fromSignedInUser
+    }
+    
+    public enum GenerateTokens {
+        case yes(userType:UserTypeSource)
+        case no
+    }
+    
+    // Some endpoints require that token generation take place.
+    public let generateTokens:GenerateTokens
     
     // Don't put a trailing "/" on the pathName.
-    public init(_ pathName:String, method:ServerHTTPMethod, authenticationLevel:AuthenticationLevel = .secondary, needsLock:Bool = false, generateTokens:Bool = false, minSharingPermission: SharingPermission = .read) {
+    public init(_ pathName:String, method:ServerHTTPMethod, authenticationLevel:AuthenticationLevel = .secondary, needsLock:Bool = false, generateTokens:GenerateTokens = .no, minSharingPermission: SharingPermission = .read) {
         
         assert(pathName.characters.count > 0 && pathName.characters.last != "/")
         
@@ -90,11 +100,11 @@ public class ServerEndpoints {
 #endif
 
     // Both `checkCreds` and `addUser` have generateTokens == true because (a) the first token generation (with Google Sign In, so far) is when creating a new user, and (b) we will need to subsequently do a generate tokens when checking creds if the original refresh token (again, with Google Sign In) expires.
-    public static let checkCreds = ServerEndpoint("CheckCreds", method: .get, generateTokens: true)
+    public static let checkCreds = ServerEndpoint("CheckCreds", method: .get, generateTokens: .yes(userType: .fromSignedInUser))
     
     // This creates an owning user account, which currently must be using Google credentials. The user must not exist yet on the system.
     // Only primary authentication because this method is used to add a user into the database (i.e., it creates secondary authentication).
-    public static let addUser = ServerEndpoint("AddUser", method: .post, authenticationLevel: .primary, generateTokens: true)
+    public static let addUser = ServerEndpoint("AddUser", method: .post, authenticationLevel: .primary, generateTokens: .yes(userType: .this(.owning)))
 
     // Removes the calling user from the system.
     public static let removeUser = ServerEndpoint("RemoveUser", method: .post)
@@ -124,7 +134,7 @@ public class ServerEndpoints {
     
     // This creates a sharing user account. The user must not exist yet on the system.
     // Only primary authentication because this method is used to add a user into the database (i.e., it creates secondary authentication).
-    public static let redeemSharingInvitation = ServerEndpoint("RedeemSharingInvitation", method: .post, authenticationLevel: .primary, generateTokens: true)
+    public static let redeemSharingInvitation = ServerEndpoint("RedeemSharingInvitation", method: .post, authenticationLevel: .primary, generateTokens: .yes(userType: .this(.sharing)))
 
     public static let session = ServerEndpoints()
     
