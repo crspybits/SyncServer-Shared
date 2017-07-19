@@ -59,6 +59,7 @@
 		837278B31F0AF46700335E96 /* Filenaming.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filenaming.swift; sourceTree = "<group>"; };
 		837278B41F0AF46700335E96 /* String+Extras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extras.swift"; sourceTree = "<group>"; };
 		83B5F7961F09FEA90069A1D7 /* SyncServerShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SyncServerShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83D8BBBD1F1EFE19006AA22A /* JSONExtras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONExtras.swift; sourceTree = "<group>"; };
 		83F22A8B1F0A54D900225C54 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83F22AEF1F0AEF8B00225C54 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,6 +117,7 @@
 				837278B21F0AF46700335E96 /* Decoder+Extras.swift */,
 				837278B31F0AF46700335E96 /* Filenaming.swift */,
 				837278B41F0AF46700335E96 /* String+Extras.swift */,
+				83D8BBBD1F1EFE19006AA22A /* JSONExtras.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";

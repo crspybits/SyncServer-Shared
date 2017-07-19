@@ -29,6 +29,9 @@ public class ServerConstants {
     // Used when downloading a file to return parameters (as a HTTP header response header).
     public static let httpResponseMessageParams = "SyncServer-Message-Params"
 
+    // Used for some Account types (e.g., Facebook)
+    public static let httpResponseOAuth2AccessTokenKey = "SyncServer-access-token"
+
     public enum AuthTokenType : String {
         case GoogleToken
         case FacebookToken
