@@ -6,7 +6,9 @@
 //
 
 import Foundation
+#if SERVER
 import LoggerAPI
+#endif
 
 public class JSONExtras {
     public static func toJSONString(dict:[String:Any]) -> String? {
@@ -15,7 +17,9 @@ public class JSONExtras {
         do {
             try data = JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions(rawValue: UInt(0)))
         } catch (let error) {
+#if SERVER
             Log.error("Could not convert json to data: \(error)")
+#endif
             return nil
         }
         
