@@ -30,6 +30,7 @@
 		837278C81F0AF46700335E96 /* Decoder+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837278B21F0AF46700335E96 /* Decoder+Extras.swift */; };
 		837278C91F0AF46700335E96 /* Filenaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837278B31F0AF46700335E96 /* Filenaming.swift */; };
 		837278CA1F0AF46700335E96 /* String+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837278B41F0AF46700335E96 /* String+Extras.swift */; };
+		83857A7C1F1F2A5200C42ACD /* JSONExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D8BBBD1F1EFE19006AA22A /* JSONExtras.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -296,6 +297,7 @@
 				837278BA1F0AF46700335E96 /* DownloadFile.swift in Sources */,
 				837278C81F0AF46700335E96 /* Decoder+Extras.swift in Sources */,
 				837278BD1F0AF46700335E96 /* GetUploads.swift in Sources */,
+				83857A7C1F1F2A5200C42ACD /* JSONExtras.swift in Sources */,
 				837278BF1F0AF46700335E96 /* RedeemSharingInvitation.swift in Sources */,
 				837278B91F0AF46700335E96 /* DoneUploads.swift in Sources */,
 				837278C01F0AF46700335E96 /* RemoveUser.swift in Sources */,

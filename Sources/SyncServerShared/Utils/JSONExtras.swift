@@ -13,7 +13,7 @@ public class JSONExtras {
         
         do {
             try data = JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions(rawValue: UInt(0)))
-        } catch (let error) {
+        } catch {
             return nil
         }
         
