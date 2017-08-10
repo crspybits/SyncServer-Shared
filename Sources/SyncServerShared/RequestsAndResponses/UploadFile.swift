@@ -41,20 +41,13 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
     public static let masterVersionKey = "masterVersion"
     public var masterVersion:MasterVersionInt!
     
-    // The value given for the following two dates using its key in `init?(json: JSON)` needs to be a UTC Date String formatted with DateExtras.date(<YourDate>, toFormat: .DATETIME)
-    public static let creationDateKey = "creationDate"
-    public var creationDate:Date!
-    
-    public static let updateDateKey = "updateDate"
-    public var updateDate:Date!
-    
     // MARK: Properties NOT used in the request message.
     
     public var data = Data()
     public var sizeOfDataInBytes:Int!
     
     public func nonNilKeys() -> [String] {
-        return [UploadFileRequest.fileUUIDKey, UploadFileRequest.mimeTypeKey, UploadFileRequest.cloudFolderNameKey, UploadFileRequest.fileVersionKey, UploadFileRequest.masterVersionKey, UploadFileRequest.creationDateKey, UploadFileRequest.updateDateKey]
+        return [UploadFileRequest.fileUUIDKey, UploadFileRequest.mimeTypeKey, UploadFileRequest.cloudFolderNameKey, UploadFileRequest.fileVersionKey, UploadFileRequest.masterVersionKey]
     }
     
     public func allKeys() -> [String] {
@@ -72,11 +65,7 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
         self.fileVersion = Decoder.decode(int32ForKey: UploadFileRequest.fileVersionKey)(json)
         self.masterVersion = Decoder.decode(int64ForKey: UploadFileRequest.masterVersionKey)(json)
         self.appMetaData = UploadFileRequest.appMetaDataKey <~~ json
-        
-        let dateFormatter = DateExtras.getDateFormatter(format: .DATETIME)
-        self.creationDate = Decoder.decode(dateForKey: UploadFileRequest.creationDateKey, dateFormatter: dateFormatter)(json)
-        self.updateDate = Decoder.decode(dateForKey: UploadFileRequest.updateDateKey, dateFormatter: dateFormatter)(json)
-        
+                
 #if SERVER
         if !self.propertiesHaveValues(propertyNames: self.nonNilKeys()) {
             return nil
@@ -110,9 +99,7 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
             UploadFileRequest.cloudFolderNameKey ~~> self.cloudFolderName,
             UploadFileRequest.fileVersionKey ~~> self.fileVersion,
             UploadFileRequest.masterVersionKey ~~> self.masterVersion,
-            UploadFileRequest.appMetaDataKey ~~> self.appMetaData,
-            Encoder.encode(dateForKey: UploadFileRequest.creationDateKey, dateFormatter: dateFormatter)(self.creationDate),
-            Encoder.encode(dateForKey: UploadFileRequest.updateDateKey, dateFormatter: dateFormatter)(self.updateDate)
+            UploadFileRequest.appMetaDataKey ~~> self.appMetaData
         ])
     }
 }
