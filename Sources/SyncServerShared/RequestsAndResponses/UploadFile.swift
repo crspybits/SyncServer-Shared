@@ -91,8 +91,6 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
 #endif
     
     public func toJSON() -> JSON? {
-        let dateFormatter = DateExtras.getDateFormatter(format: .DATETIME)
-
         return jsonify([
             UploadFileRequest.fileUUIDKey ~~> self.fileUUID,
             UploadFileRequest.mimeTypeKey ~~> self.mimeType,
