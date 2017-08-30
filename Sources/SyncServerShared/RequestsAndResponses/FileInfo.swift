@@ -20,6 +20,8 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
     public static let deviceUUIDKey = "deviceUUID"
     public var deviceUUID: String?
     
+    // The creation & update dates are not used on upload-- they are established from dates on the server so they are not dependent on possibly mis-behaving clients.
+    
     public static let creationDateKey = "creationDate"
     public var creationDate: Date?
  
