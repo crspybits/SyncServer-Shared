@@ -26,11 +26,14 @@ public class ServerConstants {
     public static let httpRequestDeviceUUID = "SyncServer-Device-UUID"
     
     // HTTP response header keys
+    // 9/7/17; If you add new response header keys to this and you are using NGINX (see https://crspybits.github.io/SyncServerII/nginx.html), you will need to add those keys in the nginx.conf file and restart NGINX.
+    // 97/17; Keep these header keys in *lower case* to be compatible with NGNIX-- which sends them back in lower case.
+    
     // Used when downloading a file to return parameters (as a HTTP header response header).
-    public static let httpResponseMessageParams = "SyncServer-Message-Params"
+    public static let httpResponseMessageParams = "syncserver-message-params"
 
     // Used for some Account types (e.g., Facebook)
-    public static let httpResponseOAuth2AccessTokenKey = "SyncServer-access-token"
+    public static let httpResponseOAuth2AccessTokenKey = "syncserver-access-token"
 
     public enum AuthTokenType : String {
         case GoogleToken
