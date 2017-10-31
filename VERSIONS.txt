@@ -1,4 +1,7 @@
 SyncServer-Shared
 
+Version X.Y (TBD)
+	* Changes for Swift 4 update.
+	
 Version 2.1.0
 	* Made HTTP response header keys all lower case.
