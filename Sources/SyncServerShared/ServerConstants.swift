@@ -14,7 +14,11 @@ public class ServerConstants {
     public static let HTTPOAuth2AccessTokenKey = "access_token"
     
     // HTTP request header keys specific to Google
+    @available(*, deprecated, message: "Use: HTTPOAuth2AuthorizationCodeKey")
     public static let GoogleHTTPServerAuthCodeKey = "SyncServer-Google-server-auth-code"
+
+    // OAuth2 authorization code, e.g., from Dropbox
+    public static let HTTPOAuth2AuthorizationCodeKey = "SyncServer-authorization-code"
 
 #if DEBUG
     // Give this key any string value to test failing of an endpoint.
@@ -37,6 +41,7 @@ public class ServerConstants {
     public enum AuthTokenType : String {
         case GoogleToken
         case FacebookToken
+        case DropboxToken
     }
 }
 
