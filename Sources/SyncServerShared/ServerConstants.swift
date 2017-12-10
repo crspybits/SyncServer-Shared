@@ -17,8 +17,11 @@ public class ServerConstants {
     @available(*, deprecated, message: "Use: HTTPOAuth2AuthorizationCodeKey")
     public static let GoogleHTTPServerAuthCodeKey = "SyncServer-Google-server-auth-code"
 
-    // OAuth2 authorization code, e.g., from Dropbox
+    // OAuth2 authorization code, e.g., from Google
     public static let HTTPOAuth2AuthorizationCodeKey = "SyncServer-authorization-code"
+    
+    // Necessary for some authorization systems, e.g., Dropbox.
+    public static let HTTPAccountIdKey = "X-account-id"
 
 #if DEBUG
     // Give this key any string value to test failing of an endpoint.
@@ -59,7 +62,7 @@ public struct ServerEndpoint {
     // Don't put a trailing "/" on the pathName.
     public init(_ pathName:String, method:ServerHTTPMethod, authenticationLevel:AuthenticationLevel = .secondary, needsLock:Bool = false, minSharingPermission: SharingPermission = .read) {
         
-        assert(pathName.characters.count > 0 && pathName.characters.last != "/")
+        assert(pathName.count > 0 && pathName.characters.last != "/")
         
         self.pathName = pathName
         self.method = method
