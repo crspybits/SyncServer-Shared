@@ -1,9 +1,11 @@
 SyncServer-Shared
 
-Version X.Y (TBD)
+Version 3.0 (12/17/17)
 	* Changes for Swift 4 update.
 	* Deprecated a constant; added another
 	* Added support (enum case) for Dropbox
+	* Added new HTTP header key (for Dropbox support)
+	* Made cloud folder name optional-- it's not used by Dropbox.
 	
 Version 2.1.0
 	* Made HTTP response header keys all lower case.
