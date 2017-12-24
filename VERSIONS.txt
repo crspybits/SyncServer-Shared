@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 3.0.1 (12/24/17)
+	* Version bump only to add tag for Cocoapod-- no other changes.
+	
 Version 3.0 (12/17/17)
 	* Changes for Swift 4 update.
 	* Deprecated a constant; added another
