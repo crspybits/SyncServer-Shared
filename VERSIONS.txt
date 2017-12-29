@@ -1,9 +1,14 @@
 SyncServer-Shared
 
-Version 3.1.0
+Version 3.2.0
+	* Added new fields in heathcheck response to support healthcheck improvements:
+		https://github.com/crspybits/SyncServerII/issues/32
+	* Restructured repo & Cocoapod and added Example and testing code
+	
+Version 3.1.0 (12/27/17)
 	* Added new fields to upload response to support:
 		https://github.com/crspybits/SharedImages/issues/44
-		
+
 Version 3.0.1 (12/24/17)
 	* Version bump only to add tag for Cocoapod.
 	* Fixed podspec version of Gloss at 1.2 because I'm not ready for their change to 2.0.

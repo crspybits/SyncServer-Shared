@@ -34,6 +34,15 @@ public class HealthCheckResponse : ResponseMessage {
     public var responseType: ResponseType {
         return .json
     }
+    
+    public static let serverUptimeKey = "serverUptime"
+    public var serverUptime:TimeInterval!
+
+    public static let deployedGitTagKey = "deployedGitTag"
+    public var deployedGitTag:String!
+    
+    public static let diagnosticsKey = "diagnostics"
+    public var diagnostics:String!
 
     public required init?(json: JSON) {
     }
