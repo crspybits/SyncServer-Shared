@@ -49,6 +49,13 @@ class GlossExtensionTests: XCTestCase {
         let result = TestSupport.decode(floatForKey: "test")(json)
         XCTAssert(result == value)
     }
+    
+    func testThatDoubleCorrectValueWorks() {
+        let value:Double = 19887.232
+        let json = ["test": "\(value)"]
+        let result = TestSupport.decode(doubleForKey: "test")(json)
+        XCTAssert(result == value)
+    }
 }
 
 

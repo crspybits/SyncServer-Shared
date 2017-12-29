@@ -42,9 +42,12 @@ public class HealthCheckResponse : ResponseMessage {
     public var deployedGitTag:String!
     
     public static let diagnosticsKey = "diagnostics"
-    public var diagnostics:String!
+    public var diagnostics:String?
 
     public required init?(json: JSON) {
+        serverUptime = Decoder.decode(doubleForKey: HealthCheckResponse.serverUptimeKey)(json)
+        deployedGitTag = HealthCheckResponse.deployedGitTagKey <~~ json
+        diagnostics = HealthCheckResponse.diagnosticsKey <~~ json
     }
     
     public convenience init?() {
@@ -54,6 +57,9 @@ public class HealthCheckResponse : ResponseMessage {
     // MARK: - Serialization
     public func toJSON() -> JSON? {
         return jsonify([
+            HealthCheckResponse.deployedGitTagKey ~~> deployedGitTag,
+            HealthCheckResponse.diagnosticsKey ~~> diagnostics,
+            HealthCheckResponse.serverUptimeKey ~~> serverUptime
         ])
     }
 }
