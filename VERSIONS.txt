@@ -1,8 +1,9 @@
 SyncServer-Shared
 
-Version 3.2.0
+Version 3.2.0 (12/28/17)
 	* Added new fields in heathcheck response to support healthcheck improvements:
 		https://github.com/crspybits/SyncServerII/issues/32
+	* Added double/float conversion code.
 	* Restructured repo & Cocoapod and added Example and testing code
 	
 Version 3.1.0 (12/27/17)
