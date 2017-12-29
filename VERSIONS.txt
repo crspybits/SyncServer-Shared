@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 3.3.0
+	* Added current server time into healthcheck response.
+	
 Version 3.2.0 (12/28/17)
 	* Added new fields in heathcheck response to support healthcheck improvements:
 		https://github.com/crspybits/SyncServerII/issues/32
