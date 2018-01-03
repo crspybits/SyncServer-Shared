@@ -1,5 +1,9 @@
 SyncServer-Shared
 
+Version 4.0.0
+	* Added new response type-- header
+	* Upload response now using that response type.
+	
 Version 3.3.0
 	* Added current server time into healthcheck response.
 	
