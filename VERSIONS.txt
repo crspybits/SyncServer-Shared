@@ -1,6 +1,6 @@
 SyncServer-Shared
 
-Version 4.0.0
+Version 4.0.0 (12/6/18)
 	* Added new response type-- header
 	* Upload response now using that response type.
 	
