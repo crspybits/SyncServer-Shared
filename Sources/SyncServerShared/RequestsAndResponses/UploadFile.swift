@@ -14,8 +14,8 @@ import PerfectLib
 import Kitura
 #endif
 
-/* If an attempt is made to upload the same file more than once, the second (or third etc.) attempts don't actually upload the file to cloud storage-- if we have an entry in the Uploads repository. The effect from the POV of the caller is same as if the file was uploaded. We don't consider this an error to help in error recovery.
-(We don't actually upload the file more than once to the cloud service because Google Drive doesn't play well with uploading the same named file more than once, and to help in error recovery, plus the design of the server only makes an Uploads entry if we have successfully uploaded the file to the cloud service.)
+/* If an attempt is made to upload the same file/version more than once, the second (or third etc.) attempts don't actually upload the file to cloud storage-- if we have an entry in the Uploads repository. The effect from the POV of the caller is same as if the file was uploaded. We don't consider this an error to help in error recovery.
+(We don't actually upload the file more than once to the cloud service because, for example, Google Drive doesn't play well with uploading the same named file more than once, and to help in error recovery, plus the design of the server only makes an Uploads entry if we have successfully uploaded the file to the cloud service.)
 */
 public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
     // MARK: Properties for use in request message.
@@ -31,13 +31,15 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
     public static let cloudFolderNameKey = "cloudFolderName"
     public var cloudFolderName:String?
     
+    // If a file is already on the server, and you are uploading a new version, simply setting the appMetaData to nil will not reset the appMetaData on the server. It will just ignore the nil field and leave the appMetaData as it was on the last version of the file. To reset the appMetaData, explicitly set it to the empty string "".
     public static let appMetaDataKey = "appMetaData"
     public var appMetaData:String!
     
+    // The file version must be 0 (for a new file) or N+1 where N is the current version of the file on the server.
     public static let fileVersionKey = "fileVersion"
     public var fileVersion:FileVersionInt!
     
-    // Overall version for files for the specific user; assigned by the server.
+    // Overall version for files for the specific owning user; assigned by the server.
     public static let masterVersionKey = "masterVersion"
     public var masterVersion:MasterVersionInt!
     
