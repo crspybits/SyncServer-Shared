@@ -38,6 +38,10 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
     // The file version must be 0 (for a new file) or N+1 where N is the current version of the file on the server.
     public static let fileVersionKey = "fileVersion"
     public var fileVersion:FileVersionInt!
+
+    // Typically this will remain false. Give it as true only when doing conflict resolution and the client indicates it wants to undelete a file because it's overriding a download deletion with its own file upload.
+    public static let undeleteServerFileKey = "undeleteServerFile"
+    public var undeleteServerFile:Bool! = false
     
     // Overall version for files for the specific owning user; assigned by the server.
     public static let masterVersionKey = "masterVersion"
@@ -49,7 +53,7 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
     public var sizeOfDataInBytes:Int!
     
     public func nonNilKeys() -> [String] {
-        return [UploadFileRequest.fileUUIDKey, UploadFileRequest.mimeTypeKey, UploadFileRequest.fileVersionKey, UploadFileRequest.masterVersionKey]
+        return [UploadFileRequest.fileUUIDKey, UploadFileRequest.mimeTypeKey, UploadFileRequest.fileVersionKey, UploadFileRequest.masterVersionKey, UploadFileRequest.undeleteServerFileKey]
     }
     
     public func allKeys() -> [String] {
@@ -65,6 +69,7 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
         self.fileVersion = Decoder.decode(int32ForKey: UploadFileRequest.fileVersionKey)(json)
         self.masterVersion = Decoder.decode(int64ForKey: UploadFileRequest.masterVersionKey)(json)
         self.appMetaData = UploadFileRequest.appMetaDataKey <~~ json
+        self.undeleteServerFile = UploadFileRequest.undeleteServerFileKey <~~ json
                 
 #if SERVER
         if !self.propertiesHaveValues(propertyNames: self.nonNilKeys()) {
@@ -97,7 +102,8 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
             UploadFileRequest.cloudFolderNameKey ~~> self.cloudFolderName,
             UploadFileRequest.fileVersionKey ~~> self.fileVersion,
             UploadFileRequest.masterVersionKey ~~> self.masterVersion,
-            UploadFileRequest.appMetaDataKey ~~> self.appMetaData
+            UploadFileRequest.appMetaDataKey ~~> self.appMetaData,
+            UploadFileRequest.undeleteServerFileKey ~~> self.undeleteServerFile
         ])
     }
 }
