@@ -69,8 +69,11 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
         self.fileVersion = Decoder.decode(int32ForKey: UploadFileRequest.fileVersionKey)(json)
         self.masterVersion = Decoder.decode(int64ForKey: UploadFileRequest.masterVersionKey)(json)
         self.appMetaData = UploadFileRequest.appMetaDataKey <~~ json
-        self.undeleteServerFile = UploadFileRequest.undeleteServerFileKey <~~ json
-                
+        
+        if let undelete:Bool = UploadFileRequest.undeleteServerFileKey <~~ json {
+            self.undeleteServerFile = undelete
+        }
+        
 #if SERVER
         if !self.propertiesHaveValues(propertyNames: self.nonNilKeys()) {
             return nil
