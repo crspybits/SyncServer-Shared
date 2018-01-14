@@ -1,8 +1,8 @@
 SyncServer-Shared
 
-Version 5.0.0
-	* Add undeleteServerFile property to UploadFileRequest (breaking change)
-		This for conflict resolution on the client & multi-version files.
+Version 4.1.0
+	* Add non-required undeleteServerFile property to UploadFileRequest (non-breaking change)
+		This is for conflict resolution on the client & multi-version files.
 		
 Version 4.0.0 (12/6/18)
 	* Added new response type-- header
