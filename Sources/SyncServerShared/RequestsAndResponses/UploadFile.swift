@@ -39,9 +39,9 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
     public static let fileVersionKey = "fileVersion"
     public var fileVersion:FileVersionInt!
 
-    // Typically this will remain false. Give it as true only when doing conflict resolution and the client indicates it wants to undelete a file because it's overriding a download deletion with its own file upload.
+    // Typically this will remain false (or nil). Give it as true only when doing conflict resolution and the client indicates it wants to undelete a file because it's overriding a download deletion with its own file upload.
     public static let undeleteServerFileKey = "undeleteServerFile"
-    public var undeleteServerFile:Bool! = false
+    public var undeleteServerFile:Bool? = false
     
     // Overall version for files for the specific owning user; assigned by the server.
     public static let masterVersionKey = "masterVersion"
@@ -53,11 +53,11 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
     public var sizeOfDataInBytes:Int!
     
     public func nonNilKeys() -> [String] {
-        return [UploadFileRequest.fileUUIDKey, UploadFileRequest.mimeTypeKey, UploadFileRequest.fileVersionKey, UploadFileRequest.masterVersionKey, UploadFileRequest.undeleteServerFileKey]
+        return [UploadFileRequest.fileUUIDKey, UploadFileRequest.mimeTypeKey, UploadFileRequest.fileVersionKey, UploadFileRequest.masterVersionKey]
     }
     
     public func allKeys() -> [String] {
-        return self.nonNilKeys() + [UploadFileRequest.appMetaDataKey, UploadFileRequest.cloudFolderNameKey]
+        return self.nonNilKeys() + [UploadFileRequest.appMetaDataKey, UploadFileRequest.cloudFolderNameKey, UploadFileRequest.undeleteServerFileKey]
     }
     
     public required init?(json: JSON) {
@@ -69,10 +69,7 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
         self.fileVersion = Decoder.decode(int32ForKey: UploadFileRequest.fileVersionKey)(json)
         self.masterVersion = Decoder.decode(int64ForKey: UploadFileRequest.masterVersionKey)(json)
         self.appMetaData = UploadFileRequest.appMetaDataKey <~~ json
-        
-        if let undelete:Bool = UploadFileRequest.undeleteServerFileKey <~~ json {
-            self.undeleteServerFile = undelete
-        }
+        self.undeleteServerFile = UploadFileRequest.undeleteServerFileKey <~~ json
         
 #if SERVER
         if !self.propertiesHaveValues(propertyNames: self.nonNilKeys()) {
