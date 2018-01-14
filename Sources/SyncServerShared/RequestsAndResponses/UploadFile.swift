@@ -39,9 +39,9 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
     public static let fileVersionKey = "fileVersion"
     public var fileVersion:FileVersionInt!
 
-    // Typically this will remain false (or nil). Give it as true only when doing conflict resolution and the client indicates it wants to undelete a file because it's overriding a download deletion with its own file upload.
+    // Typically this will remain 0 (or nil). Give it as 1 only when doing conflict resolution and the client indicates it wants to undelete a file because it's overriding a download deletion with its own file upload.
     public static let undeleteServerFileKey = "undeleteServerFile"
-    public var undeleteServerFile:Bool? = false
+    public var undeleteServerFile:Int32? // Should be 0 or non-0; I haven't been able to get Bool to work with Gloss
     
     // Overall version for files for the specific owning user; assigned by the server.
     public static let masterVersionKey = "masterVersion"
@@ -69,7 +69,8 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
         self.fileVersion = Decoder.decode(int32ForKey: UploadFileRequest.fileVersionKey)(json)
         self.masterVersion = Decoder.decode(int64ForKey: UploadFileRequest.masterVersionKey)(json)
         self.appMetaData = UploadFileRequest.appMetaDataKey <~~ json
-        self.undeleteServerFile = UploadFileRequest.undeleteServerFileKey <~~ json
+        
+        self.undeleteServerFile = Decoder.decode(int32ForKey:  UploadFileRequest.undeleteServerFileKey)(json)
         
 #if SERVER
         if !self.propertiesHaveValues(propertyNames: self.nonNilKeys()) {
