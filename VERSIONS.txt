@@ -1,6 +1,9 @@
 SyncServer-Shared
 
-Version 4.1.0
+Version 4.2.0 (1/31/18)
+	* Added a new server response key-- to report the current server version.
+	
+Version 4.1.0 (1/14/18)
 	* Add non-required undeleteServerFile property to UploadFileRequest (non-breaking change)
 		This is for conflict resolution on the client & multi-version files.
 		
