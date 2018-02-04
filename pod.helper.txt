@@ -9,7 +9,7 @@ Updating the pod:
 
 	# 3) then push updated revision of pod to its repo
 
-	git tag 4.2.0
+	git tag 4.3.0
 	git push --tags
 
 	# 4) validate the pod, with downloading

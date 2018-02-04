@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 4.3.0 (2/4/18)
+	* Added userId to add user and check creds response.
+	
 Version 4.2.0 (1/31/18)
 	* Added a new server response key-- to report the current server version.
 	
