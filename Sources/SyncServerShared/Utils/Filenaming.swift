@@ -48,7 +48,7 @@ public protocol Filenaming {
     var fileVersion:Int32! {get}
 
 #if SERVER
-    func cloudFileName(deviceUUID:String) -> String
+    func cloudFileName(deviceUUID:String, mimeType:String) -> String
 #endif
 }
 
