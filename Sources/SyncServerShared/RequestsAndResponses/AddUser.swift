@@ -17,6 +17,7 @@ public class AddUserRequest : NSObject, RequestMessage {
     // A root-level folder in the cloud file service. This is only used by some of the cloud file servces. E.g., Google Drive. It's not used by Dropbox.
     public static let cloudFolderNameKey = "cloudFolderName"
     public var cloudFolderName:String?
+    public static let maxCloudFolderNameLength = 256
     
 #if SERVER
     public required convenience init?(request: RouterRequest) {
