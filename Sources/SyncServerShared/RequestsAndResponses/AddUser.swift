@@ -36,6 +36,10 @@ public class AddUserRequest : NSObject, RequestMessage {
             AddUserRequest.cloudFolderNameKey ~~> self.cloudFolderName
         ])
     }
+    
+    public func allKeys() -> [String] {
+        return [AddUserRequest.cloudFolderNameKey]
+    }
 }
 
 public class AddUserResponse : ResponseMessage {
