@@ -31,11 +31,14 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
     public static let mimeTypeKey = "mimeType"
     public var mimeType: String?
     
-    public static let appMetaDataKey = "appMetaData"
-    public var appMetaData: String?
+//    public static let appMetaDataKey = "appMetaData"
+//    public var appMetaData: String?
     
     public static let deletedKey = "deleted"
     public var deleted:Bool! = false
+
+    public static let appMetaDataVersionKey = "appMetaDataVersion"
+    public var appMetaDataVersion: AppMetaDataVersionInt!
     
     public static let fileVersionKey = "fileVersion"
     public var fileVersion: FileVersionInt!
@@ -44,16 +47,17 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
     public var fileSizeBytes: Int64!
     
     public var description: String {
-        return "fileUUID: \(fileUUID); deviceUUID: \(String(describing: deviceUUID)); creationDate: \(String(describing: creationDate)); updateDate: \(String(describing: updateDate)); mimeTypeKey: \(String(describing: mimeType)); appMetaData: \(String(describing: appMetaData)); deleted: \(deleted); fileVersion: \(fileVersion); fileSizeBytes: \(fileSizeBytes)"
+        return "fileUUID: \(fileUUID); deviceUUID: \(String(describing: deviceUUID)); creationDate: \(String(describing: creationDate)); updateDate: \(String(describing: updateDate)); mimeTypeKey: \(String(describing: mimeType)); deleted: \(deleted); fileVersion: \(fileVersion); appMetaDataVersion: \(appMetaDataVersion); fileSizeBytes: \(fileSizeBytes)"
     }
     
     required public init?(json: JSON) {
         self.fileUUID = FileInfo.fileUUIDKey <~~ json
         self.deviceUUID = FileInfo.deviceUUIDKey <~~ json
         self.mimeType = FileInfo.mimeTypeKey <~~ json
-        self.appMetaData = FileInfo.appMetaDataKey <~~ json
         self.deleted = FileInfo.deletedKey <~~ json
         
+        self.appMetaDataVersion = Decoder.decode(int32ForKey: FileInfo.appMetaDataVersionKey)(json)
+
         self.fileVersion = Decoder.decode(int32ForKey: FileInfo.fileVersionKey)(json)
         self.fileSizeBytes = Decoder.decode(int64ForKey: FileInfo.fileSizeBytesKey)(json)
         
@@ -73,7 +77,7 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
             FileInfo.fileUUIDKey ~~> self.fileUUID,
             FileInfo.deviceUUIDKey ~~> self.deviceUUID,
             FileInfo.mimeTypeKey ~~> self.mimeType,
-            FileInfo.appMetaDataKey ~~> self.appMetaData,
+            FileInfo.appMetaDataVersionKey ~~> self.appMetaDataVersion,
             FileInfo.deletedKey ~~> self.deleted,
             FileInfo.fileVersionKey ~~> self.fileVersion,
             FileInfo.fileSizeBytesKey ~~> self.fileSizeBytes,
