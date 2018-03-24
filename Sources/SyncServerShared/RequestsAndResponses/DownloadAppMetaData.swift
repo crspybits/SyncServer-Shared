@@ -18,7 +18,7 @@ public class DownloadAppMetaDataRequest : NSObject, RequestMessage {
     public static let fileUUIDKey = "fileUUID"
     public var fileUUID:String!
     
-    // This must indicate the current version in the FileIndex.
+    // This must indicate the current version in the FileIndex. Not allowing this to be nil because that would mean the appMetaData on the server would be nil, and what's the point of asking for that?
     public static let appMetaDataVersionKey = "appMetaDataVersion"
     public var appMetaDataVersion:AppMetaDataVersionInt!
     

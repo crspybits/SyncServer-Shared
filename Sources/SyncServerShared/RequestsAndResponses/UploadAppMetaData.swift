@@ -13,7 +13,12 @@ import PerfectLib
 import Kitura
 #endif
 
-public class UploadAppMetaDataRequest : NSObject, RequestMessage {
+public protocol UploadAppMetaData {
+    var appMetaData:String! {get}
+    var appMetaDataVersion:AppMetaDataVersionInt! {get}
+}
+
+public class UploadAppMetaDataRequest : NSObject, RequestMessage, UploadAppMetaData {
     // MARK: Properties for use in request message.
     
     // Assigned by client.
