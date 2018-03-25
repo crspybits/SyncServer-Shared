@@ -54,7 +54,7 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
     }
     
     public func allKeys() -> [String] {
-        return self.nonNilKeys() + [UploadFileRequest.appMetaDataKey, UploadFileRequest.undeleteServerFileKey]
+        return self.nonNilKeys() + [UploadFileRequest.appMetaDataKey, UploadFileRequest.undeleteServerFileKey, AppMetaData.contentsKey, AppMetaData.versionKey]
     }
     
     public required init?(json: JSON) {
