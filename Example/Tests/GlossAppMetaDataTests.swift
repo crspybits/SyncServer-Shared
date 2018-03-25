@@ -29,10 +29,8 @@ class GlossAppMetaDataTests: XCTestCase {
             UploadFileRequest.mimeTypeKey: "text/plain",
             UploadFileRequest.fileVersionKey: 0,
             UploadFileRequest.masterVersionKey: 0,
-            UploadFileRequest.appMetaDataKey: [
-                AppMetaData.versionKey : 0,
-                AppMetaData.contentsKey: "Stuff"
-            ]
+            AppMetaData.versionKey : 0,
+            AppMetaData.contentsKey: "Stuff"
         ])
         
         guard uploadRequest != nil else {

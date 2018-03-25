@@ -64,7 +64,10 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
         self.mimeType = UploadFileRequest.mimeTypeKey <~~ json
         self.fileVersion = Decoder.decode(int32ForKey: UploadFileRequest.fileVersionKey)(json)
         self.masterVersion = Decoder.decode(int64ForKey: UploadFileRequest.masterVersionKey)(json)
-        self.appMetaData = UploadFileRequest.appMetaDataKey <~~ json
+        
+        // Nested structures aren't working so well with `request.queryParameters`.
+        self.appMetaData = AppMetaData(json: json)
+        
         self.undeleteServerFile = Decoder.decode(int32ForKey:  UploadFileRequest.undeleteServerFileKey)(json)
         
 #if SERVER
@@ -92,14 +95,20 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
 #endif
     
     public func toJSON() -> JSON? {
-        return jsonify([
+        var result = [
             UploadFileRequest.fileUUIDKey ~~> self.fileUUID,
             UploadFileRequest.mimeTypeKey ~~> self.mimeType,
             UploadFileRequest.fileVersionKey ~~> self.fileVersion,
             UploadFileRequest.masterVersionKey ~~> self.masterVersion,
             UploadFileRequest.appMetaDataKey ~~> self.appMetaData,
             UploadFileRequest.undeleteServerFileKey ~~> self.undeleteServerFile
-        ])
+        ]
+        
+        if let appMetaData = self.appMetaData?.toJSON() {
+            result += [appMetaData]
+        }
+        
+        return jsonify(result)
     }
 }
 
