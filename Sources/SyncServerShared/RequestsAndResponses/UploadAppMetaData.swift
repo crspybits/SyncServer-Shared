@@ -13,10 +13,6 @@ import PerfectLib
 import Kitura
 #endif
 
-public protocol UploadAppMetaData {
-    var appMetaData:AppMetaData! {get}
-}
-
 public struct AppMetaData: Gloss.Encodable, Gloss.Decodable {
     public func toJSON() -> JSON? {
         if version == nil || contents == nil {
@@ -27,6 +23,11 @@ public struct AppMetaData: Gloss.Encodable, Gloss.Decodable {
             AppMetaData.versionKey ~~> self.version,
             AppMetaData.contentsKey ~~> self.contents
         ])
+    }
+    
+    public init(version: AppMetaDataVersionInt, contents: String) {
+        self.version = version
+        self.contents = contents
     }
 
     public init?(json: JSON) {
@@ -47,7 +48,7 @@ public struct AppMetaData: Gloss.Encodable, Gloss.Decodable {
     public let contents: String!
 }
 
-public class UploadAppMetaDataRequest : NSObject, RequestMessage, UploadAppMetaData {
+public class UploadAppMetaDataRequest : NSObject, RequestMessage {
     // MARK: Properties for use in request message.
     
     // Assigned by client.
