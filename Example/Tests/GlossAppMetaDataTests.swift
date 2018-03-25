@@ -46,5 +46,8 @@ class GlossAppMetaDataTests: XCTestCase {
             XCTFail()
             return
         }
+        
+        let uploadRequest2 = UploadFileRequest(json: json!)
+        XCTAssert(uploadRequest2?.appMetaData != nil)
     }
 }

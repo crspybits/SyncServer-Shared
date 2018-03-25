@@ -30,7 +30,7 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
     // If a file is already on the server, and you are uploading a new version, simply setting the appMetaData contents to nil will not reset the appMetaData on the server. It will just ignore the nil field and leave the appMetaData as it was on the last version of the file. To reset the appMetaData, explicitly set its contents to the empty string "".
     // Set this to nil if you are not updating the app meta data.
     public static let appMetaDataKey = "appMetaData"
-    public var appMetaData:AppMetaData!
+    public var appMetaData:AppMetaData?
     
     // Must be 0 (for a new file) or N+1 where N is the current version of the file on the server.
     public static let fileVersionKey = "fileVersion"
