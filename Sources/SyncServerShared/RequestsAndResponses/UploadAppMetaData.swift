@@ -55,7 +55,6 @@ public class UploadAppMetaDataRequest : NSObject, RequestMessage {
     public static let fileUUIDKey = "fileUUID"
     public var fileUUID:String!
     
-    public static let appMetaDataKey = "appMetaData"
     public var appMetaData:AppMetaData!
     
     // Overall version for files for the specific owning user; assigned by the server.
@@ -63,7 +62,7 @@ public class UploadAppMetaDataRequest : NSObject, RequestMessage {
     public var masterVersion:MasterVersionInt!
     
     public func nonNilKeys() -> [String] {
-        return [UploadAppMetaDataRequest.fileUUIDKey, UploadAppMetaDataRequest.masterVersionKey, UploadAppMetaDataRequest.appMetaDataKey]
+        return [UploadAppMetaDataRequest.fileUUIDKey, UploadAppMetaDataRequest.masterVersionKey, AppMetaData.contentsKey, AppMetaData.versionKey]
     }
     
     public func allKeys() -> [String] {
@@ -74,7 +73,10 @@ public class UploadAppMetaDataRequest : NSObject, RequestMessage {
         super.init()
         
         self.fileUUID = UploadAppMetaDataRequest.fileUUIDKey <~~ json
-        self.appMetaData = UploadAppMetaDataRequest.appMetaDataKey <~~ json
+        
+        // Nested structures aren't working so well with `request.queryParameters`.
+        self.appMetaData = AppMetaData(json: json)
+        
         self.masterVersion = Decoder.decode(int64ForKey: UploadAppMetaDataRequest.masterVersionKey)(json)
         
 #if SERVER
@@ -95,11 +97,16 @@ public class UploadAppMetaDataRequest : NSObject, RequestMessage {
 #endif
     
     public func toJSON() -> JSON? {
-        return jsonify([
+        var result = [
             UploadAppMetaDataRequest.fileUUIDKey ~~> self.fileUUID,
-            UploadAppMetaDataRequest.appMetaDataKey ~~> self.appMetaData,
-            UploadAppMetaDataRequest.masterVersionKey ~~> self.masterVersion,
-        ])
+            UploadAppMetaDataRequest.masterVersionKey ~~> self.masterVersion
+        ]
+        
+        if let appMetaData = self.appMetaData?.toJSON() {
+            result += [appMetaData]
+        }
+        
+        return jsonify(result)
     }
 }
 
