@@ -100,7 +100,6 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
             UploadFileRequest.mimeTypeKey ~~> self.mimeType,
             UploadFileRequest.fileVersionKey ~~> self.fileVersion,
             UploadFileRequest.masterVersionKey ~~> self.masterVersion,
-            UploadFileRequest.appMetaDataKey ~~> self.appMetaData,
             UploadFileRequest.undeleteServerFileKey ~~> self.undeleteServerFile
         ]
         

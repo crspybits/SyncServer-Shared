@@ -24,13 +24,12 @@ class GlossAppMetaDataTests: XCTestCase {
     
     func testExample() {
         let fileUUID = UUID().uuidString
+        let appMetaData = AppMetaData(version: 0, contents: "Stuff")
         let uploadRequest = UploadFileRequest(json: [
             UploadFileRequest.fileUUIDKey : fileUUID,
             UploadFileRequest.mimeTypeKey: "text/plain",
             UploadFileRequest.fileVersionKey: 0,
-            UploadFileRequest.masterVersionKey: 0,
-            AppMetaData.versionKey : 0,
-            AppMetaData.contentsKey: "Stuff"
+            UploadFileRequest.masterVersionKey: 0
         ])
         
         guard uploadRequest != nil else {
@@ -38,17 +37,12 @@ class GlossAppMetaDataTests: XCTestCase {
             return
         }
         
-        XCTAssert(uploadRequest!.appMetaData != nil)
-        
+        uploadRequest!.appMetaData = appMetaData
+                
         let json = uploadRequest!.toJSON()
         print("json: \(String(describing: json))")
         
-        guard let dict = json?[UploadFileRequest.appMetaDataKey] as? [String: Any] else {
-            XCTFail()
-            return
-        }
-        
-        guard dict[AppMetaData.versionKey] != nil && dict[AppMetaData.contentsKey] != nil else {
+        guard json?[AppMetaData.versionKey] != nil && json?[AppMetaData.contentsKey] != nil else {
             XCTFail()
             return
         }
