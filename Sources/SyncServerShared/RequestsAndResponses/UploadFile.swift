@@ -27,13 +27,10 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming, UploadApp
     public static let mimeTypeKey = "mimeType"
     public var mimeType:String!
     
-    // If a file is already on the server, and you are uploading a new version, simply setting the appMetaData to nil will not reset the appMetaData on the server. It will just ignore the nil field and leave the appMetaData as it was on the last version of the file. To reset the appMetaData, explicitly set it to the empty string "".
+    // If a file is already on the server, and you are uploading a new version, simply setting the appMetaData contents to nil will not reset the appMetaData on the server. It will just ignore the nil field and leave the appMetaData as it was on the last version of the file. To reset the appMetaData, explicitly set its contents to the empty string "".
+    // Set this to nil if you are not updating the app meta data.
     public static let appMetaDataKey = "appMetaData"
-    public var appMetaData:String!
-
-    // Nil if you are not updating the app meta data; otherwise must be 0 (for new appMetaData) or N+1 where N is the current version of the appMetaData on the server. Each time you change the appMetaData field above and upload it, you must increment this version.
-    public static let appMetaDataVersionKey = "appMetaDataVersion"
-    public var appMetaDataVersion:AppMetaDataVersionInt!
+    public var appMetaData:AppMetaData!
     
     // Must be 0 (for a new file) or N+1 where N is the current version of the file on the server.
     public static let fileVersionKey = "fileVersion"
@@ -57,7 +54,7 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming, UploadApp
     }
     
     public func allKeys() -> [String] {
-        return self.nonNilKeys() + [UploadFileRequest.appMetaDataKey, UploadFileRequest.appMetaDataVersionKey, UploadFileRequest.undeleteServerFileKey]
+        return self.nonNilKeys() + [UploadFileRequest.appMetaDataKey, UploadFileRequest.undeleteServerFileKey]
     }
     
     public required init?(json: JSON) {
@@ -68,8 +65,6 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming, UploadApp
         self.fileVersion = Decoder.decode(int32ForKey: UploadFileRequest.fileVersionKey)(json)
         self.masterVersion = Decoder.decode(int64ForKey: UploadFileRequest.masterVersionKey)(json)
         self.appMetaData = UploadFileRequest.appMetaDataKey <~~ json
-        self.appMetaDataVersion = Decoder.decode(int32ForKey: UploadFileRequest.appMetaDataVersionKey)(json)
-        
         self.undeleteServerFile = Decoder.decode(int32ForKey:  UploadFileRequest.undeleteServerFileKey)(json)
         
 #if SERVER
@@ -103,7 +98,6 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming, UploadApp
             UploadFileRequest.fileVersionKey ~~> self.fileVersion,
             UploadFileRequest.masterVersionKey ~~> self.masterVersion,
             UploadFileRequest.appMetaDataKey ~~> self.appMetaData,
-            UploadFileRequest.appMetaDataVersionKey ~~> self.appMetaDataVersion,
             UploadFileRequest.undeleteServerFileKey ~~> self.undeleteServerFile
         ])
     }

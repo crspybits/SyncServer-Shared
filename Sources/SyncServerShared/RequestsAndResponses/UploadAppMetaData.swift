@@ -14,8 +14,37 @@ import Kitura
 #endif
 
 public protocol UploadAppMetaData {
-    var appMetaData:String! {get}
-    var appMetaDataVersion:AppMetaDataVersionInt! {get}
+    var appMetaData:AppMetaData! {get}
+}
+
+public struct AppMetaData: Gloss.Encodable, Gloss.Decodable {
+    public func toJSON() -> JSON? {
+        if version == nil || contents == nil {
+            return nil
+        }
+        
+        return jsonify([
+            AppMetaData.versionKey ~~> self.version,
+            AppMetaData.contentsKey ~~> self.contents
+        ])
+    }
+
+    public init?(json: JSON) {
+        version = Decoder.decode(int32ForKey: AppMetaData.versionKey)(json)
+        contents = AppMetaData.contentsKey <~~ json
+        
+        if version == nil || contents == nil {
+            return nil
+        }
+    }
+
+    public static let contentsKey = "appMetaDataContents"
+    public static let versionKey = "appMetaDataVersion"
+    
+    // Must be 0 (for new appMetaData) or N+1 where N is the current version of the appMetaData on the server. Each time you change the contents field and upload it, you must increment this version.
+    public let version: AppMetaDataVersionInt!
+    
+    public let contents: String!
 }
 
 public class UploadAppMetaDataRequest : NSObject, RequestMessage, UploadAppMetaData {
@@ -26,18 +55,14 @@ public class UploadAppMetaDataRequest : NSObject, RequestMessage, UploadAppMetaD
     public var fileUUID:String!
     
     public static let appMetaDataKey = "appMetaData"
-    public var appMetaData:String!
-
-    // Must be 0 (for new appMetaData) or N+1 where N is the current version of the appMetaData on the server. Each time you change the appMetaData field above and upload it, you must increment this version.
-    public static let appMetaDataVersionKey = "appMetaDataVersion"
-    public var appMetaDataVersion:AppMetaDataVersionInt!
+    public var appMetaData:AppMetaData!
     
     // Overall version for files for the specific owning user; assigned by the server.
     public static let masterVersionKey = "masterVersion"
     public var masterVersion:MasterVersionInt!
     
     public func nonNilKeys() -> [String] {
-        return [UploadFileRequest.fileUUIDKey, UploadFileRequest.appMetaDataKey, UploadFileRequest.appMetaDataVersionKey, UploadFileRequest.masterVersionKey]
+        return [UploadFileRequest.fileUUIDKey, UploadFileRequest.masterVersionKey, UploadFileRequest.appMetaDataKey]
     }
     
     public func allKeys() -> [String] {
@@ -49,7 +74,6 @@ public class UploadAppMetaDataRequest : NSObject, RequestMessage, UploadAppMetaD
         
         self.fileUUID = UploadFileRequest.fileUUIDKey <~~ json
         self.appMetaData = UploadFileRequest.appMetaDataKey <~~ json
-        self.appMetaDataVersion = Decoder.decode(int32ForKey: UploadFileRequest.appMetaDataVersionKey)(json)
         self.masterVersion = Decoder.decode(int64ForKey: UploadFileRequest.masterVersionKey)(json)
         
 #if SERVER
@@ -73,7 +97,6 @@ public class UploadAppMetaDataRequest : NSObject, RequestMessage, UploadAppMetaD
         return jsonify([
             UploadFileRequest.fileUUIDKey ~~> self.fileUUID,
             UploadFileRequest.appMetaDataKey ~~> self.appMetaData,
-            UploadFileRequest.appMetaDataVersionKey ~~> self.appMetaDataVersion,
             UploadFileRequest.masterVersionKey ~~> self.masterVersion,
         ])
     }

@@ -87,3 +87,4 @@ public enum UserType : String {
         return max(UserType.sharing.rawValue.count, UserType.owning.rawValue.count)
     }
 }
+

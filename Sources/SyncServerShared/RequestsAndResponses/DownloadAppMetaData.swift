@@ -70,6 +70,7 @@ public class DownloadAppMetaDataResponse : ResponseMessage {
         return .json
     }
     
+    // Just the appMetaData contents.
     public static let appMetaDataKey = "appMetaData"
     public var appMetaData:String?
     
