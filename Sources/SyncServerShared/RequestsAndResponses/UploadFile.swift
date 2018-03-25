@@ -54,7 +54,8 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
     }
     
     public func allKeys() -> [String] {
-        return self.nonNilKeys() + [UploadFileRequest.appMetaDataKey, UploadFileRequest.undeleteServerFileKey, AppMetaData.contentsKey, AppMetaData.versionKey]
+        return self.nonNilKeys() + [UploadFileRequest.appMetaDataKey, UploadFileRequest.undeleteServerFileKey, UploadFileRequest.appMetaDataKey]
+    // AppMetaData.contentsKey, AppMetaData.versionKey
     }
     
     public required init?(json: JSON) {
@@ -66,7 +67,8 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
         self.masterVersion = Decoder.decode(int64ForKey: UploadFileRequest.masterVersionKey)(json)
         
         // Nested structures aren't working so well with `request.queryParameters`.
-        self.appMetaData = AppMetaData(json: json)
+        // self.appMetaData = AppMetaData(json: json)
+        self.appMetaData = UploadFileRequest.appMetaDataKey <~~ json
         
         self.undeleteServerFile = Decoder.decode(int32ForKey:  UploadFileRequest.undeleteServerFileKey)(json)
         
@@ -95,17 +97,18 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
 #endif
     
     public func toJSON() -> JSON? {
-        var result = [
+        let result = [
             UploadFileRequest.fileUUIDKey ~~> self.fileUUID,
             UploadFileRequest.mimeTypeKey ~~> self.mimeType,
             UploadFileRequest.fileVersionKey ~~> self.fileVersion,
             UploadFileRequest.masterVersionKey ~~> self.masterVersion,
-            UploadFileRequest.undeleteServerFileKey ~~> self.undeleteServerFile
+            UploadFileRequest.undeleteServerFileKey ~~> self.undeleteServerFile,
+            UploadFileRequest.appMetaDataKey ~~> self.appMetaData
         ]
         
-        if let appMetaData = self.appMetaData?.toJSON() {
-            result += [appMetaData]
-        }
+//        if let appMetaData = self.appMetaData?.toJSON() {
+//            result += [appMetaData]
+//        }
         
         return jsonify(result)
     }

@@ -42,7 +42,7 @@ class GlossAppMetaDataTests: XCTestCase {
         let json = uploadRequest!.toJSON()
         print("json: \(String(describing: json))")
         
-        guard json?[AppMetaData.versionKey] != nil && json?[AppMetaData.contentsKey] != nil else {
+        guard json?[UploadFileRequest.appMetaDataKey] != nil else {
             XCTFail()
             return
         }
