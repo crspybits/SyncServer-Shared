@@ -17,7 +17,7 @@ case data(data: Data?)
 case header
 }
 
-public protocol ResponseMessage : Gloss.Encodable, Gloss.Decodable {
+public protocol ResponseMessage : Glossy {
     init?(json: JSON)
     var responseType:ResponseType {get}
 }

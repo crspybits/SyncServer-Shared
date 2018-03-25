@@ -14,7 +14,7 @@ import PerfectLib
 import Kitura
 #endif
 
-public protocol RequestMessage : NSObjectProtocol, Gloss.Encodable, Gloss.Decodable {
+public protocol RequestMessage : NSObjectProtocol, Glossy {
     init?(json: JSON)
     
 #if SERVER
@@ -71,7 +71,7 @@ public extension RequestMessage {
         var result = ""
         for key in self.allKeys() {
             if let keyValue = jsonDict[key] {
-                if result.characters.count > 0 {
+                if result.count > 0 {
                     result += "&"
                 }
                 
@@ -91,7 +91,7 @@ public extension RequestMessage {
             }
         }
         
-        if result.characters.count == 0 {
+        if result.count == 0 {
             return nil
         }
         else {
