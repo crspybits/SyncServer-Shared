@@ -63,7 +63,7 @@ public class UploadAppMetaDataRequest : NSObject, RequestMessage {
     public var masterVersion:MasterVersionInt!
     
     public func nonNilKeys() -> [String] {
-        return [UploadFileRequest.fileUUIDKey, UploadFileRequest.masterVersionKey, UploadFileRequest.appMetaDataKey]
+        return [UploadAppMetaDataRequest.fileUUIDKey, UploadAppMetaDataRequest.masterVersionKey, UploadAppMetaDataRequest.appMetaDataKey]
     }
     
     public func allKeys() -> [String] {
@@ -73,9 +73,9 @@ public class UploadAppMetaDataRequest : NSObject, RequestMessage {
     public required init?(json: JSON) {
         super.init()
         
-        self.fileUUID = UploadFileRequest.fileUUIDKey <~~ json
-        self.appMetaData = UploadFileRequest.appMetaDataKey <~~ json
-        self.masterVersion = Decoder.decode(int64ForKey: UploadFileRequest.masterVersionKey)(json)
+        self.fileUUID = UploadAppMetaDataRequest.fileUUIDKey <~~ json
+        self.appMetaData = UploadAppMetaDataRequest.appMetaDataKey <~~ json
+        self.masterVersion = Decoder.decode(int64ForKey: UploadAppMetaDataRequest.masterVersionKey)(json)
         
 #if SERVER
         if !self.propertiesHaveValues(propertyNames: self.nonNilKeys()) {
@@ -96,9 +96,9 @@ public class UploadAppMetaDataRequest : NSObject, RequestMessage {
     
     public func toJSON() -> JSON? {
         return jsonify([
-            UploadFileRequest.fileUUIDKey ~~> self.fileUUID,
-            UploadFileRequest.appMetaDataKey ~~> self.appMetaData,
-            UploadFileRequest.masterVersionKey ~~> self.masterVersion,
+            UploadAppMetaDataRequest.fileUUIDKey ~~> self.fileUUID,
+            UploadAppMetaDataRequest.appMetaDataKey ~~> self.appMetaData,
+            UploadAppMetaDataRequest.masterVersionKey ~~> self.masterVersion,
         ])
     }
 }
