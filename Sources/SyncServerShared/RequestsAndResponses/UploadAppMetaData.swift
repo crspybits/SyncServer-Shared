@@ -69,6 +69,11 @@ public class UploadAppMetaDataRequest : NSObject, RequestMessage {
         return self.nonNilKeys()
     }
     
+    // For testing.
+    public override init() {
+        super.init()
+    }
+    
     public required init?(json: JSON) {
         super.init()
         

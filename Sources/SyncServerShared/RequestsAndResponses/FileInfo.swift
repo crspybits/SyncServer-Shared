@@ -31,9 +31,6 @@ public class FileInfo : Glossy, CustomStringConvertible, Filenaming {
     public static let mimeTypeKey = "mimeType"
     public var mimeType: String?
     
-//    public static let appMetaDataKey = "appMetaData"
-//    public var appMetaData: String?
-    
     public static let deletedKey = "deleted"
     public var deleted:Bool! = false
 
