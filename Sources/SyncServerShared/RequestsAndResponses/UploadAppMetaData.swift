@@ -62,11 +62,12 @@ public class UploadAppMetaDataRequest : NSObject, RequestMessage {
     public var masterVersion:MasterVersionInt!
     
     public func nonNilKeys() -> [String] {
-        return [UploadAppMetaDataRequest.fileUUIDKey, UploadAppMetaDataRequest.masterVersionKey, AppMetaData.contentsKey, AppMetaData.versionKey]
+        return [UploadAppMetaDataRequest.fileUUIDKey, UploadAppMetaDataRequest.masterVersionKey]
     }
     
     public func allKeys() -> [String] {
-        return self.nonNilKeys()
+        // Not considering the AppMetaData values to be non-nil because of the way I'm checking for non-nil below. Checking for non-nil for these in [1] below.
+        return self.nonNilKeys() + [AppMetaData.contentsKey, AppMetaData.versionKey]
     }
     
     // For testing.
@@ -86,6 +87,11 @@ public class UploadAppMetaDataRequest : NSObject, RequestMessage {
         
 #if SERVER
         if !self.propertiesHaveValues(propertyNames: self.nonNilKeys()) {
+            return nil
+        }
+    
+        // [1]
+        if appMetaData?.contents == nil || appMetaData?.version == nil {
             return nil
         }
 #endif
