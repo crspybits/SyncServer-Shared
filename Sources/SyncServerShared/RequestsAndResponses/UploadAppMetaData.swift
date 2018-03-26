@@ -123,7 +123,7 @@ public class UploadAppMetaDataRequest : NSObject, RequestMessage {
 
 public class UploadAppMetaDataResponse : ResponseMessage {
     public var responseType: ResponseType {
-        return .header
+        return .json
     }
     
     // If the master version for the user on the server has been incremented, this key will be present in the response-- with the new value of the master version. The upload was not attempted in this case.
