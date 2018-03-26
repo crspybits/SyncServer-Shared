@@ -48,6 +48,7 @@ public struct AppMetaData: Glossy {
     public let contents: String!
 }
 
+// Updating the app meta data using this request doesn't change the update date on the file.
 public class UploadAppMetaDataRequest : NSObject, RequestMessage {
     // MARK: Properties for use in request message.
     

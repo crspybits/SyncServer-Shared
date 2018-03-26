@@ -25,6 +25,7 @@ public class FileInfo : Glossy, CustomStringConvertible, Filenaming {
     public static let creationDateKey = "creationDate"
     public var creationDate: Date?
  
+    // Based on updating the contents only (not purely app meta data updates). I.e., calls to UploadFile.
     public static let updateDateKey = "updateDate"
     public var updateDate: Date?
     
@@ -34,8 +35,9 @@ public class FileInfo : Glossy, CustomStringConvertible, Filenaming {
     public static let deletedKey = "deleted"
     public var deleted:Bool! = false
 
+    // Optional because this will be nil if a file has no app meta data.
     public static let appMetaDataVersionKey = "appMetaDataVersion"
-    public var appMetaDataVersion: AppMetaDataVersionInt!
+    public var appMetaDataVersion: AppMetaDataVersionInt?
     
     public static let fileVersionKey = "fileVersion"
     public var fileVersion: FileVersionInt!
@@ -44,7 +46,7 @@ public class FileInfo : Glossy, CustomStringConvertible, Filenaming {
     public var fileSizeBytes: Int64!
     
     public var description: String {
-        return "fileUUID: \(fileUUID); deviceUUID: \(String(describing: deviceUUID)); creationDate: \(String(describing: creationDate)); updateDate: \(String(describing: updateDate)); mimeTypeKey: \(String(describing: mimeType)); deleted: \(deleted); fileVersion: \(fileVersion); appMetaDataVersion: \(appMetaDataVersion); fileSizeBytes: \(fileSizeBytes)"
+        return "fileUUID: \(fileUUID); deviceUUID: \(String(describing: deviceUUID)); creationDate: \(String(describing: creationDate)); updateDate: \(String(describing: updateDate)); mimeTypeKey: \(String(describing: mimeType)); deleted: \(deleted); fileVersion: \(fileVersion); appMetaDataVersion: \(String(describing: appMetaDataVersion)); fileSizeBytes: \(fileSizeBytes)"
     }
     
     required public init?(json: JSON) {
