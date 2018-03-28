@@ -1,5 +1,9 @@
 SyncServer-Shared
 
+Version 6.0.0 (3/27/18)
+	* Changes to support multiversion appMetaData.
+	* Updated to current version of Gloss package/Cocoapod (2.0).
+	
 Version 5.0.0 (2/24/18)
 	* Changes for: Only send the cloud folder name when owning accounts are created 
 		https://github.com/crspybits/SyncServerII/issues/64
