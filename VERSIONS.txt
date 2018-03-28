@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 6.0.1 (3/27/18)
+	* Fix package spec bug.
+	
 Version 6.0.0 (3/27/18)
 	* Changes to support multiversion appMetaData.
 	* Updated to current version of Gloss package/Cocoapod (2.0).

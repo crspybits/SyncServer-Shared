@@ -9,7 +9,7 @@ Updating the pod:
 
 	# 3) then push updated revision of pod to its repo
 
-	./Tools/release.sh 6.0.0
+	./Tools/release.sh 6.0.1
 
 	# 4) validate the pod, with downloading
 	pod spec lint --allow-warnings
