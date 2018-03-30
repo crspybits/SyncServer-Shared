@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 6.0.2 (2/29/18)
+	* Reverted to Gloss 1.2-- Gloss 2.0 no longer supports Linux.
+	
 Version 6.0.1 (3/27/18)
 	* Fix package spec bug.
 	
