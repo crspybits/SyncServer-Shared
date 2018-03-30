@@ -14,7 +14,7 @@ import PerfectLib
 import Kitura
 #endif
 
-public protocol RequestMessage : NSObjectProtocol, Glossy {
+public protocol RequestMessage : NSObjectProtocol, Gloss.Encodable, Gloss.Decodable {
     init?(json: JSON)
     
 #if SERVER

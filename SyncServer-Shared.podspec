@@ -22,5 +22,5 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  s.dependency "Gloss", "~> 2.0"
+  s.dependency "Gloss", "~> 1.2"
 end

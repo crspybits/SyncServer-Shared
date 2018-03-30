@@ -13,7 +13,7 @@ import PerfectLib
 import Kitura
 #endif
 
-public struct AppMetaData: Glossy {
+public struct AppMetaData: Gloss.Encodable, Gloss.Decodable {
     public func toJSON() -> JSON? {
         if version == nil || contents == nil {
             return nil
