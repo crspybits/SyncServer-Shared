@@ -13,7 +13,11 @@ import PerfectLib
 import Kitura
 #endif
 
-public struct AppMetaData: Gloss.Encodable, Gloss.Decodable {
+public struct AppMetaData: Gloss.Encodable, Gloss.Decodable, Equatable {
+    public static func ==(lhs: AppMetaData, rhs: AppMetaData) -> Bool {
+        return lhs.version == rhs.version && lhs.contents == rhs.contents
+    }
+    
     public func toJSON() -> JSON? {
         if version == nil || contents == nil {
             return nil
@@ -26,6 +30,15 @@ public struct AppMetaData: Gloss.Encodable, Gloss.Decodable {
     }
     
     public init(version: AppMetaDataVersionInt, contents: String) {
+        self.version = version
+        self.contents = contents
+    }
+    
+    public init?(version: AppMetaDataVersionInt?, contents: String?) {
+        if version == nil || contents == nil {
+            return nil
+        }
+        
         self.version = version
         self.contents = contents
     }
@@ -71,7 +84,6 @@ public class UploadAppMetaDataRequest : NSObject, RequestMessage {
         return self.nonNilKeys() + [AppMetaData.contentsKey, AppMetaData.versionKey]
     }
     
-    // For testing.
     public override init() {
         super.init()
     }

@@ -1,5 +1,9 @@
 SyncServer-Shared
 
+Version 6.1.0
+	* Added constructor to AppMetaData, added conformance to Equatable.
+	* Added more specific type.
+	
 Version 6.0.2 (2/29/18)
 	* Reverted to Gloss 1.2-- Gloss 2.0 no longer supports Linux.
 	
