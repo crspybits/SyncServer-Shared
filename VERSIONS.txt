@@ -1,5 +1,9 @@
 SyncServer-Shared
 
+Version 6.2.0 (4/21/18)
+	* Added change for fileGroupUUID-- file groups.
+		https://github.com/crspybits/SyncServerII/issues/59
+
 Version 6.1.0 (4/4/18)
 	* Added constructor to AppMetaData, added conformance to Equatable.
 	* Added more specific type.
