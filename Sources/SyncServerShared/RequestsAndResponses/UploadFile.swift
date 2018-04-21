@@ -24,7 +24,7 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
     public static let fileUUIDKey = "fileUUID"
     public var fileUUID:String!
     
-    // If given, must be with version 0 of a file. Cannot be changed after version 0 of the file.
+    // If given, must be with version 0 of a file. Cannot be non-nil after version 0.
     public static let fileGroupUUIDKey = "fileGroupUUID"
     public var fileGroupUUID:String?
     
