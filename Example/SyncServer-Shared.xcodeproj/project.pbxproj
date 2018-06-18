@@ -14,6 +14,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		830375251FF5DDC6008DCF54 /* GlossExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830375241FF5DDC6008DCF54 /* GlossExtensionTests.swift */; };
+		83B7E18F20D75E7900FE59C6 /* TestForNilValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E18E20D75E7900FE59C6 /* TestForNilValues.swift */; };
 		83F6FE20206838EC004FB62A /* GlossAppMetaDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6FE1F206838EC004FB62A /* GlossAppMetaDataTests.swift */; };
 		841AEE7EFDA170242F965B61 /* Pods_SyncServer_Shared_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C28477D268CFF0813E502DE /* Pods_SyncServer_Shared_Example.framework */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,7 @@
 		7C66787FB37C2DC8ADAC0D5E /* Pods-SyncServer-Shared_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SyncServer-Shared_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SyncServer-Shared_Example/Pods-SyncServer-Shared_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		8189482E992E83E83AFEA681 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		830375241FF5DDC6008DCF54 /* GlossExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossExtensionTests.swift; sourceTree = "<group>"; };
+		83B7E18E20D75E7900FE59C6 /* TestForNilValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestForNilValues.swift; sourceTree = "<group>"; };
 		83F6FE1F206838EC004FB62A /* GlossAppMetaDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossAppMetaDataTests.swift; sourceTree = "<group>"; };
 		961C24BA83DD9760B5E751B9 /* Pods-SyncServer-Shared_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SyncServer-Shared_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SyncServer-Shared_Tests/Pods-SyncServer-Shared_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		D375681126FBE210AC1BEB65 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				83B7E18E20D75E7900FE59C6 /* TestForNilValues.swift */,
 				83F6FE1F206838EC004FB62A /* GlossAppMetaDataTests.swift */,
 				830375241FF5DDC6008DCF54 /* GlossExtensionTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
@@ -392,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				830375251FF5DDC6008DCF54 /* GlossExtensionTests.swift in Sources */,
+				83B7E18F20D75E7900FE59C6 /* TestForNilValues.swift in Sources */,
 				83F6FE20206838EC004FB62A /* GlossAppMetaDataTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,7 +578,7 @@
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D SERVER";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -594,7 +598,7 @@
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D SERVER";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
