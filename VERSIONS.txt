@@ -1,5 +1,10 @@
 SyncServer-Shared
 
+Version 7.0.0 (6/18/18)
+	* Changed nil checking on message classes-- not using reflection any more.
+	* Updating Perfect and Kitura libraries
+	* Current Perfect libraries appear to require Swift >= 4.1.2 so this probably does too now.
+	
 Version 6.3.1 (5/19/18)
 	* Fix branching issue.
 	
