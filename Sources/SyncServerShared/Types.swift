@@ -68,20 +68,9 @@ public enum SharingPermission : String {
     }
 }
 
-public struct SignInType: OptionSet {
-    public let rawValue: Int
-    
-    public init(rawValue: Int) { self.rawValue = rawValue }
-    
-    public static let owningUser = SignInType(rawValue: 1 << 0)
-    public static let sharingUser = SignInType(rawValue: 1 << 1)
-    public static let both:SignInType = [.owningUser, .sharingUser]
-}
-
-// Both SignInType and UserType because UserType disallows `both`.
 public enum UserType : String {
-    case sharing // user is sharing data
-    case owning // user owns the data
+    case sharing // user doesn't own cloud storage (e.g., Facebook user)
+    case owning // user owns cloud storage (e.g., Google user)
 
     public static func maxStringLength() -> Int {
         return max(UserType.sharing.rawValue.count, UserType.owning.rawValue.count)
