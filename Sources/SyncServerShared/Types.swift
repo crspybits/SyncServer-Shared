@@ -31,16 +31,16 @@ public enum AuthenticationLevel {
     case secondary // must also have a record of user in our database tables
 }
 
-public enum SharingPermission : String {
+public enum Permission : String {
     case read // aka download
     case write // aka upload; includes read
     case admin // read, write, and invite
 
     public static func maxStringLength() -> Int {
-        return max(SharingPermission.read.rawValue.count, SharingPermission.write.rawValue.count, SharingPermission.admin.rawValue.count)
+        return max(Permission.read.rawValue.count, Permission.write.rawValue.count, Permission.admin.rawValue.count)
     }
     
-    public func hasMinimumPermission(_ min:SharingPermission) -> Bool {
+    public func hasMinimumPermission(_ min:Permission) -> Bool {
         switch self {
         case .read:
             // Users with read permission can do only read operations.
