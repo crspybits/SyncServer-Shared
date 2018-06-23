@@ -16,12 +16,16 @@ import Kitura
 public class CreateSharingInvitationRequest : NSObject, RequestMessage {
     public static let permissionKey = "permission"
     public var permission:Permission!
+    
+    public static let sharingGroupIdKey = "SharingGroupId"
+    public var sharingGroupId: SharingGroupId!
 
     // You can give either Permission valued keys or string valued keys.
     public required init?(json: JSON) {
         super.init()
         
         self.permission = Decoder.decodePermission(key: CreateSharingInvitationRequest.permissionKey, json: json)
+        self.sharingGroupId = Decoder.decode(int64ForKey: CreateSharingInvitationRequest.sharingGroupIdKey)(json)
         
 #if SERVER
         if !nonNilKeysHaveValues(in: json) {
@@ -37,7 +41,8 @@ public class CreateSharingInvitationRequest : NSObject, RequestMessage {
 #endif
     
     public func nonNilKeys() -> [String] {
-        return [CreateSharingInvitationRequest.permissionKey]
+        return [CreateSharingInvitationRequest.permissionKey,
+            CreateSharingInvitationRequest.sharingGroupIdKey]
     }
     
     public func allKeys() -> [String] {

@@ -56,7 +56,7 @@ public class ServerEndpoints {
 
     public static let checkCreds = ServerEndpoint("CheckCreds", method: .get)
     
-    // This creates an owning user account, which currently must be using Google credentials. The user must not exist yet on the system.
+    // This creates a "root" owning user account for a sharing group of users. The user must not exist yet on the system.
     // Only primary authentication because this method is used to add a user into the database (i.e., it creates secondary authentication).
     public static let addUser = ServerEndpoint("AddUser", method: .post, authenticationLevel: .primary)
 
