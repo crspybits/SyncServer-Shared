@@ -57,6 +57,10 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
     public static let fileSizeBytesKey = "fileSizeBytes"
     public var fileSizeBytes: Int64!
     
+    // OWNER
+    public static let owningUserIdKey = "owningUserId"
+    public var owningUserId: UserId!
+    
     public var description: String {
         return "fileUUID: \(fileUUID); deviceUUID: \(String(describing: deviceUUID)); creationDate: \(String(describing: creationDate)); updateDate: \(String(describing: updateDate)); mimeTypeKey: \(String(describing: mimeType)); deleted: \(deleted); fileVersion: \(fileVersion); appMetaDataVersion: \(String(describing: appMetaDataVersion)); fileSizeBytes: \(fileSizeBytes)"
     }
@@ -76,6 +80,8 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
         let dateFormatter = DateExtras.getDateFormatter(format: .DATETIME)
         self.creationDate = Decoder.decode(dateForKey: FileInfo.creationDateKey, dateFormatter: dateFormatter)(json)
         self.updateDate = Decoder.decode(dateForKey: FileInfo.updateDateKey, dateFormatter: dateFormatter)(json)
+        
+        self.owningUserId = Decoder.decode(int64ForKey: FileInfo.owningUserIdKey)(json)
     }
     
     public convenience init?() {
@@ -95,7 +101,8 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
             FileInfo.fileVersionKey ~~> self.fileVersion,
             FileInfo.fileSizeBytesKey ~~> self.fileSizeBytes,
             Encoder.encode(dateForKey: FileInfo.creationDateKey, dateFormatter: dateFormatter)(self.creationDate),
-            Encoder.encode(dateForKey: FileInfo.updateDateKey, dateFormatter: dateFormatter)(self.updateDate)
+            Encoder.encode(dateForKey: FileInfo.updateDateKey, dateFormatter: dateFormatter)(self.updateDate),
+            FileInfo.owningUserIdKey ~~> self.owningUserId
         ])
     }
 }
