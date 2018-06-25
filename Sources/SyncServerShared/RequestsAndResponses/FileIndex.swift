@@ -23,7 +23,6 @@ public class FileIndexRequest : NSObject, RequestMessage {
     public var testServerSleep:Int32?
 #endif
 
-    public static let sharingGroupIdKey = "SharingGroupId"
     public var sharingGroupId: SharingGroupId!
  
     public required init?(json: JSON) {
@@ -31,7 +30,7 @@ public class FileIndexRequest : NSObject, RequestMessage {
 #if DEBUG
         self.testServerSleep = Decoder.decode(int32ForKey: FileIndexRequest.testServerSleepKey)(json)
 #endif
-        self.sharingGroupId = Decoder.decode(int64ForKey: FileIndexRequest.sharingGroupIdKey)(json)
+        self.sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
 
 #if SERVER
         Log.info(message: "FileIndexRequest.testServerSleep: \(String(describing: testServerSleep))")
@@ -51,7 +50,7 @@ public class FileIndexRequest : NSObject, RequestMessage {
 #if DEBUG
         result += [FileIndexRequest.testServerSleepKey ~~> self.testServerSleep]
 #endif
-        result += [FileIndexRequest.sharingGroupIdKey ~~> self.sharingGroupId]
+        result += [ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId]
         
         return jsonify(result)
     }
@@ -71,7 +70,7 @@ public class FileIndexRequest : NSObject, RequestMessage {
     }
     
     public func nonNilKeys() -> [String] { return [
-        FileIndexRequest.sharingGroupIdKey]
+        ServerEndpoint.sharingGroupIdKey]
     }
 }
 

@@ -32,7 +32,6 @@ public class UploadDeletionRequest : NSObject, RequestMessage, Filenaming {
     public static let masterVersionKey = "masterVersion"
     public var masterVersion:MasterVersionInt!
     
-    public static let sharingGroupIdKey = "SharingGroupId"
     public var sharingGroupId: SharingGroupId!
 
 #if DEBUG
@@ -43,7 +42,7 @@ public class UploadDeletionRequest : NSObject, RequestMessage, Filenaming {
     
     public func nonNilKeys() -> [String] {
         return [UploadDeletionRequest.fileUUIDKey, UploadDeletionRequest.fileVersionKey, UploadDeletionRequest.masterVersionKey,
-            UploadDeletionRequest.sharingGroupIdKey]
+            ServerEndpoint.sharingGroupIdKey]
     }
     
     public func allKeys() -> [String] {
@@ -62,7 +61,7 @@ public class UploadDeletionRequest : NSObject, RequestMessage, Filenaming {
         
         self.masterVersion = Decoder.decode(int64ForKey: UploadDeletionRequest.masterVersionKey)(json)
         self.fileVersion = Decoder.decode(int32ForKey: UploadDeletionRequest.fileVersionKey)(json)
-        self.sharingGroupId = Decoder.decode(int64ForKey: UploadDeletionRequest.sharingGroupIdKey)(json)
+        self.sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
         
 #if DEBUG
         self.actualDeletion = Decoder.decode(int32ForKey:  UploadDeletionRequest.actualDeletionKey)(json)
@@ -90,7 +89,7 @@ public class UploadDeletionRequest : NSObject, RequestMessage, Filenaming {
             UploadDeletionRequest.fileUUIDKey ~~> self.fileUUID,
             UploadDeletionRequest.masterVersionKey ~~> self.masterVersion,
             UploadDeletionRequest.fileVersionKey ~~> self.fileVersion,
-            UploadDeletionRequest.sharingGroupIdKey ~~> self.sharingGroupId
+            ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId
         ]
         
 #if DEBUG

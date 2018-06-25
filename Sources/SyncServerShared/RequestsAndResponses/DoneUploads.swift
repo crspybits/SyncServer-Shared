@@ -23,7 +23,6 @@ public class DoneUploadsRequest : NSObject, RequestMessage {
     public static let masterVersionKey = "masterVersion"
     public var masterVersion:MasterVersionInt!
 
-    public static let sharingGroupIdKey = "SharingGroupId"
     public var sharingGroupId: SharingGroupId!
     
 #if DEBUG
@@ -34,7 +33,7 @@ public class DoneUploadsRequest : NSObject, RequestMessage {
     
     public func nonNilKeys() -> [String] {
         return [DoneUploadsRequest.masterVersionKey,
-            DoneUploadsRequest.sharingGroupIdKey]
+            ServerEndpoint.sharingGroupIdKey]
     }
     
     public func allKeys() -> [String] {
@@ -49,7 +48,7 @@ public class DoneUploadsRequest : NSObject, RequestMessage {
         super.init()
         
         self.masterVersion = Decoder.decode(int64ForKey: DoneUploadsRequest.masterVersionKey)(json)
-        self.sharingGroupId = Decoder.decode(int64ForKey: DoneUploadsRequest.sharingGroupIdKey)(json)
+        self.sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
         
 #if DEBUG
         self.testLockSync = DoneUploadsRequest.testLockSyncKey <~~ json
@@ -72,7 +71,7 @@ public class DoneUploadsRequest : NSObject, RequestMessage {
     public func toJSON() -> JSON? {
         var result = [
             DoneUploadsRequest.masterVersionKey ~~> self.masterVersion,
-            DoneUploadsRequest.sharingGroupIdKey ~~> self.sharingGroupId
+            ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId
         ]
         
 #if DEBUG

@@ -15,7 +15,8 @@ public struct ServerEndpoint {
     // Does the user have the mimimum required permissions to perform the endpoint action?
     public let minPermission:Permission!
     
-    // This specifies the need for a short duration lock on the operation.
+    // This specifies the need for a short duration lock on the operation. Only endpoints that have request messages that include a sharingGroupId can set this to true.
+    public static let sharingGroupIdKey = "sharingGroupId"
     public let needsLock:Bool
     
     // Don't put a trailing "/" on the pathName.
