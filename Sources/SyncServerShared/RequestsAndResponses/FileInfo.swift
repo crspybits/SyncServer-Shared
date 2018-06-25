@@ -32,6 +32,9 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
     public static let fileGroupUUIDKey = "fileGroupUUID"
     public var fileGroupUUID: String?
     
+    public static let sharingGroupIdKey = "sharingGroupId"
+    public var sharingGroupId: SharingGroupId!
+
     // The creation & update dates are not used on upload-- they are established from dates on the server so they are not dependent on possibly mis-behaving clients.
     
     public static let creationDateKey = "creationDate"
@@ -82,6 +85,7 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
         self.updateDate = Decoder.decode(dateForKey: FileInfo.updateDateKey, dateFormatter: dateFormatter)(json)
         
         self.owningUserId = Decoder.decode(int64ForKey: FileInfo.owningUserIdKey)(json)
+        self.sharingGroupId = Decoder.decode(int64ForKey: FileInfo.sharingGroupIdKey)(json)
     }
     
     public convenience init?() {
@@ -102,7 +106,8 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
             FileInfo.fileSizeBytesKey ~~> self.fileSizeBytes,
             Encoder.encode(dateForKey: FileInfo.creationDateKey, dateFormatter: dateFormatter)(self.creationDate),
             Encoder.encode(dateForKey: FileInfo.updateDateKey, dateFormatter: dateFormatter)(self.updateDate),
-            FileInfo.owningUserIdKey ~~> self.owningUserId
+            FileInfo.owningUserIdKey ~~> self.owningUserId,
+            FileInfo.sharingGroupIdKey ~~> self.sharingGroupId
         ])
     }
 }
