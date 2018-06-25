@@ -23,6 +23,9 @@ public class DownloadFileRequest : NSObject, RequestMessage {
     public static let fileVersionKey = "fileVersion"
     public var fileVersion:FileVersionInt!
     
+    public static let sharingGroupIdKey = "SharingGroupId"
+    public var sharingGroupId: SharingGroupId!
+    
     // This must indicate the current version of the app meta data for the file in the FileIndex (or nil if there is none yet).
     public static let appMetaDataVersionKey = "appMetaDataVersion"
     public var appMetaDataVersion:AppMetaDataVersionInt?
@@ -32,7 +35,8 @@ public class DownloadFileRequest : NSObject, RequestMessage {
     public var masterVersion:MasterVersionInt!
     
     public func nonNilKeys() -> [String] {
-        return [DownloadFileRequest.fileUUIDKey, DownloadFileRequest.fileVersionKey, DownloadFileRequest.masterVersionKey]
+        return [DownloadFileRequest.fileUUIDKey, DownloadFileRequest.fileVersionKey, DownloadFileRequest.masterVersionKey,
+            DownloadFileRequest.sharingGroupIdKey]
     }
     
     public func allKeys() -> [String] {
@@ -47,6 +51,7 @@ public class DownloadFileRequest : NSObject, RequestMessage {
         self.masterVersion = Decoder.decode(int64ForKey: DownloadFileRequest.masterVersionKey)(json)
         self.fileVersion = Decoder.decode(int32ForKey: DownloadFileRequest.fileVersionKey)(json)
         self.appMetaDataVersion = Decoder.decode(int32ForKey: DownloadFileRequest.appMetaDataVersionKey)(json)
+        self.sharingGroupId = Decoder.decode(int64ForKey: DownloadFileRequest.sharingGroupIdKey)(json)
         
         if !self.nonNilKeysHaveValues(in: json) {
             return nil
@@ -68,7 +73,8 @@ public class DownloadFileRequest : NSObject, RequestMessage {
             DownloadFileRequest.fileUUIDKey ~~> self.fileUUID,
             DownloadFileRequest.masterVersionKey ~~> self.masterVersion,
             DownloadFileRequest.fileVersionKey ~~> self.fileVersion,
-            DownloadFileRequest.appMetaDataVersionKey ~~> self.appMetaDataVersion
+            DownloadFileRequest.appMetaDataVersionKey ~~> self.appMetaDataVersion,
+            DownloadFileRequest.sharingGroupIdKey ~~> self.sharingGroupId
         ])
     }
 }
