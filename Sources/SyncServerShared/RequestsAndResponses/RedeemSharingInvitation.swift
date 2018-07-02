@@ -17,7 +17,7 @@ public class RedeemSharingInvitationRequest : NSObject, RequestMessage {
     public static let sharingInvitationUUIDKey = "sharingInvitationUUID"
     public var sharingInvitationUUID:String!
 
-    // This must be present when redeeming an invitation: a) using an owning account, and b) with permissions of >= write.
+    // This must be present when redeeming an invitation: a) using an owning account, b) that owning account type needs a cloud storage folder (e.g., Google Drive), and c) with permissions of >= write.
     public var cloudFolderName:String?
 
     public required init?(json: JSON) {
@@ -42,7 +42,7 @@ public class RedeemSharingInvitationRequest : NSObject, RequestMessage {
     }
     
     public func allKeys() -> [String] {
-        return self.nonNilKeys()
+        return self.nonNilKeys() + [AddUserRequest.cloudFolderNameKey]
     }
     
     public func toJSON() -> JSON? {
