@@ -17,10 +17,14 @@ public class RedeemSharingInvitationRequest : NSObject, RequestMessage {
     public static let sharingInvitationUUIDKey = "sharingInvitationUUID"
     public var sharingInvitationUUID:String!
 
+    // This must be present when redeeming an invitation: a) using an owning account, and b) with permissions of >= write.
+    public var cloudFolderName:String?
+
     public required init?(json: JSON) {
         super.init()
         
         self.sharingInvitationUUID = RedeemSharingInvitationRequest.sharingInvitationUUIDKey <~~ json
+        self.cloudFolderName = AddUserRequest.cloudFolderNameKey <~~ json
 
         if !nonNilKeysHaveValues(in: json) {
             return nil
@@ -43,7 +47,8 @@ public class RedeemSharingInvitationRequest : NSObject, RequestMessage {
     
     public func toJSON() -> JSON? {
         return jsonify([
-            RedeemSharingInvitationRequest.sharingInvitationUUIDKey ~~> self.sharingInvitationUUID
+            RedeemSharingInvitationRequest.sharingInvitationUUIDKey ~~> self.sharingInvitationUUID,
+            AddUserRequest.cloudFolderNameKey ~~> self.cloudFolderName
         ])
     }
 }
