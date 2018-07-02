@@ -50,7 +50,8 @@ public class CreateSharingInvitationRequest : NSObject, RequestMessage {
     
     public func toJSON() -> JSON? {
         return jsonify([
-            Encoder.encodePermission(key: CreateSharingInvitationRequest.permissionKey, value: self.permission)
+            Encoder.encodePermission(key: CreateSharingInvitationRequest.permissionKey, value: self.permission),
+            ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId
         ])
     }
 }
