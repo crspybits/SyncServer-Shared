@@ -54,11 +54,19 @@ public class RedeemSharingInvitationRequest : NSObject, RequestMessage {
 }
 
 public class RedeemSharingInvitationResponse : ResponseMessage {
+    // Present only as means to help clients uniquely identify users. This is *never* passed back to the server. This id is unique across all users and is not specific to any sign-in type (e.g., Google).
+    public static let userIdKey = "userId"
+    public var userId:UserId!
+    
+    public var sharingGroupId: SharingGroupId!
+    
     public var responseType: ResponseType {
         return .json
     }
     
     public required init?(json: JSON) {
+        userId = Decoder.decode(int64ForKey: RedeemSharingInvitationResponse.userIdKey)(json)
+        sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
     }
     
     public convenience init?() {
@@ -68,6 +76,8 @@ public class RedeemSharingInvitationResponse : ResponseMessage {
     // MARK: - Serialization
     public func toJSON() -> JSON? {
         return jsonify([
+            RedeemSharingInvitationResponse.userIdKey ~~> userId,
+            ServerEndpoint.sharingGroupIdKey ~~> sharingGroupId
         ])
     }
 }
