@@ -1,5 +1,11 @@
 SyncServer-Shared
 
+Version 8.0.0 (7/14/18)
+	* Removed SignInType due to simplified owning/sharing concept.
+	* Changed name SharingPermission to Permission
+	* Added sharingGroupId to various request/responses.
+	* Other changes related to sharing groups change.
+
 Version 7.0.0 (6/18/18)
 	* Changed nil checking on message classes-- not using reflection any more.
 	* Updating Perfect and Kitura libraries
