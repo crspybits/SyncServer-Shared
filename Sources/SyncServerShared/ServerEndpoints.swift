@@ -95,6 +95,8 @@ public class ServerEndpoints {
     // Only primary authentication because this method is used to add a user into the database (i.e., it creates secondary authentication).
     public static let redeemSharingInvitation = ServerEndpoint("RedeemSharingInvitation", method: .post, authenticationLevel: .primary)
 
+    public static let getSharingGroups = ServerEndpoint("GetSharingGroups", method: .get, authenticationLevel: .secondary)
+
     public static let session = ServerEndpoints()
     
     private init() {
