@@ -33,7 +33,6 @@ public class CheckCredsRequest : NSObject, RequestMessage {
 }
 
 public class CheckCredsResponse : ResponseMessage {
-    // This will be present iff the user is a sharing user. i.e., for an owning user it will be nil.
     public static let permissionKey = "permission"
     public var permission:Permission?
     
