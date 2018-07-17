@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 8.1.0 (7/16/18)
+	* Added new endpoint-- to get sharing group id's.
+
 Version 8.0.0 (7/14/18)
 	* Removed SignInType due to simplified owning/sharing concept.
 	* Changed name SharingPermission to Permission
