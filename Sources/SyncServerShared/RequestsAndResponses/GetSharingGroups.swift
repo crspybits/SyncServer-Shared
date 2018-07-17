@@ -39,7 +39,7 @@ public class GetSharingGroupsResponse : ResponseMessage {
     }
     
     public required init?(json: JSON) {
-        self.sharingGroupIds = GetSharingGroupsResponse.sharingGroupIdsKey <~~ json
+        self.sharingGroupIds =  Decoder.decode(int64ArrayForKey:GetSharingGroupsResponse.sharingGroupIdsKey)(json)
     }
     
     public convenience init?() {

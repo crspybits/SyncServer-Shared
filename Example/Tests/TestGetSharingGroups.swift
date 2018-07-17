@@ -38,5 +38,17 @@ class TestGetSharingGroups: XCTestCase {
         }
         
         XCTAssert(array == [sharingGroupId1])
+        
+        guard let _ = JSONExtras.toJSONString(dict: dict) else {
+            XCTFail()
+            return
+        }
+        
+        let sharingGroupId2: Int = 11
+        guard let response2 = GetSharingGroupsResponse(json: [GetSharingGroupsResponse.sharingGroupIdsKey: [sharingGroupId2]]),
+            response2.sharingGroupIds == [SharingGroupId(sharingGroupId2)] else {
+            XCTFail()
+            return
+        }
     }
 }
