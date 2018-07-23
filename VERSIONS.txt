@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 8.2.0 (7/22/18)
+	* Added an endpoint to a list + added an http status code.
+
 Version 8.1.0 (7/16/18)
 	* Added new endpoint-- to get sharing group id's.
 

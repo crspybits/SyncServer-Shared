@@ -101,6 +101,6 @@ public class ServerEndpoints {
     
     private init() {
         all.append(contentsOf: [ServerEndpoints.healthCheck, ServerEndpoints.addUser, ServerEndpoints.checkCreds, ServerEndpoints.removeUser, ServerEndpoints.fileIndex, ServerEndpoints.uploadFile, ServerEndpoints.doneUploads, ServerEndpoints.getUploads, ServerEndpoints.uploadDeletion,
-            ServerEndpoints.createSharingInvitation, ServerEndpoints.redeemSharingInvitation])
+            ServerEndpoints.createSharingInvitation, ServerEndpoints.redeemSharingInvitation, ServerEndpoints.getSharingGroups])
     }
 }
