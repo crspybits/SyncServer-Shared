@@ -19,9 +19,14 @@ public class SharingGroup : Gloss.Encodable, Gloss.Decodable {
     public static let sharingGroupNameKey = "sharingGroupName"
     public var sharingGroupName: String?
     
+    // Has this sharing group been deleted?
+    public static let deletedKey = "deleted"
+    public var deleted: Bool?
+    
     required public init?(json: JSON) {
         self.sharingGroupName = SharingGroup.sharingGroupNameKey <~~ json
         self.sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
+        self.deleted = SharingGroup.deletedKey <~~ json
     }
     
     public convenience init?() {
@@ -31,7 +36,8 @@ public class SharingGroup : Gloss.Encodable, Gloss.Decodable {
     public func toJSON() -> JSON? {
         return jsonify([
             SharingGroup.sharingGroupNameKey ~~> self.sharingGroupName,
-            ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId
+            ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId,
+            SharingGroup.deletedKey ~~> self.deleted
         ])
     }
 }
