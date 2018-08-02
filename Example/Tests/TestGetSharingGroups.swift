@@ -22,31 +22,30 @@ class TestGetSharingGroups: XCTestCase {
     }
     
     func testExample() {
-        let sharingGroupId1:SharingGroupId = 43
-        
-        guard let response = GetSharingGroupsResponse(json: [GetSharingGroupsResponse.sharingGroupIdsKey: [sharingGroupId1]]) else {
+        let sharingGroup = SharingGroup()!
+        sharingGroup.sharingGroupId = 43
+        sharingGroup.sharingGroupName = "Foobar"
+        guard let sharingGroupJson = sharingGroup.toJSON() else {
             XCTFail()
             return
         }
         
-        XCTAssert(response.sharingGroupIds == [sharingGroupId1])
+        guard let response = GetSharingGroupsResponse(json: [GetSharingGroupsResponse.sharingGroupsKey: [sharingGroupJson]]) else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssert(response.sharingGroups.count == 1)
+        XCTAssert(response.sharingGroups[0].sharingGroupId == sharingGroup.sharingGroupId)
+        XCTAssert(response.sharingGroups[0].sharingGroupName == sharingGroup.sharingGroupName)
         
         guard let dict = response.toJSON(),
-            let array = dict[GetSharingGroupsResponse.sharingGroupIdsKey] as? [SharingGroupId] else {
+            let _ = dict[GetSharingGroupsResponse.sharingGroupsKey] as? [Any] else {
             XCTFail()
             return
         }
-        
-        XCTAssert(array == [sharingGroupId1])
-        
+
         guard let _ = JSONExtras.toJSONString(dict: dict) else {
-            XCTFail()
-            return
-        }
-        
-        let sharingGroupId2: Int = 11
-        guard let response2 = GetSharingGroupsResponse(json: [GetSharingGroupsResponse.sharingGroupIdsKey: [sharingGroupId2]]),
-            response2.sharingGroupIds == [SharingGroupId(sharingGroupId2)] else {
             XCTFail()
             return
         }

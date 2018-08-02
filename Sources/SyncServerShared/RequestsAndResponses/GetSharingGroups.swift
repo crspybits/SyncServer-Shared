@@ -31,15 +31,15 @@ public class GetSharingGroupsRequest : NSObject, RequestMessage {
 
 public class GetSharingGroupsResponse : ResponseMessage {
     // The sharing groups in which this user is a member.
-    public static let sharingGroupIdsKey = "sharingGroupIds"
-    public var sharingGroupIds:[SharingGroupId]!
+    public static let sharingGroupsKey = "sharingGroups"
+    public var sharingGroups:[SharingGroup]!
     
     public var responseType: ResponseType {
         return .json
     }
     
     public required init?(json: JSON) {
-        self.sharingGroupIds =  Decoder.decode(int64ArrayForKey:GetSharingGroupsResponse.sharingGroupIdsKey)(json)
+        self.sharingGroups = GetSharingGroupsResponse.sharingGroupsKey <~~ json
     }
     
     public convenience init?() {
@@ -49,7 +49,7 @@ public class GetSharingGroupsResponse : ResponseMessage {
     // MARK: - Serialization
     public func toJSON() -> JSON? {
         return jsonify([
-            GetSharingGroupsResponse.sharingGroupIdsKey ~~> self.sharingGroupIds
+            GetSharingGroupsResponse.sharingGroupsKey ~~> self.sharingGroups
         ])
     }
 }

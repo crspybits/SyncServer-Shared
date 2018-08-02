@@ -22,7 +22,9 @@
 		66D47BC140C8D64CF209896E806B2410 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F25B1A963622F2137B83A98BB49FCB97 /* Foundation.framework */; };
 		82C690754F01E640F9DBB5746740FE66 /* DownloadFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C706F8281060593D24043C0EBAFE749 /* DownloadFile.swift */; };
 		830494E120DCB39F00D6FEE5 /* ServerEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830494E020DCB39F00D6FEE5 /* ServerEndpoints.swift */; };
+		834277862112872E00114FE2 /* SharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834277852112872E00114FE2 /* SharingGroup.swift */; };
 		83AAE29720FC29B700A23704 /* GetSharingGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AAE29620FC29B700A23704 /* GetSharingGroups.swift */; };
+		83EA91EF21100BD20095E658 /* CreateSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA91EE21100BD20095E658 /* CreateSharingGroup.swift */; };
 		87055C47E0E7EDCBCDA719420510A1DC /* RequestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EC8A7586C991C3A9945471B825EBF7 /* RequestMessage.swift */; };
 		8C2A711FD577F9F60EBC40DC795D3655 /* DownloadAppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD116DCF2179EDB8514012C1E74EDFE /* DownloadAppMetaData.swift */; };
 		98F74E33A863622ED92B6DA130828B79 /* CheckPrimaryCreds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2FF4546693B00A298A86D3DDD74FA3 /* CheckPrimaryCreds.swift */; };
@@ -130,7 +132,9 @@
 		81317443E1EE4B73F868ECAD1F31CE92 /* Pods-SyncServer-Shared_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SyncServer-Shared_Tests-umbrella.h"; sourceTree = "<group>"; };
 		8168C116780EF7BDE1540E52C780C1EA /* Pods-SyncServer-Shared_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SyncServer-Shared_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		830494E020DCB39F00D6FEE5 /* ServerEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServerEndpoints.swift; path = Sources/SyncServerShared/ServerEndpoints.swift; sourceTree = "<group>"; };
+		834277852112872E00114FE2 /* SharingGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SharingGroup.swift; path = Sources/SyncServerShared/SharingGroup.swift; sourceTree = "<group>"; };
 		83AAE29620FC29B700A23704 /* GetSharingGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSharingGroups.swift; sourceTree = "<group>"; };
+		83EA91EE21100BD20095E658 /* CreateSharingGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSharingGroup.swift; sourceTree = "<group>"; };
 		84BE8167CFDC95D127CF4C8ECD093377 /* JSONExtras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONExtras.swift; sourceTree = "<group>"; };
 		852C0024C6E82FC24CDCBACB35A8EF75 /* ExtensionDecodable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExtensionDecodable.swift; path = Sources/ExtensionDecodable.swift; sourceTree = "<group>"; };
 		8690458F1906EDB181110AB98F50B4A1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -250,6 +254,7 @@
 				48F72F1F6A75BD2F32369013A329AD8D /* CheckCreds.swift */,
 				4A2FF4546693B00A298A86D3DDD74FA3 /* CheckPrimaryCreds.swift */,
 				83AAE29620FC29B700A23704 /* GetSharingGroups.swift */,
+				83EA91EE21100BD20095E658 /* CreateSharingGroup.swift */,
 				E5C0634512E6BF3AA12C5A64BCE4FD4C /* CreateSharingInvitation.swift */,
 				3E6E98ABAC07EA4202832276D4361698 /* DoneUploads.swift */,
 				4BD116DCF2179EDB8514012C1E74EDFE /* DownloadAppMetaData.swift */,
@@ -397,6 +402,7 @@
 				6BC219F3D5D3F6C2D50729690AF121EC /* ServerConstants.swift */,
 				830494E020DCB39F00D6FEE5 /* ServerEndpoints.swift */,
 				07A72B7AE37E368EC573CEE0DD995767 /* Types.swift */,
+				834277852112872E00114FE2 /* SharingGroup.swift */,
 				5627D7F8B244EFC9FDA5457691D175D9 /* RequestsAndResponses */,
 				B642C816F5A472C8B93C40DE3E4DDB04 /* Support Files */,
 				D2D2B31161383F146500468AC6397671 /* Utils */,
@@ -555,6 +561,8 @@
 				98F74E33A863622ED92B6DA130828B79 /* CheckPrimaryCreds.swift in Sources */,
 				2255C733B80D3A37CE23E20AA31B0867 /* CreateSharingInvitation.swift in Sources */,
 				6126DA7EB4AA6370FA33F16AC652AFAE /* DateExtras.swift in Sources */,
+				83EA91EF21100BD20095E658 /* CreateSharingGroup.swift in Sources */,
+				834277862112872E00114FE2 /* SharingGroup.swift in Sources */,
 				04A8F38793933ABD8FCE5BAFD4FC307B /* Decoder+Extras.swift in Sources */,
 				E30B9C3961EBE5BDFAF57021F316CBBD /* DoneUploads.swift in Sources */,
 				8C2A711FD577F9F60EBC40DC795D3655 /* DownloadAppMetaData.swift in Sources */,
