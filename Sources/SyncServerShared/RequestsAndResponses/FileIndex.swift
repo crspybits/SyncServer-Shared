@@ -15,6 +15,7 @@ import PerfectLib
 #endif
 
 // Request an index of all files that have been uploaded with UploadFile and committed using DoneUploads for the sharing group -- queries the meta data on the sync server.
+// This also returns a list of all sharing groups that the user is a member of.
 
 public class FileIndexRequest : NSObject, RequestMessage {
 #if DEBUG
@@ -79,15 +80,22 @@ public class FileIndexResponse : ResponseMessage {
         return .json
     }
     
+    // The master version for the requested sharing group.
     public static let masterVersionKey = "masterVersion"
     public var masterVersion:MasterVersionInt!
     
+    // The files in the requested sharing group.
     public static let fileIndexKey = "fileIndex"
     public var fileIndex:[FileInfo]?
+    
+    // The sharing groups in which this user is a member.
+    public static let sharingGroupsKey = "sharingGroups"
+    public var sharingGroups:[SharingGroup]!
     
     public required init?(json: JSON) {
         self.masterVersion = Decoder.decode(int64ForKey: FileIndexResponse.masterVersionKey)(json)
         self.fileIndex = FileIndexResponse.fileIndexKey <~~ json
+        self.sharingGroups = FileIndexResponse.sharingGroupsKey <~~ json
     }
     
     public convenience init?() {
@@ -97,7 +105,8 @@ public class FileIndexResponse : ResponseMessage {
     public func toJSON() -> JSON? {
         return jsonify([
             FileIndexResponse.masterVersionKey ~~> self.masterVersion,
-            FileIndexResponse.fileIndexKey ~~> self.fileIndex
+            FileIndexResponse.fileIndexKey ~~> self.fileIndex,
+            FileIndexResponse.sharingGroupsKey ~~> self.sharingGroups
         ])
     }
 }
