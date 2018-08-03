@@ -17,7 +17,7 @@ import PerfectLib
 // Returns a list of all sharing groups that the user is a member of.
 // And optionally request an index of all files that have been uploaded with UploadFile and committed using DoneUploads for the sharing group -- queries the meta data on the sync server.
 
-public class FileIndexRequest : NSObject, RequestMessage {
+public class IndexRequest : NSObject, RequestMessage {
 #if DEBUG
     // Give a time value in seconds -- the server for sleep to test failure of API calls.
     public static let testServerSleepKey = "testServerSleep"
@@ -30,12 +30,12 @@ public class FileIndexRequest : NSObject, RequestMessage {
     public required init?(json: JSON) {
         super.init()
 #if DEBUG
-        self.testServerSleep = Decoder.decode(int32ForKey: FileIndexRequest.testServerSleepKey)(json)
+        self.testServerSleep = Decoder.decode(int32ForKey: IndexRequest.testServerSleepKey)(json)
 #endif
         self.sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
 
 #if SERVER
-        Log.info(message: "FileIndexRequest.testServerSleep: \(String(describing: testServerSleep))")
+        Log.info(message: "IndexRequest.testServerSleep: \(String(describing: testServerSleep))")
 #endif
 
         if !nonNilKeysHaveValues(in: json) {
@@ -50,7 +50,7 @@ public class FileIndexRequest : NSObject, RequestMessage {
         var result = [JSON?]()
         
 #if DEBUG
-        result += [FileIndexRequest.testServerSleepKey ~~> self.testServerSleep]
+        result += [IndexRequest.testServerSleepKey ~~> self.testServerSleep]
 #endif
         result += [ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId]
         
@@ -65,7 +65,7 @@ public class FileIndexRequest : NSObject, RequestMessage {
     
     public func allKeys() -> [String] {
 #if DEBUG
-        return self.nonNilKeys() + [FileIndexRequest.testServerSleepKey]
+        return self.nonNilKeys() + [IndexRequest.testServerSleepKey]
 #else
         return self.nonNilKeys()
 #endif
@@ -76,7 +76,7 @@ public class FileIndexRequest : NSObject, RequestMessage {
     }
 }
 
-public class FileIndexResponse : ResponseMessage {
+public class IndexResponse : ResponseMessage {
     public var responseType: ResponseType {
         return .json
     }
@@ -96,9 +96,9 @@ public class FileIndexResponse : ResponseMessage {
     public var sharingGroups:[SharingGroup]!
     
     public required init?(json: JSON) {
-        self.masterVersion = Decoder.decode(int64ForKey: FileIndexResponse.masterVersionKey)(json)
-        self.fileIndex = FileIndexResponse.fileIndexKey <~~ json
-        self.sharingGroups = FileIndexResponse.sharingGroupsKey <~~ json
+        self.masterVersion = Decoder.decode(int64ForKey: IndexResponse.masterVersionKey)(json)
+        self.fileIndex = IndexResponse.fileIndexKey <~~ json
+        self.sharingGroups = IndexResponse.sharingGroupsKey <~~ json
     }
     
     public convenience init?() {
@@ -107,9 +107,9 @@ public class FileIndexResponse : ResponseMessage {
     
     public func toJSON() -> JSON? {
         return jsonify([
-            FileIndexResponse.masterVersionKey ~~> self.masterVersion,
-            FileIndexResponse.fileIndexKey ~~> self.fileIndex,
-            FileIndexResponse.sharingGroupsKey ~~> self.sharingGroups
+            IndexResponse.masterVersionKey ~~> self.masterVersion,
+            IndexResponse.fileIndexKey ~~> self.fileIndex,
+            IndexResponse.sharingGroupsKey ~~> self.sharingGroups
         ])
     }
 }
