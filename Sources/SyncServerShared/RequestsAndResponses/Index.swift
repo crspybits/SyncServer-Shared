@@ -1,5 +1,5 @@
 //
-//  FileIndex.swift
+//  Index.swift
 //  Server
 //
 //  Created by Christopher Prince on 1/28/17.
@@ -14,8 +14,8 @@ import Kitura
 import PerfectLib
 #endif
 
-// Request an index of all files that have been uploaded with UploadFile and committed using DoneUploads for the sharing group -- queries the meta data on the sync server.
-// This also returns a list of all sharing groups that the user is a member of.
+// Returns a list of all sharing groups that the user is a member of.
+// And optionally request an index of all files that have been uploaded with UploadFile and committed using DoneUploads for the sharing group -- queries the meta data on the sync server.
 
 public class FileIndexRequest : NSObject, RequestMessage {
 #if DEBUG
@@ -24,7 +24,8 @@ public class FileIndexRequest : NSObject, RequestMessage {
     public var testServerSleep:Int32?
 #endif
 
-    public var sharingGroupId: SharingGroupId!
+    // Give this if you want the index of files for a sharing group.
+    public var sharingGroupId: SharingGroupId?
  
     public required init?(json: JSON) {
         super.init()
@@ -80,9 +81,11 @@ public class FileIndexResponse : ResponseMessage {
         return .json
     }
     
+    // The following two are provided iff you gave a sharing group id in the request.
+    
     // The master version for the requested sharing group.
     public static let masterVersionKey = "masterVersion"
-    public var masterVersion:MasterVersionInt!
+    public var masterVersion:MasterVersionInt?
     
     // The files in the requested sharing group.
     public static let fileIndexKey = "fileIndex"

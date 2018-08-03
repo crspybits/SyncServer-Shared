@@ -64,8 +64,8 @@ public class ServerEndpoints {
     // Removes the calling user from the system.
     public static let removeUser = ServerEndpoint("RemoveUser", method: .post)
     
-    // The FileIndex serves as a kind of snapshot of the files on the server for the calling apps. So, we hold the lock while we take the snapshot-- to make sure we're not getting a cross section of changes imposed by other apps.
-    public static let fileIndex = ServerEndpoint("FileIndex", method: .get, needsLock:true)
+    // The Index serves as a kind of snapshot of the files and sharing groups on the server for the calling app. Not holding a lock to snapshot files because caller may not give a sharing group id.
+    public static let index = ServerEndpoint("Index", method: .get)
     
     public static let uploadFile = ServerEndpoint("UploadFile", method: .post, minPermission: .write)
     
@@ -102,7 +102,7 @@ public class ServerEndpoints {
     public static let session = ServerEndpoints()
     
     private init() {
-        all.append(contentsOf: [ServerEndpoints.healthCheck, ServerEndpoints.addUser, ServerEndpoints.checkCreds, ServerEndpoints.removeUser, ServerEndpoints.fileIndex, ServerEndpoints.uploadFile, ServerEndpoints.doneUploads, ServerEndpoints.getUploads, ServerEndpoints.uploadDeletion,
+        all.append(contentsOf: [ServerEndpoints.healthCheck, ServerEndpoints.addUser, ServerEndpoints.checkCreds, ServerEndpoints.removeUser, ServerEndpoints.index, ServerEndpoints.uploadFile, ServerEndpoints.doneUploads, ServerEndpoints.getUploads, ServerEndpoints.uploadDeletion,
             ServerEndpoints.createSharingInvitation, ServerEndpoints.redeemSharingInvitation,
             ServerEndpoints.createSharingGroup, ServerEndpoints.removeSharingGroup])
     }

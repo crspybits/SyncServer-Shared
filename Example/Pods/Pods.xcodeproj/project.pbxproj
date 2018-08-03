@@ -52,7 +52,7 @@
 		F7BA99394ED391BC9CC0208DD1E94921 /* Gloss-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A924D9619D7AF04E365BE3D2E22F415 /* Gloss-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7DD87D17D2BEFF0D9C2348D543D49F5 /* ExtensionDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C0024C6E82FC24CDCBACB35A8EF75 /* ExtensionDecodable.swift */; };
 		F8D81F377A1DF244782222DCB241CAEB /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D662DAB98659018824DD70A1216105 /* Decoder.swift */; };
-		F8FD91CD6F0996F81E4D7CE743BD2F40 /* FileIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB36B5028D0406FC255F0B6DDF85ED2 /* FileIndex.swift */; };
+		F8FD91CD6F0996F81E4D7CE743BD2F40 /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB36B5028D0406FC255F0B6DDF85ED2 /* Index.swift */; };
 		FAEFA9371AA5A7F4C499C5519E279C27 /* ExtensionArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2591A067136371451F2FDE8D8F9B6DE /* ExtensionArray.swift */; };
 		FBA873D017F99AC56947CCEF31641139 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35554B04485072F244CE2FF0345D4B /* Operators.swift */; };
 		FC0A9F3F55CF321B1157F44567AF4612 /* Pods-SyncServer-Shared_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A78DF3405D045C032A55E40A225757C /* Pods-SyncServer-Shared_Example-dummy.m */; };
@@ -107,7 +107,7 @@
 		2C1A6F836CFCB03F1043E007E79080FB /* Pods-SyncServer-Shared_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SyncServer-Shared_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		31C938B585D0756D45A6DA15D1901DD8 /* RemoveUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemoveUser.swift; sourceTree = "<group>"; };
 		3E6E98ABAC07EA4202832276D4361698 /* DoneUploads.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DoneUploads.swift; sourceTree = "<group>"; };
-		3EB36B5028D0406FC255F0B6DDF85ED2 /* FileIndex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FileIndex.swift; sourceTree = "<group>"; };
+		3EB36B5028D0406FC255F0B6DDF85ED2 /* Index.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Index.swift; sourceTree = "<group>"; };
 		48F72F1F6A75BD2F32369013A329AD8D /* CheckCreds.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckCreds.swift; sourceTree = "<group>"; };
 		4A2FF4546693B00A298A86D3DDD74FA3 /* CheckPrimaryCreds.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckPrimaryCreds.swift; sourceTree = "<group>"; };
 		4A78DF3405D045C032A55E40A225757C /* Pods-SyncServer-Shared_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SyncServer-Shared_Example-dummy.m"; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 				3E6E98ABAC07EA4202832276D4361698 /* DoneUploads.swift */,
 				4BD116DCF2179EDB8514012C1E74EDFE /* DownloadAppMetaData.swift */,
 				5C706F8281060593D24043C0EBAFE749 /* DownloadFile.swift */,
-				3EB36B5028D0406FC255F0B6DDF85ED2 /* FileIndex.swift */,
+				3EB36B5028D0406FC255F0B6DDF85ED2 /* Index.swift */,
 				9C810553AC7587747B9DCD7F5662E137 /* FileInfo.swift */,
 				BAB5BDBB44F64417297EA2A57C98B4DE /* GetUploads.swift */,
 				52F78CF5ADBEEB390B753BCB8763522C /* HealthCheck.swift */,
@@ -568,7 +568,7 @@
 				E30B9C3961EBE5BDFAF57021F316CBBD /* DoneUploads.swift in Sources */,
 				8C2A711FD577F9F60EBC40DC795D3655 /* DownloadAppMetaData.swift in Sources */,
 				82C690754F01E640F9DBB5746740FE66 /* DownloadFile.swift in Sources */,
-				F8FD91CD6F0996F81E4D7CE743BD2F40 /* FileIndex.swift in Sources */,
+				F8FD91CD6F0996F81E4D7CE743BD2F40 /* Index.swift in Sources */,
 				9999108B80E9F3F15A6735FE76881883 /* FileInfo.swift in Sources */,
 				9D2823C7970D44201BA854F8AB75E99A /* Filenaming.swift in Sources */,
 				C59AA8929DC811BD354EEBA42A31D3C5 /* GetUploads.swift in Sources */,
