@@ -43,7 +43,7 @@ public struct ServerEndpoint {
 /* When adding an endpoint:
     a) add it as a `public static let`
     b) add it in the `all` list in the `init`, and
-    c) add it into ServerRoutes.swift
+    c) add it into ServerRoutes.swift in the Server repo.
 */
 public class ServerEndpoints {
     public private(set) var all = [ServerEndpoint]()
@@ -97,6 +97,8 @@ public class ServerEndpoints {
 
     public static let createSharingGroup = ServerEndpoint("CreateSharingGroup", method: .post, authenticationLevel: .secondary, minPermission: .admin)
 
+    public static let updateSharingGroup = ServerEndpoint("UpdateSharingGroup", method: .patch, authenticationLevel: .secondary, needsLock: true, minPermission: .admin)
+
     public static let removeSharingGroup = ServerEndpoint("RemoveSharingGroup", method: .post, authenticationLevel: .secondary, needsLock: true, minPermission: .admin)
 
     public static let session = ServerEndpoints()
@@ -104,6 +106,7 @@ public class ServerEndpoints {
     private init() {
         all.append(contentsOf: [ServerEndpoints.healthCheck, ServerEndpoints.addUser, ServerEndpoints.checkCreds, ServerEndpoints.removeUser, ServerEndpoints.index, ServerEndpoints.uploadFile, ServerEndpoints.doneUploads, ServerEndpoints.getUploads, ServerEndpoints.uploadDeletion,
             ServerEndpoints.createSharingInvitation, ServerEndpoints.redeemSharingInvitation,
-            ServerEndpoints.createSharingGroup, ServerEndpoints.removeSharingGroup])
+            ServerEndpoints.createSharingGroup, ServerEndpoints.removeSharingGroup,
+            ServerEndpoints.updateSharingGroup])
     }
 }

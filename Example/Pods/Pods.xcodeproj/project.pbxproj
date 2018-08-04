@@ -24,6 +24,7 @@
 		830494E120DCB39F00D6FEE5 /* ServerEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830494E020DCB39F00D6FEE5 /* ServerEndpoints.swift */; };
 		834277862112872E00114FE2 /* SharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834277852112872E00114FE2 /* SharingGroup.swift */; };
 		83669BCA2112AEB8004CB6EF /* RemoveSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83669BC92112AEB8004CB6EF /* RemoveSharingGroup.swift */; };
+		83D40104211649E9002AEF48 /* UpdateSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D40103211649E9002AEF48 /* UpdateSharingGroup.swift */; };
 		83EA91EF21100BD20095E658 /* CreateSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA91EE21100BD20095E658 /* CreateSharingGroup.swift */; };
 		87055C47E0E7EDCBCDA719420510A1DC /* RequestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EC8A7586C991C3A9945471B825EBF7 /* RequestMessage.swift */; };
 		8C2A711FD577F9F60EBC40DC795D3655 /* DownloadAppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD116DCF2179EDB8514012C1E74EDFE /* DownloadAppMetaData.swift */; };
@@ -134,6 +135,7 @@
 		830494E020DCB39F00D6FEE5 /* ServerEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServerEndpoints.swift; path = Sources/SyncServerShared/ServerEndpoints.swift; sourceTree = "<group>"; };
 		834277852112872E00114FE2 /* SharingGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SharingGroup.swift; path = Sources/SyncServerShared/SharingGroup.swift; sourceTree = "<group>"; };
 		83669BC92112AEB8004CB6EF /* RemoveSharingGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSharingGroup.swift; sourceTree = "<group>"; };
+		83D40103211649E9002AEF48 /* UpdateSharingGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSharingGroup.swift; sourceTree = "<group>"; };
 		83EA91EE21100BD20095E658 /* CreateSharingGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSharingGroup.swift; sourceTree = "<group>"; };
 		84BE8167CFDC95D127CF4C8ECD093377 /* JSONExtras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONExtras.swift; sourceTree = "<group>"; };
 		852C0024C6E82FC24CDCBACB35A8EF75 /* ExtensionDecodable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExtensionDecodable.swift; path = Sources/ExtensionDecodable.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				48F72F1F6A75BD2F32369013A329AD8D /* CheckCreds.swift */,
 				4A2FF4546693B00A298A86D3DDD74FA3 /* CheckPrimaryCreds.swift */,
 				83EA91EE21100BD20095E658 /* CreateSharingGroup.swift */,
+				83D40103211649E9002AEF48 /* UpdateSharingGroup.swift */,
 				83669BC92112AEB8004CB6EF /* RemoveSharingGroup.swift */,
 				E5C0634512E6BF3AA12C5A64BCE4FD4C /* CreateSharingInvitation.swift */,
 				3E6E98ABAC07EA4202832276D4361698 /* DoneUploads.swift */,
@@ -573,6 +576,7 @@
 				9D2823C7970D44201BA854F8AB75E99A /* Filenaming.swift in Sources */,
 				C59AA8929DC811BD354EEBA42A31D3C5 /* GetUploads.swift in Sources */,
 				830494E120DCB39F00D6FEE5 /* ServerEndpoints.swift in Sources */,
+				83D40104211649E9002AEF48 /* UpdateSharingGroup.swift in Sources */,
 				0BC37E0E5B2A89BBC10D3DCA76A5BA77 /* HealthCheck.swift in Sources */,
 				F1731933C7D75FC250300CDA4332E488 /* JSONExtras.swift in Sources */,
 				2D0500BA90BCEDD4055DF399DDB5126F /* RedeemSharingInvitation.swift in Sources */,

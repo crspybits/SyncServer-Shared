@@ -19,6 +19,7 @@ public enum ServerHTTPMethod : String {
     case get
     case post
     case delete
+    case patch
 }
 
 public enum HTTPStatus : Int {
