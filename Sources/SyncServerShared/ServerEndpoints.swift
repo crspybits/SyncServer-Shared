@@ -10,6 +10,7 @@ import Foundation
 public struct ServerEndpoint {
     public let pathName:String // Doesn't have preceding "/"
     public let method:ServerHTTPMethod
+    public let requestMessageType: RequestMessage.Type
     public let authenticationLevel:AuthenticationLevel
     
     // Does the user have the mimimum required permissions to perform the endpoint action?
@@ -20,12 +21,13 @@ public struct ServerEndpoint {
     public let needsLock:Bool
     
     // Don't put a trailing "/" on the pathName.
-    public init(_ pathName:String, method:ServerHTTPMethod, authenticationLevel:AuthenticationLevel = .secondary, needsLock:Bool = false, minPermission: Permission = .read) {
+    public init(_ pathName:String, method:ServerHTTPMethod, messageType: RequestMessage.Type, authenticationLevel:AuthenticationLevel = .secondary, needsLock:Bool = false, minPermission: Permission = .read) {
 
         assert(pathName.count > 0 && pathName.last != "/")
         
         self.pathName = pathName
         self.method = method
+        self.requestMessageType = messageType
         self.authenticationLevel = authenticationLevel
         self.needsLock = needsLock
         self.minPermission = minPermission
@@ -49,57 +51,57 @@ public class ServerEndpoints {
     public private(set) var all = [ServerEndpoint]()
     
     // No authentication required because this doesn't do any processing within the server-- just a check to ensure the server is running.
-    public static let healthCheck = ServerEndpoint("HealthCheck", method: .get, authenticationLevel: .none)
+    public static let healthCheck = ServerEndpoint("HealthCheck", method: .get, messageType: HealthCheckRequest.self, authenticationLevel: .none)
 
 #if DEBUG
-    public static let checkPrimaryCreds = ServerEndpoint("CheckPrimaryCreds", method: .get, authenticationLevel: .primary)
+    public static let checkPrimaryCreds = ServerEndpoint("CheckPrimaryCreds", method: .get, messageType: CheckPrimaryCredsRequest.self, authenticationLevel: .primary)
 #endif
 
-    public static let checkCreds = ServerEndpoint("CheckCreds", method: .get)
+    public static let checkCreds = ServerEndpoint("CheckCreds", method: .get, messageType: CheckCredsRequest.self)
     
     // This creates a "root" owning user account for a sharing group of users. The user must not exist yet on the system.
     // Only primary authentication because this method is used to add a user into the database (i.e., it creates secondary authentication).
-    public static let addUser = ServerEndpoint("AddUser", method: .post, authenticationLevel: .primary)
+    public static let addUser = ServerEndpoint("AddUser", method: .post, messageType: AddUserRequest.self, authenticationLevel: .primary)
 
     // Removes the calling user from the system.
-    public static let removeUser = ServerEndpoint("RemoveUser", method: .post)
+    public static let removeUser = ServerEndpoint("RemoveUser", method: .post, messageType: RemoveUserRequest.self)
     
     // The Index serves as a kind of snapshot of the files and sharing groups on the server for the calling app. Not holding a lock to snapshot files because caller may not give a sharing group id.
-    public static let index = ServerEndpoint("Index", method: .get)
+    public static let index = ServerEndpoint("Index", method: .get, messageType: IndexRequest.self)
     
-    public static let uploadFile = ServerEndpoint("UploadFile", method: .post, minPermission: .write)
+    public static let uploadFile = ServerEndpoint("UploadFile", method: .post, messageType: UploadFileRequest.self, minPermission: .write)
     
     // Useful if only the app meta data has changed, so you don't have to re-upload the entire file.
-    public static let uploadAppMetaData = ServerEndpoint("UploadAppMetaData", method: .post, minPermission: .write)
+    public static let uploadAppMetaData = ServerEndpoint("UploadAppMetaData", method: .post, messageType: UploadAppMetaDataRequest.self, minPermission: .write)
     
     // Any time we're doing an operation constrained to the current masterVersion, holding the lock seems like a good idea.
-    public static let uploadDeletion = ServerEndpoint("UploadDeletion", method: .delete, needsLock:true, minPermission: .write)
+    public static let uploadDeletion = ServerEndpoint("UploadDeletion", method: .delete, messageType: UploadDeletionRequest.self, needsLock:true, minPermission: .write)
 
     // TODO: *0* See also [1] in FileControllerTests.swift.
     // Seems unlikely that the collection of uploads will change while we are getting them (because they are specific to the userId and the deviceUUID), but grab the lock just in case.
-    public static let getUploads = ServerEndpoint("GetUploads", method: .get, needsLock:true, minPermission: .write)
+    public static let getUploads = ServerEndpoint("GetUploads", method: .get, messageType: GetUploadsRequest.self, needsLock:true, minPermission: .write)
     
     // Not using `needsLock` property here-- but doing the locking internally to the method: Because we have to access cloud storage to deal with upload deletions.
-    public static let doneUploads = ServerEndpoint("DoneUploads", method: .post, minPermission: .write)
+    public static let doneUploads = ServerEndpoint("DoneUploads", method: .post, messageType: DoneUploadsRequest.self, minPermission: .write)
 
-    public static let downloadFile = ServerEndpoint("DownloadFile", method: .get)
+    public static let downloadFile = ServerEndpoint("DownloadFile", method: .get, messageType: DownloadFileRequest.self)
     
     // Useful if only the app meta data has changed, so you don't have to re-download the entire file.
-    public static let downloadAppMetaData = ServerEndpoint("DownloadAppMetaData", method: .get)
+    public static let downloadAppMetaData = ServerEndpoint("DownloadAppMetaData", method: .get, messageType: DownloadAppMetaDataRequest.self)
     
     // MARK: Sharing
     
-    public static let createSharingInvitation = ServerEndpoint("CreateSharingInvitation", method: .post, minPermission: .admin)
+    public static let createSharingInvitation = ServerEndpoint("CreateSharingInvitation", method: .post, messageType: CreateSharingInvitationRequest.self, minPermission: .admin)
     
     // This creates a sharing user account. The user must not exist yet on the system.
     // Only primary authentication because this method is used to add a user into the database (i.e., it creates secondary authentication).
-    public static let redeemSharingInvitation = ServerEndpoint("RedeemSharingInvitation", method: .post, authenticationLevel: .primary)
+    public static let redeemSharingInvitation = ServerEndpoint("RedeemSharingInvitation", method: .post, messageType: RedeemSharingInvitationRequest.self, authenticationLevel: .primary)
 
-    public static let createSharingGroup = ServerEndpoint("CreateSharingGroup", method: .post, authenticationLevel: .secondary, minPermission: .admin)
+    public static let createSharingGroup = ServerEndpoint("CreateSharingGroup", method: .post, messageType: CreateSharingGroupRequest.self, authenticationLevel: .secondary, minPermission: .admin)
 
-    public static let updateSharingGroup = ServerEndpoint("UpdateSharingGroup", method: .patch, authenticationLevel: .secondary, needsLock: true, minPermission: .admin)
+    public static let updateSharingGroup = ServerEndpoint("UpdateSharingGroup", method: .patch, messageType: UpdateSharingGroupRequest.self, authenticationLevel: .secondary, needsLock: true, minPermission: .admin)
 
-    public static let removeSharingGroup = ServerEndpoint("RemoveSharingGroup", method: .post, authenticationLevel: .secondary, needsLock: true, minPermission: .admin)
+    public static let removeSharingGroup = ServerEndpoint("RemoveSharingGroup", method: .post, messageType: RemoveSharingGroupRequest.self, authenticationLevel: .secondary, needsLock: true, minPermission: .admin)
 
     public static let session = ServerEndpoints()
     
