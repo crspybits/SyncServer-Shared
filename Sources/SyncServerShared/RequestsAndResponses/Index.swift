@@ -64,15 +64,16 @@ public class IndexRequest : NSObject, RequestMessage {
 #endif
     
     public func allKeys() -> [String] {
+        let keys = [ServerEndpoint.sharingGroupIdKey]
 #if DEBUG
-        return self.nonNilKeys() + [IndexRequest.testServerSleepKey]
+        return self.nonNilKeys() + keys + [IndexRequest.testServerSleepKey]
 #else
-        return self.nonNilKeys()
+        return self.nonNilKeys() + keys
 #endif
     }
     
-    public func nonNilKeys() -> [String] { return [
-        ServerEndpoint.sharingGroupIdKey]
+    public func nonNilKeys() -> [String] {
+        return []
     }
 }
 
