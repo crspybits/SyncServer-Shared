@@ -16,8 +16,6 @@ import Kitura
 
 public class CreateSharingGroupRequest : NSObject, RequestMessage {
     // I'm having problems uploading complex objects in url parameters. So not sending a SharingGroup object yet. If I need to do this, looks like I'll have to use the request body and am not doing that yet.
-    public var sharingGroupId: SharingGroupId!
-    
     public static let sharingGroupNameKey = "sharingGroupName"
     public var sharingGroupName: String?
     
@@ -29,19 +27,17 @@ public class CreateSharingGroupRequest : NSObject, RequestMessage {
     
     public required init?(json: JSON) {
         super.init()
-        self.sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
         self.sharingGroupName = CreateSharingGroupRequest.sharingGroupNameKey <~~ json
     }
     
     public func toJSON() -> JSON? {
         return jsonify([
-            ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId,
             CreateSharingGroupRequest.sharingGroupNameKey ~~> self.sharingGroupName
         ])
     }
     
     public func nonNilKeys() -> [String] {
-        return [ServerEndpoint.sharingGroupIdKey, CreateSharingGroupRequest.sharingGroupNameKey]
+        return [CreateSharingGroupRequest.sharingGroupNameKey]
     }
     
     public func allKeys() -> [String] {
