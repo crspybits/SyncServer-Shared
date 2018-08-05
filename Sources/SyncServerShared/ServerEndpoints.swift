@@ -91,7 +91,8 @@ public class ServerEndpoints {
     
     // MARK: Sharing
     
-    public static let createSharingInvitation = ServerEndpoint("CreateSharingInvitation", method: .post, messageType: CreateSharingInvitationRequest.self, minPermission: .admin)
+    // I'm marking this as needing a lock to make sure, at least, that while we're doing the inviting no one deletes the sharing group.
+    public static let createSharingInvitation = ServerEndpoint("CreateSharingInvitation", method: .post, messageType: CreateSharingInvitationRequest.self, needsLock: true, minPermission: .admin)
     
     // This creates a sharing user account. The user must not exist yet on the system.
     // Only primary authentication because this method is used to add a user into the database (i.e., it creates secondary authentication).

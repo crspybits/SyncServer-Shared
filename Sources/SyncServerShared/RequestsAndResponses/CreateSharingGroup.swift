@@ -15,9 +15,11 @@ import Kitura
 // The current signed in user is requesting creation of a sharing group.
 
 public class CreateSharingGroupRequest : NSObject, RequestMessage {
-    // You do *not* supply the sharing group id in this sharing group. It is created by this request.
-    public static let sharingGroupKey = "sharingGroup"
-    public var sharingGroup: SharingGroup!
+    // I'm having problems uploading complex objects in url parameters. So not sending a SharingGroup object yet. If I need to do this, looks like I'll have to use the request body and am not doing that yet.
+    public var sharingGroupId: SharingGroupId!
+    
+    public static let sharingGroupNameKey = "sharingGroupName"
+    public var sharingGroupName: String?
     
 #if SERVER
     public required convenience init?(request: RouterRequest) {
@@ -27,17 +29,19 @@ public class CreateSharingGroupRequest : NSObject, RequestMessage {
     
     public required init?(json: JSON) {
         super.init()
-        self.sharingGroup = CreateSharingGroupRequest.sharingGroupKey <~~ json
+        self.sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
+        self.sharingGroupName = CreateSharingGroupRequest.sharingGroupNameKey <~~ json
     }
     
     public func toJSON() -> JSON? {
         return jsonify([
-            CreateSharingGroupRequest.sharingGroupKey ~~> self.sharingGroup
+            ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId,
+            CreateSharingGroupRequest.sharingGroupNameKey ~~> self.sharingGroupName
         ])
     }
     
     public func nonNilKeys() -> [String] {
-        return []
+        return [ServerEndpoint.sharingGroupIdKey, CreateSharingGroupRequest.sharingGroupNameKey]
     }
     
     public func allKeys() -> [String] {
