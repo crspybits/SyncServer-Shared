@@ -13,9 +13,11 @@ import Kitura
 #endif
 
 public class UpdateSharingGroupRequest : NSObject, RequestMessage {
-    // You must supply the sharing group id, and the name-- the name is the only attribute you can currently change-- you cannot change the delete attribute (use the RemoveSharingGroup endpoint for that).
-    public static let sharingGroupKey = "sharingGroup"
-    public var sharingGroup: SharingGroup!
+    // I'm having problems uploading complex objects in url parameters. So not sending a SharingGroup object yet. If I need to do this, looks like I'll have to use the request body and am not doing that yet.
+    public var sharingGroupId: SharingGroupId!
+    
+    public static let sharingGroupNameKey = "sharingGroupName"
+    public var sharingGroupName: String?
     
 #if SERVER
     public required convenience init?(request: RouterRequest) {
@@ -25,20 +27,19 @@ public class UpdateSharingGroupRequest : NSObject, RequestMessage {
     
     public required init?(json: JSON) {
         super.init()
-        self.sharingGroup = UpdateSharingGroupRequest.sharingGroupKey <~~ json
+        self.sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
+        self.sharingGroupName = UpdateSharingGroupRequest.sharingGroupNameKey <~~ json
     }
     
     public func toJSON() -> JSON? {
         return jsonify([
-            UpdateSharingGroupRequest.sharingGroupKey ~~> self.sharingGroup,
-            
-            // To give the server access to the sharingGroupId when locking for the update sharing group endpoint.
-            ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroup?.sharingGroupId
+            ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId,
+            UpdateSharingGroupRequest.sharingGroupNameKey ~~> self.sharingGroupName
         ])
     }
     
     public func nonNilKeys() -> [String] {
-        return [UpdateSharingGroupRequest.sharingGroupKey]
+        return [ServerEndpoint.sharingGroupIdKey, UpdateSharingGroupRequest.sharingGroupNameKey]
     }
     
     public func allKeys() -> [String] {
