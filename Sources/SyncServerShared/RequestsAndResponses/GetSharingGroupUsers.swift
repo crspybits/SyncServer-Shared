@@ -26,9 +26,9 @@ public class GetSharingGroupUsersRequest : NSObject, RequestMessage {
     }
 
     public func toJSON() -> JSON? {
-        var result = [JSON?]()
-        result += [ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId]
-        return jsonify(result)
+        return jsonify([
+            ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId
+        ])
     }
     
 #if SERVER
@@ -38,7 +38,7 @@ public class GetSharingGroupUsersRequest : NSObject, RequestMessage {
 #endif
     
     public func allKeys() -> [String] {
-        return self.nonNilKeys() + nonNilKeys()
+        return self.nonNilKeys()
     }
     
     public func nonNilKeys() -> [String] {
