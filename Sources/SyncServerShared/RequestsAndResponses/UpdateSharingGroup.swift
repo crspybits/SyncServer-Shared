@@ -17,11 +17,6 @@ public class UpdateSharingGroupRequest : NSObject, RequestMessage {
     public static let sharingGroupKey = "sharingGroup"
     public var sharingGroup: SharingGroup!
     
-    // So that the locking mechanism works on the server.
-    var sharingGroupId: SharingGroupId! {
-        return sharingGroup?.sharingGroupId
-    }
-    
 #if SERVER
     public required convenience init?(request: RouterRequest) {
         self.init(json: request.queryParameters)
@@ -35,7 +30,10 @@ public class UpdateSharingGroupRequest : NSObject, RequestMessage {
     
     public func toJSON() -> JSON? {
         return jsonify([
-            UpdateSharingGroupRequest.sharingGroupKey ~~> self.sharingGroup
+            UpdateSharingGroupRequest.sharingGroupKey ~~> self.sharingGroup,
+            
+            // To give the server access to the sharingGroupId when locking for the update sharing group endpoint.
+            ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroup?.sharingGroupId
         ])
     }
     
