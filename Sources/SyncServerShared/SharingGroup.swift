@@ -42,4 +42,23 @@ public class SharingGroup : Gloss.Encodable, Gloss.Decodable {
     }
 }
 
+public class SharingGroupUser : Gloss.Encodable, Gloss.Decodable {
+    public static let nameKey = "name"
+    public var name: String!
+
+    required public init?(json: JSON) {
+        self.name = SharingGroupUser.nameKey <~~ json
+    }
+    
+    public convenience init?() {
+        self.init(json:[:])
+    }
+    
+    public func toJSON() -> JSON? {
+        return jsonify([
+            SharingGroupUser.nameKey ~~> self.name
+        ])
+    }
+}
+
 

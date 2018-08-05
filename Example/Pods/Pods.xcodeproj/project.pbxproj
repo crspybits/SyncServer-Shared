@@ -22,6 +22,7 @@
 		66D47BC140C8D64CF209896E806B2410 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F25B1A963622F2137B83A98BB49FCB97 /* Foundation.framework */; };
 		82C690754F01E640F9DBB5746740FE66 /* DownloadFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C706F8281060593D24043C0EBAFE749 /* DownloadFile.swift */; };
 		830494E120DCB39F00D6FEE5 /* ServerEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830494E020DCB39F00D6FEE5 /* ServerEndpoints.swift */; };
+		831EECC52116BB4600D9C41D /* GetSharingGroupUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831EECC42116BB4600D9C41D /* GetSharingGroupUsers.swift */; };
 		834277862112872E00114FE2 /* SharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834277852112872E00114FE2 /* SharingGroup.swift */; };
 		83669BCA2112AEB8004CB6EF /* RemoveSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83669BC92112AEB8004CB6EF /* RemoveSharingGroup.swift */; };
 		83D40104211649E9002AEF48 /* UpdateSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D40103211649E9002AEF48 /* UpdateSharingGroup.swift */; };
@@ -133,6 +134,7 @@
 		81317443E1EE4B73F868ECAD1F31CE92 /* Pods-SyncServer-Shared_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SyncServer-Shared_Tests-umbrella.h"; sourceTree = "<group>"; };
 		8168C116780EF7BDE1540E52C780C1EA /* Pods-SyncServer-Shared_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SyncServer-Shared_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		830494E020DCB39F00D6FEE5 /* ServerEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServerEndpoints.swift; path = Sources/SyncServerShared/ServerEndpoints.swift; sourceTree = "<group>"; };
+		831EECC42116BB4600D9C41D /* GetSharingGroupUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSharingGroupUsers.swift; sourceTree = "<group>"; };
 		834277852112872E00114FE2 /* SharingGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SharingGroup.swift; path = Sources/SyncServerShared/SharingGroup.swift; sourceTree = "<group>"; };
 		83669BC92112AEB8004CB6EF /* RemoveSharingGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSharingGroup.swift; sourceTree = "<group>"; };
 		83D40103211649E9002AEF48 /* UpdateSharingGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSharingGroup.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				83EA91EE21100BD20095E658 /* CreateSharingGroup.swift */,
 				83D40103211649E9002AEF48 /* UpdateSharingGroup.swift */,
 				83669BC92112AEB8004CB6EF /* RemoveSharingGroup.swift */,
+				831EECC42116BB4600D9C41D /* GetSharingGroupUsers.swift */,
 				E5C0634512E6BF3AA12C5A64BCE4FD4C /* CreateSharingInvitation.swift */,
 				3E6E98ABAC07EA4202832276D4361698 /* DoneUploads.swift */,
 				4BD116DCF2179EDB8514012C1E74EDFE /* DownloadAppMetaData.swift */,
@@ -559,6 +562,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				831EECC52116BB4600D9C41D /* GetSharingGroupUsers.swift in Sources */,
 				A3D597D355A60698B7298492198385B6 /* AddUser.swift in Sources */,
 				83669BCA2112AEB8004CB6EF /* RemoveSharingGroup.swift in Sources */,
 				B1FA747741F3E4E4AE4FE6901988C0D0 /* CheckCreds.swift in Sources */,
