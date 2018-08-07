@@ -28,6 +28,10 @@ public class CreateSharingGroupRequest : NSObject, RequestMessage {
     public required init?(json: JSON) {
         super.init()
         self.sharingGroupName = CreateSharingGroupRequest.sharingGroupNameKey <~~ json
+        
+        if !nonNilKeysHaveValues(in: json) {
+            return nil
+        }
     }
     
     public func toJSON() -> JSON? {

@@ -12,7 +12,9 @@ import Gloss
 import Kitura
 #endif
 
-public class RemoveSharingGroupRequest : NSObject, RequestMessage {
+public class RemoveSharingGroupRequest : NSObject, RequestMessage, MasterVersionUpdateRequest {
+    public var masterVersion: MasterVersionInt!
+    
     public var sharingGroupId:SharingGroupId!
     
 #if SERVER
@@ -24,16 +26,22 @@ public class RemoveSharingGroupRequest : NSObject, RequestMessage {
     public required init?(json: JSON) {
         super.init()
         self.sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
+        self.masterVersion = Decoder.decode(int64ForKey: ServerEndpoint.masterVersionKey)(json)
+        
+        if !nonNilKeysHaveValues(in: json) {
+            return nil
+        }
     }
     
     public func toJSON() -> JSON? {
         return jsonify([
-            ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId
+            ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId,
+            ServerEndpoint.masterVersionKey ~~> self.masterVersion
         ])
     }
     
     public func nonNilKeys() -> [String] {
-        return [ServerEndpoint.sharingGroupIdKey]
+        return [ServerEndpoint.sharingGroupIdKey, ServerEndpoint.masterVersionKey]
     }
     
     public func allKeys() -> [String] {
@@ -41,12 +49,15 @@ public class RemoveSharingGroupRequest : NSObject, RequestMessage {
     }
 }
 
-public class RemoveSharingGroupResponse : ResponseMessage {
+public class RemoveSharingGroupResponse : ResponseMessage, MasterVersionUpdateResponse {
+    public var masterVersionUpdate: MasterVersionInt?
+    
     public var responseType: ResponseType {
         return .json
     }
     
     public required init?(json: JSON) {
+        self.masterVersionUpdate = Decoder.decode(int64ForKey: ServerEndpoint.masterVersionUpdateKey)(json)
     }
     
     public convenience init?() {
@@ -56,6 +67,7 @@ public class RemoveSharingGroupResponse : ResponseMessage {
     // MARK: - Serialization
     public func toJSON() -> JSON? {
         return jsonify([
+            ServerEndpoint.masterVersionUpdateKey ~~> self.masterVersionUpdate
         ])
     }
 }

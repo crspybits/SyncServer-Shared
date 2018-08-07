@@ -16,10 +16,14 @@ public struct ServerEndpoint {
     // Does the user have the mimimum required permissions to perform the endpoint action?
     public let minPermission:Permission!
     
-    // This specifies the need for a short duration lock on the operation. Only endpoints that have request messages that include a sharingGroupId can set this to true.
+    // These specify the need for a short duration lock on the operation. Only endpoints that have request messages that include a sharingGroupId can set this to true.
     public static let sharingGroupIdKey = "sharingGroupId"
     public let needsLock:Bool
     
+    // For requests that adopt the MasterVersionUpdateRequest/MasterVersionUpdateResponse protocol.
+    public static let masterVersionKey = "masterVersion"
+    public static let masterVersionUpdateKey = "masterVersionUpdate"
+
     // Don't put a trailing "/" on the pathName.
     public init(_ pathName:String, method:ServerHTTPMethod, messageType: RequestMessage.Type, authenticationLevel:AuthenticationLevel = .secondary, needsLock:Bool = false, minPermission: Permission = .read) {
 
@@ -53,6 +57,8 @@ public class ServerEndpoints {
     // No authentication required because this doesn't do any processing within the server-- just a check to ensure the server is running.
     public static let healthCheck = ServerEndpoint("HealthCheck", method: .get, messageType: HealthCheckRequest.self, authenticationLevel: .none)
 
+    // MARK: Users
+    
 #if DEBUG
     public static let checkPrimaryCreds = ServerEndpoint("CheckPrimaryCreds", method: .get, messageType: CheckPrimaryCredsRequest.self, authenticationLevel: .primary)
 #endif
@@ -65,6 +71,8 @@ public class ServerEndpoints {
 
     // Removes the calling user from the system.
     public static let removeUser = ServerEndpoint("RemoveUser", method: .post, messageType: RemoveUserRequest.self)
+    
+    // MARK: Files
     
     // The Index serves as a kind of snapshot of the files and sharing groups on the server for the calling app. Not holding a lock to snapshot files because caller may not give a sharing group id.
     public static let index = ServerEndpoint("Index", method: .get, messageType: IndexRequest.self)
@@ -109,9 +117,16 @@ public class ServerEndpoints {
     public static let session = ServerEndpoints()
     
     private init() {
-        all.append(contentsOf: [ServerEndpoints.healthCheck, ServerEndpoints.addUser, ServerEndpoints.checkCreds, ServerEndpoints.removeUser, ServerEndpoints.index, ServerEndpoints.uploadFile, ServerEndpoints.doneUploads, ServerEndpoints.getUploads, ServerEndpoints.uploadDeletion,
-            ServerEndpoints.createSharingInvitation, ServerEndpoints.redeemSharingInvitation,
+        all.append(contentsOf: [
+            ServerEndpoints.healthCheck,
+        
+            ServerEndpoints.addUser, ServerEndpoints.checkCreds, ServerEndpoints.removeUser,
+        
+            ServerEndpoints.index, ServerEndpoints.uploadFile, ServerEndpoints.doneUploads, ServerEndpoints.getUploads, ServerEndpoints.uploadDeletion,
+        
+            ServerEndpoints.createSharingInvitation,
+            ServerEndpoints.redeemSharingInvitation,
             ServerEndpoints.createSharingGroup, ServerEndpoints.removeSharingGroup,
-            ServerEndpoints.updateSharingGroup])
+            ServerEndpoints.updateSharingGroup, ServerEndpoints.getSharingGroupUsers])
     }
 }

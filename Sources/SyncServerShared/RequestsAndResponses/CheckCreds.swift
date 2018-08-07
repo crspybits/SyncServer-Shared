@@ -18,6 +18,10 @@ import Kitura
 public class CheckCredsRequest : NSObject, RequestMessage {
     public required init?(json: JSON) {
         super.init()
+        
+        if !nonNilKeysHaveValues(in: json) {
+            return nil
+        }
     }
     
 #if SERVER

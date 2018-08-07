@@ -12,7 +12,9 @@ import Gloss
 import Kitura
 #endif
 
-public class UpdateSharingGroupRequest : NSObject, RequestMessage {
+public class UpdateSharingGroupRequest : NSObject, RequestMessage, MasterVersionUpdateRequest {
+    public var masterVersion:MasterVersionInt!
+
     // I'm having problems uploading complex objects in url parameters. So not sending a SharingGroup object yet. If I need to do this, looks like I'll have to use the request body and am not doing that yet.
     public var sharingGroupId: SharingGroupId!
     
@@ -29,17 +31,24 @@ public class UpdateSharingGroupRequest : NSObject, RequestMessage {
         super.init()
         self.sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
         self.sharingGroupName = UpdateSharingGroupRequest.sharingGroupNameKey <~~ json
+        self.masterVersion = Decoder.decode(int64ForKey: ServerEndpoint.masterVersionKey)(json)
+        
+        if !nonNilKeysHaveValues(in: json) {
+            return nil
+        }
     }
     
     public func toJSON() -> JSON? {
         return jsonify([
             ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId,
-            UpdateSharingGroupRequest.sharingGroupNameKey ~~> self.sharingGroupName
+            UpdateSharingGroupRequest.sharingGroupNameKey ~~> self.sharingGroupName,
+            ServerEndpoint.masterVersionKey ~~> self.masterVersion
         ])
     }
     
     public func nonNilKeys() -> [String] {
-        return [ServerEndpoint.sharingGroupIdKey, UpdateSharingGroupRequest.sharingGroupNameKey]
+        return [ServerEndpoint.sharingGroupIdKey, UpdateSharingGroupRequest.sharingGroupNameKey,
+            ServerEndpoint.masterVersionKey]
     }
     
     public func allKeys() -> [String] {
@@ -47,12 +56,15 @@ public class UpdateSharingGroupRequest : NSObject, RequestMessage {
     }
 }
 
-public class UpdateSharingGroupResponse : ResponseMessage {
+public class UpdateSharingGroupResponse : ResponseMessage, MasterVersionUpdateResponse {
+    public var masterVersionUpdate: MasterVersionInt?
+    
     public var responseType: ResponseType {
         return .json
     }
     
     public required init?(json: JSON) {
+        self.masterVersionUpdate = Decoder.decode(int64ForKey: ServerEndpoint.masterVersionUpdateKey)(json)
     }
     
     public convenience init?() {
@@ -62,6 +74,7 @@ public class UpdateSharingGroupResponse : ResponseMessage {
     // MARK: - Serialization
     public func toJSON() -> JSON? {
         return jsonify([
+            ServerEndpoint.masterVersionUpdateKey ~~> self.masterVersionUpdate
         ])
     }
 }

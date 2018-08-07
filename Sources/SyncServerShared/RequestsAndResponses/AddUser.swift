@@ -34,6 +34,10 @@ public class AddUserRequest : NSObject, RequestMessage {
         
         self.cloudFolderName = AddUserRequest.cloudFolderNameKey <~~ json
         self.sharingGroupName = AddUserRequest.sharingGroupNameKey <~~ json
+        
+        if !nonNilKeysHaveValues(in: json) {
+            return nil
+        }
     }
     
     public func toJSON() -> JSON? {
