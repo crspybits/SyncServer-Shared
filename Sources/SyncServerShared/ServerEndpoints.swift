@@ -104,6 +104,7 @@ public class ServerEndpoints {
     
     // This creates a sharing user account. The user must not exist yet on the system.
     // Only primary authentication because this method is used to add a user into the database (i.e., it creates secondary authentication).
+    // This is locked in the server controller code-- we don't have a sharingGroupId in the request parameters.
     public static let redeemSharingInvitation = ServerEndpoint("RedeemSharingInvitation", method: .post, messageType: RedeemSharingInvitationRequest.self, authenticationLevel: .primary)
 
     public static let createSharingGroup = ServerEndpoint("CreateSharingGroup", method: .post, messageType: CreateSharingGroupRequest.self, authenticationLevel: .secondary, minPermission: .admin)
