@@ -67,6 +67,6 @@ public protocol MasterVersionUpdateRequest: RequestMessage {
 
 public protocol MasterVersionUpdateResponse: ResponseMessage {
     // If the master version for the sharing group on the server had been previously incremented to a value different than the masterVersion value in the request, this key will be present in the response-- with the new value of the master version. The requested operation was not attempted in this case.
-    var masterVersionUpdate:MasterVersionInt? {get}
+    var masterVersionUpdate:MasterVersionInt? {get set}
 }
 
