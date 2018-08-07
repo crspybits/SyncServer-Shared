@@ -104,10 +104,6 @@ public class DoneUploadsResponse : ResponseMessage, MasterVersionUpdateResponse 
         self.numberUploadsTransferred = Decoder.decode(int32ForKey: DoneUploadsResponse.numberUploadsTransferredKey)(json)
         self.masterVersionUpdate = Decoder.decode(int64ForKey: ServerEndpoint.masterVersionUpdateKey)(json)
         self.numberDeletionErrors = Decoder.decode(int32ForKey: DoneUploadsResponse.numberDeletionErrorsKey)(json)
-        
-        if !nonNilKeysHaveValues(in: json) {
-            return nil
-        }
     }
     
     public convenience init?() {
