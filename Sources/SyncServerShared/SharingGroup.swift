@@ -23,10 +23,15 @@ public class SharingGroup : Gloss.Encodable, Gloss.Decodable {
     public static let deletedKey = "deleted"
     public var deleted: Bool?
     
+    // The master version for the sharing group.
+    public static let masterVersionKey = "masterVersion"
+    public var masterVersion:MasterVersionInt?
+    
     required public init?(json: JSON) {
         self.sharingGroupName = SharingGroup.sharingGroupNameKey <~~ json
         self.sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
         self.deleted = SharingGroup.deletedKey <~~ json
+        self.masterVersion = Decoder.decode(int64ForKey: IndexResponse.masterVersionKey)(json)
     }
     
     public convenience init?() {
@@ -37,7 +42,8 @@ public class SharingGroup : Gloss.Encodable, Gloss.Decodable {
         return jsonify([
             SharingGroup.sharingGroupNameKey ~~> self.sharingGroupName,
             ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId,
-            SharingGroup.deletedKey ~~> self.deleted
+            SharingGroup.deletedKey ~~> self.deleted,
+            IndexResponse.masterVersionKey ~~> self.masterVersion
         ])
     }
 }
