@@ -27,6 +27,7 @@ public class SharingGroup : Gloss.Encodable, Gloss.Decodable {
     public static let masterVersionKey = "masterVersion"
     public var masterVersion:MasterVersionInt?
     
+    // When returned from an endpoint, gives the calling users permission for the sharing group.
     public static let permissionKey = "permission"
     public var permission:Permission?
     
