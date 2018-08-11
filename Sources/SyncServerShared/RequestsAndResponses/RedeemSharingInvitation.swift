@@ -13,8 +13,8 @@ import Gloss
 import Kitura
 #endif
 
-public class RedeemSharingInvitationRequest : NSObject, RequestMessage, MasterVersionUpdateRequest {
-    public var masterVersion: MasterVersionInt!
+public class RedeemSharingInvitationRequest : NSObject, RequestMessage {
+    // No master version here: The client doesn't yet have information about relevant sharing group that it needs to keep up to date. So, why bother?
     
     public static let sharingInvitationUUIDKey = "sharingInvitationUUID"
     public var sharingInvitationUUID:String!
@@ -27,7 +27,6 @@ public class RedeemSharingInvitationRequest : NSObject, RequestMessage, MasterVe
         
         self.sharingInvitationUUID = RedeemSharingInvitationRequest.sharingInvitationUUIDKey <~~ json
         self.cloudFolderName = AddUserRequest.cloudFolderNameKey <~~ json
-        self.masterVersion = Decoder.decode(int64ForKey: ServerEndpoint.masterVersionKey)(json)
 
         if !nonNilKeysHaveValues(in: json) {
             return nil
@@ -51,15 +50,12 @@ public class RedeemSharingInvitationRequest : NSObject, RequestMessage, MasterVe
     public func toJSON() -> JSON? {
         return jsonify([
             RedeemSharingInvitationRequest.sharingInvitationUUIDKey ~~> self.sharingInvitationUUID,
-            AddUserRequest.cloudFolderNameKey ~~> self.cloudFolderName,
-            ServerEndpoint.masterVersionKey ~~> self.masterVersion
+            AddUserRequest.cloudFolderNameKey ~~> self.cloudFolderName
         ])
     }
 }
 
-public class RedeemSharingInvitationResponse : ResponseMessage, MasterVersionUpdateResponse {
-    public var masterVersionUpdate: MasterVersionInt?
-    
+public class RedeemSharingInvitationResponse : ResponseMessage {
     // Present only as means to help clients uniquely identify users. This is *never* passed back to the server. This id is unique across all users and is not specific to any sign-in type (e.g., Google).
     public static let userIdKey = "userId"
     public var userId:UserId!
@@ -73,7 +69,6 @@ public class RedeemSharingInvitationResponse : ResponseMessage, MasterVersionUpd
     public required init?(json: JSON) {
         userId = Decoder.decode(int64ForKey: RedeemSharingInvitationResponse.userIdKey)(json)
         sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
-        self.masterVersionUpdate = Decoder.decode(int64ForKey: ServerEndpoint.masterVersionUpdateKey)(json)
     }
     
     public convenience init?() {
@@ -84,8 +79,7 @@ public class RedeemSharingInvitationResponse : ResponseMessage, MasterVersionUpd
     public func toJSON() -> JSON? {
         return jsonify([
             RedeemSharingInvitationResponse.userIdKey ~~> userId,
-            ServerEndpoint.sharingGroupIdKey ~~> sharingGroupId,
-            ServerEndpoint.masterVersionUpdateKey ~~> self.masterVersionUpdate
+            ServerEndpoint.sharingGroupIdKey ~~> sharingGroupId
         ])
     }
 }
