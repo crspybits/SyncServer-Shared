@@ -271,11 +271,11 @@
 				52F78CF5ADBEEB390B753BCB8763522C /* HealthCheck.swift */,
 				C217C2446870701BC1612D657A20F72C /* RedeemSharingInvitation.swift */,
 				31C938B585D0756D45A6DA15D1901DD8 /* RemoveUser.swift */,
+				54344A71169DA47B606892E4788495AF /* UploadFile.swift */,
 				E9EC8A7586C991C3A9945471B825EBF7 /* RequestMessage.swift */,
 				13F9F44A83725C0FBFE99D69F0374411 /* ResponseMessage.swift */,
 				B2BAC91734F97BEE7F1E4077FF33E7F2 /* UploadAppMetaData.swift */,
 				B54FAF7CD5CD6A45DAD998B86CC26D25 /* UploadDeletion.swift */,
-				54344A71169DA47B606892E4788495AF /* UploadFile.swift */,
 			);
 			name = RequestsAndResponses;
 			path = Sources/SyncServerShared/RequestsAndResponses;
