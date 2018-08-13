@@ -31,12 +31,17 @@ public class SharingGroup : Gloss.Encodable, Gloss.Decodable {
     public static let permissionKey = "permission"
     public var permission:Permission?
     
+    // The users who are members of the sharing group.
+    public static let sharingGroupUsersKey = "sharingGroupUsers"
+    public var sharingGroupUsers:[SharingGroupUser]!
+
     required public init?(json: JSON) {
         self.sharingGroupName = SharingGroup.sharingGroupNameKey <~~ json
         self.sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
         self.deleted = SharingGroup.deletedKey <~~ json
         self.masterVersion = Decoder.decode(int64ForKey: IndexResponse.masterVersionKey)(json)
         self.permission = Decoder.decodePermission(key: SharingGroup.permissionKey, json: json)
+        self.sharingGroupUsers = SharingGroup.sharingGroupUsersKey <~~ json
     }
     
     public convenience init?() {
@@ -49,7 +54,8 @@ public class SharingGroup : Gloss.Encodable, Gloss.Decodable {
             ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId,
             SharingGroup.deletedKey ~~> self.deleted,
             IndexResponse.masterVersionKey ~~> self.masterVersion,
-            Encoder.encodePermission(key: SharingGroup.permissionKey, value: self.permission)
+            Encoder.encodePermission(key: SharingGroup.permissionKey, value: self.permission),
+            SharingGroup.sharingGroupUsersKey ~~> self.sharingGroupUsers
         ])
     }
 }
@@ -57,9 +63,14 @@ public class SharingGroup : Gloss.Encodable, Gloss.Decodable {
 public class SharingGroupUser : Gloss.Encodable, Gloss.Decodable {
     public static let nameKey = "name"
     public var name: String!
+    
+    // Present so that a client call omit themselves from a list of sharing group users presented in the UI.
+    public static let userIdKey = "userId"
+    public var userId:UserId!
 
     required public init?(json: JSON) {
         self.name = SharingGroupUser.nameKey <~~ json
+        userId = Decoder.decode(int64ForKey: SharingGroupUser.userIdKey)(json)
     }
     
     public convenience init?() {
@@ -68,7 +79,8 @@ public class SharingGroupUser : Gloss.Encodable, Gloss.Decodable {
     
     public func toJSON() -> JSON? {
         return jsonify([
-            SharingGroupUser.nameKey ~~> self.name
+            SharingGroupUser.nameKey ~~> self.name,
+            SharingGroupUser.userIdKey ~~> userId
         ])
     }
 }
