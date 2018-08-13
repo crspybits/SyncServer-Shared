@@ -124,8 +124,6 @@ public class ServerEndpoints {
 
     public static let removeSharingGroup = ServerEndpoint("RemoveSharingGroup", method: .post, messageType: RemoveSharingGroupRequest.self, authenticationLevel: .secondary, sharing: Sharing(needsLock: true, minPermission: .admin))
 
-    public static let getSharingGroupUsers = ServerEndpoint("GetSharingGroupUsers", method: .get, messageType: GetSharingGroupUsersRequest.self, authenticationLevel: .secondary, sharing: Sharing(needsLock: true, minPermission: .read))
-
     public static let session = ServerEndpoints()
     
     private init() {
@@ -139,6 +137,6 @@ public class ServerEndpoints {
             ServerEndpoints.createSharingInvitation,
             ServerEndpoints.redeemSharingInvitation,
             ServerEndpoints.createSharingGroup, ServerEndpoints.removeSharingGroup,
-            ServerEndpoints.updateSharingGroup, ServerEndpoints.getSharingGroupUsers])
+            ServerEndpoints.updateSharingGroup])
     }
 }
