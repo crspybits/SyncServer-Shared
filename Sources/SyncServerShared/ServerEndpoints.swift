@@ -57,9 +57,9 @@ public class ServerEndpoints {
         public let needsLock:Bool
         
         // Does the user have the mimimum required permissions on the sharing group to perform the endpoint action?
-        public let minPermission:Permission
+        public let minPermission:Permission?
         
-        init(needsLock:Bool, minPermission:Permission = .read) {
+        init(needsLock:Bool, minPermission:Permission? = .read) {
             self.needsLock = needsLock
             self.minPermission = minPermission
         }
@@ -122,7 +122,11 @@ public class ServerEndpoints {
 
     public static let updateSharingGroup = ServerEndpoint("UpdateSharingGroup", method: .patch, messageType: UpdateSharingGroupRequest.self, authenticationLevel: .secondary, sharing: Sharing(needsLock: true, minPermission: .admin))
 
+    // Remove sharing group from the system.
     public static let removeSharingGroup = ServerEndpoint("RemoveSharingGroup", method: .post, messageType: RemoveSharingGroupRequest.self, authenticationLevel: .secondary, sharing: Sharing(needsLock: true, minPermission: .admin))
+
+    // Removes the calling user from the sharing group given in the request.
+    public static let removeUserFromSharingGroup = ServerEndpoint("RemoveUserFromSharingGroup", method: .post, messageType: RemoveUserFromSharingGroupRequest.self, authenticationLevel: .secondary, sharing: Sharing(needsLock: true, minPermission: nil))
 
     public static let session = ServerEndpoints()
     
@@ -137,6 +141,7 @@ public class ServerEndpoints {
             ServerEndpoints.createSharingInvitation,
             ServerEndpoints.redeemSharingInvitation,
             ServerEndpoints.createSharingGroup, ServerEndpoints.removeSharingGroup,
-            ServerEndpoints.updateSharingGroup])
+            ServerEndpoints.updateSharingGroup,
+            ServerEndpoints.removeUserFromSharingGroup])
     }
 }
