@@ -56,7 +56,7 @@ public class ServerEndpoints {
         // Needs a short duration lock on the sharing group for the endpoint operation?
         public let needsLock:Bool
         
-        // Does the user have the mimimum required permissions on the sharing group to perform the endpoint action?
+        // Does the user have the mimimum required permissions on the sharing group to perform the endpoint action? Set this to nil if no permissions are required.
         public let minPermission:Permission?
         
         init(needsLock:Bool, minPermission:Permission? = .read) {
@@ -93,8 +93,7 @@ public class ServerEndpoints {
     // Useful if only the app meta data has changed, so you don't have to re-upload the entire file.
     public static let uploadAppMetaData = ServerEndpoint("UploadAppMetaData", method: .post, messageType: UploadAppMetaDataRequest.self, sharing: Sharing(needsLock: false, minPermission: .write))
     
-    // Any time we're doing an operation constrained to the current masterVersion, holding the lock seems like a good idea.
-    public static let uploadDeletion = ServerEndpoint("UploadDeletion", method: .delete, messageType: UploadDeletionRequest.self, sharing: Sharing(needsLock: true, minPermission: .write))
+    public static let uploadDeletion = ServerEndpoint("UploadDeletion", method: .delete, messageType: UploadDeletionRequest.self, sharing: Sharing(needsLock: false, minPermission: .write))
 
     // TODO: *0* See also [1] in FileControllerTests.swift.
     // Seems unlikely that the collection of uploads will change while we are getting them (because they are specific to the userId and the deviceUUID), but grab the lock just in case.
