@@ -12,7 +12,7 @@ import Gloss
 import Kitura
 #endif
 
-// The current signed in user is requesting creation of a sharing group. A sharing group name is optional because some clients may not need or want a name per sharing group.
+// The current signed in user is requesting creation of a sharing group. A sharing group name is optional because some clients may not need or want a name per sharing group. Only owning users can create sharing groups.
 
 public class CreateSharingGroupRequest : NSObject, RequestMessage {
     // I'm having problems uploading complex objects in url parameters. So not sending a SharingGroup object yet. If I need to do this, looks like I'll have to use the request body and am not doing that yet.
