@@ -19,6 +19,10 @@ public class AddUserRequest : NSObject, RequestMessage {
     public var cloudFolderName:String?
     public static let maxCloudFolderNameLength = 256
     
+    // You can optionally give the initial sharing group, created for the user, a name.
+    public static let sharingGroupNameKey = "sharingGroupName"
+    public var sharingGroupName: String?
+    
 #if SERVER
     public required convenience init?(request: RouterRequest) {
         self.init(json: request.queryParameters)
@@ -29,16 +33,22 @@ public class AddUserRequest : NSObject, RequestMessage {
         super.init()
         
         self.cloudFolderName = AddUserRequest.cloudFolderNameKey <~~ json
+        self.sharingGroupName = AddUserRequest.sharingGroupNameKey <~~ json
+        
+        if !nonNilKeysHaveValues(in: json) {
+            return nil
+        }
     }
     
     public func toJSON() -> JSON? {
         return jsonify([
-            AddUserRequest.cloudFolderNameKey ~~> self.cloudFolderName
+            AddUserRequest.cloudFolderNameKey ~~> self.cloudFolderName,
+            AddUserRequest.sharingGroupNameKey ~~> self.sharingGroupName
         ])
     }
     
     public func allKeys() -> [String] {
-        return [AddUserRequest.cloudFolderNameKey]
+        return [AddUserRequest.cloudFolderNameKey, AddUserRequest.sharingGroupNameKey]
     }
 }
 

@@ -28,7 +28,7 @@ public class UploadDeletionRequest : NSObject, RequestMessage, Filenaming {
     public static let fileVersionKey = "fileVersion"
     public var fileVersion:FileVersionInt!
     
-    // Overall version for files for the specific user; assigned by the server.
+    // Overall version for files for the sharing group; assigned by the server.
     public static let masterVersionKey = "masterVersion"
     public var masterVersion:MasterVersionInt!
     

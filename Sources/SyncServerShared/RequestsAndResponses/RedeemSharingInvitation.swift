@@ -14,10 +14,12 @@ import Kitura
 #endif
 
 public class RedeemSharingInvitationRequest : NSObject, RequestMessage {
+    // No master version here: The client doesn't yet have information about relevant sharing group that it needs to keep up to date. So, why bother?
+    
     public static let sharingInvitationUUIDKey = "sharingInvitationUUID"
     public var sharingInvitationUUID:String!
 
-    // This must be present when redeeming an invitation: a) using an owning account, b) that owning account type needs a cloud storage folder (e.g., Google Drive), and c) with permissions of >= write.
+    // This must be present when redeeming an invitation: a) using an owning account, and b) that owning account type needs a cloud storage folder (e.g., Google Drive).
     public var cloudFolderName:String?
 
     public required init?(json: JSON) {

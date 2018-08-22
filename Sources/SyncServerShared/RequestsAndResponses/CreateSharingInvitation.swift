@@ -17,6 +17,7 @@ public class CreateSharingInvitationRequest : NSObject, RequestMessage {
     public static let permissionKey = "permission"
     public var permission:Permission!
     
+    // The sharing group to which a user is being invited. The inviting user must have admin permissions in this group.
     public var sharingGroupId: SharingGroupId!
 
     // You can give either Permission valued keys or string valued keys.
