@@ -16,7 +16,7 @@ public class UpdateSharingGroupRequest : NSObject, RequestMessage, MasterVersion
     public var masterVersion:MasterVersionInt!
 
     // I'm having problems uploading complex objects in url parameters. So not sending a SharingGroup object yet. If I need to do this, looks like I'll have to use the request body and am not doing that yet.
-    public var sharingGroupId: SharingGroupId!
+    public var sharingGroupUUID:String!
     
     public static let sharingGroupNameKey = "sharingGroupName"
     public var sharingGroupName: String?
@@ -29,7 +29,7 @@ public class UpdateSharingGroupRequest : NSObject, RequestMessage, MasterVersion
     
     public required init?(json: JSON) {
         super.init()
-        self.sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
+        self.sharingGroupUUID = ServerEndpoint.sharingGroupUUIDKey <~~ json
         self.sharingGroupName = UpdateSharingGroupRequest.sharingGroupNameKey <~~ json
         self.masterVersion = Decoder.decode(int64ForKey: ServerEndpoint.masterVersionKey)(json)
         
@@ -40,14 +40,14 @@ public class UpdateSharingGroupRequest : NSObject, RequestMessage, MasterVersion
     
     public func toJSON() -> JSON? {
         return jsonify([
-            ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId,
+            ServerEndpoint.sharingGroupUUIDKey ~~> self.sharingGroupUUID,
             UpdateSharingGroupRequest.sharingGroupNameKey ~~> self.sharingGroupName,
             ServerEndpoint.masterVersionKey ~~> self.masterVersion
         ])
     }
     
     public func nonNilKeys() -> [String] {
-        return [ServerEndpoint.sharingGroupIdKey, UpdateSharingGroupRequest.sharingGroupNameKey,
+        return [ServerEndpoint.sharingGroupUUIDKey, UpdateSharingGroupRequest.sharingGroupNameKey,
             ServerEndpoint.masterVersionKey]
     }
     

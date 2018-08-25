@@ -15,7 +15,7 @@ import Kitura
 public class RemoveSharingGroupRequest : NSObject, RequestMessage, MasterVersionUpdateRequest {
     public var masterVersion: MasterVersionInt!
     
-    public var sharingGroupId:SharingGroupId!
+    public var sharingGroupUUID:String!
     
 #if SERVER
     public required convenience init?(request: RouterRequest) {
@@ -25,7 +25,7 @@ public class RemoveSharingGroupRequest : NSObject, RequestMessage, MasterVersion
     
     public required init?(json: JSON) {
         super.init()
-        self.sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
+        self.sharingGroupUUID = ServerEndpoint.sharingGroupUUIDKey <~~ json
         self.masterVersion = Decoder.decode(int64ForKey: ServerEndpoint.masterVersionKey)(json)
         
         if !nonNilKeysHaveValues(in: json) {
@@ -35,13 +35,13 @@ public class RemoveSharingGroupRequest : NSObject, RequestMessage, MasterVersion
     
     public func toJSON() -> JSON? {
         return jsonify([
-            ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId,
+            ServerEndpoint.sharingGroupUUIDKey ~~> self.sharingGroupUUID,
             ServerEndpoint.masterVersionKey ~~> self.masterVersion
         ])
     }
     
     public func nonNilKeys() -> [String] {
-        return [ServerEndpoint.sharingGroupIdKey, ServerEndpoint.masterVersionKey]
+        return [ServerEndpoint.sharingGroupUUIDKey, ServerEndpoint.masterVersionKey]
     }
     
     public func allKeys() -> [String] {

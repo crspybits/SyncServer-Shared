@@ -13,9 +13,9 @@ public struct ServerEndpoint {
     public let requestMessageType: RequestMessage.Type
     public let authenticationLevel:AuthenticationLevel
     
-    // MARK: The following are for endpoints operating with respect to a specific sharing group. Their requests must have a sharingGroupId.
+    // MARK: The following are for endpoints operating with respect to a specific sharing group. Their requests must have a sharingGroupUUID.
     
-    public static let sharingGroupIdKey = "sharingGroupId"
+    public static let sharingGroupUUIDKey = "sharingGroupUUID"
 
     // For requests that adopt the MasterVersionUpdateRequest/MasterVersionUpdateResponse protocol.
     public static let masterVersionKey = "masterVersion"
@@ -113,7 +113,7 @@ public class ServerEndpoints {
     
     // This creates a sharing user account. The user must not exist yet on the system.
     // Only primary authentication because this method is used to add a user into the database (i.e., it creates secondary authentication).
-    // This is locked in the server controller code-- we don't have a sharingGroupId in the request parameters.
+    // This is locked in the server controller code-- we don't have a sharingGroupUUID in the request parameters.
     public static let redeemSharingInvitation = ServerEndpoint("RedeemSharingInvitation", method: .post, messageType: RedeemSharingInvitationRequest.self, authenticationLevel: .primary)
 
     // This doesn't need a lock-- it's for a new sharing group. However, I'm making sure in the implementation that the user owns cloud storage-- as a form of "permission".

@@ -57,7 +57,7 @@ public class AddUserResponse : ResponseMessage {
     public static let userIdKey = "userId"
     public var userId:UserId!
     
-    public var sharingGroupId: SharingGroupId!
+    public var sharingGroupUUID: String!
     
     public var responseType: ResponseType {
         return .json
@@ -65,7 +65,7 @@ public class AddUserResponse : ResponseMessage {
     
     public required init?(json: JSON) {
         userId = Decoder.decode(int64ForKey: AddUserResponse.userIdKey)(json)
-        sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
+        sharingGroupUUID = ServerEndpoint.sharingGroupUUIDKey <~~ json
     }
     
     public convenience init?() {
@@ -76,7 +76,7 @@ public class AddUserResponse : ResponseMessage {
     public func toJSON() -> JSON? {
         return jsonify([
             AddUserResponse.userIdKey ~~> userId,
-            ServerEndpoint.sharingGroupIdKey ~~> sharingGroupId
+            ServerEndpoint.sharingGroupUUIDKey ~~> sharingGroupUUID
         ])
     }
 }

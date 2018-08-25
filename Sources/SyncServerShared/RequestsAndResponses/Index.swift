@@ -16,6 +16,7 @@ import PerfectLib
 
 // Returns a list of all sharing groups that the user is a member of.
 // And optionally request an index of all files that have been uploaded with UploadFile and committed using DoneUploads for the sharing group -- queries the meta data on the sync server.
+// When a sharing group has been deleted, you cannot request a file index for that sharing group. Similarly, if a user is not a member of a sharing group, you cannot request a file index for that sharing group.
 
 public class IndexRequest : NSObject, RequestMessage {
 #if DEBUG
@@ -25,14 +26,14 @@ public class IndexRequest : NSObject, RequestMessage {
 #endif
 
     // Give this if you want the index of files for a sharing group.
-    public var sharingGroupId: SharingGroupId?
+    public var sharingGroupUUID: String?
  
     public required init?(json: JSON) {
         super.init()
 #if DEBUG
         self.testServerSleep = Decoder.decode(int32ForKey: IndexRequest.testServerSleepKey)(json)
 #endif
-        self.sharingGroupId = Decoder.decode(int64ForKey: ServerEndpoint.sharingGroupIdKey)(json)
+        self.sharingGroupUUID = ServerEndpoint.sharingGroupUUIDKey <~~ json
 
 #if SERVER
         Log.info(message: "IndexRequest.testServerSleep: \(String(describing: testServerSleep))")
@@ -52,7 +53,7 @@ public class IndexRequest : NSObject, RequestMessage {
 #if DEBUG
         result += [IndexRequest.testServerSleepKey ~~> self.testServerSleep]
 #endif
-        result += [ServerEndpoint.sharingGroupIdKey ~~> self.sharingGroupId]
+        result += [ServerEndpoint.sharingGroupUUIDKey ~~> self.sharingGroupUUID]
         
         return jsonify(result)
     }
@@ -64,7 +65,7 @@ public class IndexRequest : NSObject, RequestMessage {
 #endif
     
     public func allKeys() -> [String] {
-        let keys = [ServerEndpoint.sharingGroupIdKey]
+        let keys = [ServerEndpoint.sharingGroupUUIDKey]
 #if DEBUG
         return self.nonNilKeys() + keys + [IndexRequest.testServerSleepKey]
 #else
