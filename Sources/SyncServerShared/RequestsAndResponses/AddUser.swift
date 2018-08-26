@@ -56,7 +56,7 @@ public class AddUserRequest : NSObject, RequestMessage {
     }
     
     public func allKeys() -> [String] {
-        return [AddUserRequest.cloudFolderNameKey, AddUserRequest.sharingGroupNameKey]
+        return [AddUserRequest.cloudFolderNameKey, AddUserRequest.sharingGroupNameKey] + nonNilKeys()
     }
 }
 
