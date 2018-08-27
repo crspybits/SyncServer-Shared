@@ -39,7 +39,8 @@ public class CreateSharingGroupRequest : NSObject, RequestMessage {
     
     public func toJSON() -> JSON? {
         return jsonify([
-            CreateSharingGroupRequest.sharingGroupNameKey ~~> self.sharingGroupName
+            CreateSharingGroupRequest.sharingGroupNameKey ~~> self.sharingGroupName,
+            ServerEndpoint.sharingGroupUUIDKey ~~> self.sharingGroupUUID
         ])
     }
     
