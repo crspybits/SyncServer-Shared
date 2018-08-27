@@ -1,5 +1,9 @@
 SyncServer-Shared
 
+Version 9.1.0 (8/26/28)
+	* Now have client supplying sharing group id's when creating sharing groups--
+		They are now sharingGroupUUID.
+	
 Version 9.0.0 (8/21/18)
 	* Changes to support multiple sharing groups per user in server.
 
