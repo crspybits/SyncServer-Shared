@@ -15,6 +15,7 @@ import PerfectLib
 #endif
 
 // As part of normal processing, increments the current master version for the sharing group. Calling DoneUploads a second time (immediately after the first) results in 0 files being transferred. i.e., `numberUploadsTransferred` will be 0 for the result of the second operation. This is not considered an error, and the masterVersion is still incremented in this case.
+// This operation optionally enables a sharing group update. This provides a means for the sharing group update to not to be queued on the server.
 
 public class DoneUploadsRequest : NSObject, RequestMessage, MasterVersionUpdateRequest {
     // MARK: Properties for use in request message.
@@ -29,6 +30,10 @@ public class DoneUploadsRequest : NSObject, RequestMessage, MasterVersionUpdateR
     public static let testLockSyncKey = "testLockSync"
     public var testLockSync:Int32?
 #endif
+
+    // Optionally perform a sharing group update-- i.e., change the sharing group's name as part of DoneUploads.
+    public static let sharingGroupNameKey = "sharingGroupName"
+    public var sharingGroupName: String?
     
     public func nonNilKeys() -> [String] {
         return [ServerEndpoint.masterVersionKey,
@@ -36,10 +41,12 @@ public class DoneUploadsRequest : NSObject, RequestMessage, MasterVersionUpdateR
     }
     
     public func allKeys() -> [String] {
+        let keys = [DoneUploadsRequest.sharingGroupNameKey]
+        
 #if DEBUG
-        return self.nonNilKeys() + [DoneUploadsRequest.testLockSyncKey]
+        return self.nonNilKeys() + [DoneUploadsRequest.testLockSyncKey] + keys
 #else
-        return self.nonNilKeys()
+        return self.nonNilKeys() + keys
 #endif
     }
     
@@ -52,6 +59,8 @@ public class DoneUploadsRequest : NSObject, RequestMessage, MasterVersionUpdateR
 #if DEBUG
         self.testLockSync = DoneUploadsRequest.testLockSyncKey <~~ json
 #endif
+
+        self.sharingGroupName = DoneUploadsRequest.sharingGroupNameKey <~~ json
 
         if !self.nonNilKeysHaveValues(in: json) {
 #if SERVER
@@ -70,7 +79,8 @@ public class DoneUploadsRequest : NSObject, RequestMessage, MasterVersionUpdateR
     public func toJSON() -> JSON? {
         var result = [
             ServerEndpoint.masterVersionKey ~~> self.masterVersion,
-            ServerEndpoint.sharingGroupUUIDKey ~~> self.sharingGroupUUID
+            ServerEndpoint.sharingGroupUUIDKey ~~> self.sharingGroupUUID,
+            DoneUploadsRequest.sharingGroupNameKey ~~> self.sharingGroupName
         ]
         
 #if DEBUG

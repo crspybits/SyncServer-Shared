@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 9.2.0
+	* Enable DoneUploads to optionally also do a sharing group update.
+
 Version 9.1.0 (8/26/28)
 	* Now have client supplying sharing group id's when creating sharing groups--
 		They are now sharingGroupUUID.
