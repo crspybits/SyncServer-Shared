@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "SyncServerShared",
     products: [
-        .library(name: "SyncServerShared", targets: ["SyncServer_Shared"]),
+        .library(name: "SyncServerShared", targets: ["SyncServerShared"]),
     ],
     dependencies: [
         // .Package(url: "https://github.com/hkellaway/Gloss.git", majorVersion: 1, minor: 2),
@@ -16,7 +16,7 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
-            name: "SyncServer_Shared",
+            name: "SyncServerShared",
             dependencies: ["PerfectLib", "Kitura", "Gloss"],
             path: "Sources/SyncServerShared"
         ),
