@@ -11,5 +11,8 @@ let package = Package(
         .package(url: "https://github.com/crspybits/Gloss.git", from: "1.2.0"),
         .package(url: "https://github.com/IBM-Swift/Kitura.git", from: "2.4.0"),
         .package(url: "https://github.com/PerfectlySoft/Perfect.git", from: "3.1.0")
+    ],
+    targets: [
+        .target(name: "SyncServer_Shared")
     ]
 )
