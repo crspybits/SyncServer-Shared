@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "SyncServer_Shared",
+    name: "SyncServerShared",
     products: [
         .library(name: "SyncServerShared", targets: ["SyncServer_Shared"]),
     ],
