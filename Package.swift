@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "SyncServer_Shared",
     products: [
-        .library(name: "SyncServer_Shared", targets: ["SyncServer_Shared"]),
+        .library(name: "SyncServerShared", targets: ["SyncServer_Shared"]),
     ],
     dependencies: [
         // .Package(url: "https://github.com/hkellaway/Gloss.git", majorVersion: 1, minor: 2),
