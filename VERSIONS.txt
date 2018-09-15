@@ -1,6 +1,9 @@
 SyncServer-Shared
 
-Version 9.2.0
+Version 9.2.1 (9/15/18)
+	* Fix issue with Package.swift
+	
+Version 9.2.0 (9/14/18)
 	* Enable DoneUploads to optionally also do a sharing group update.
 	* Also bring Package.swift up to date with current SPM spec.
 	
