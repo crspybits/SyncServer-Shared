@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 9.3
+	* Added check sum to download response.
+	
 Version 9.2.1 (9/15/18)
 	* Fix issue with Package.swift
 	

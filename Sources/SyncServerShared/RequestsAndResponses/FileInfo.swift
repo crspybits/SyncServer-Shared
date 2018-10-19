@@ -63,6 +63,13 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
     public static let owningUserIdKey = "owningUserId"
     public var owningUserId: UserId!
     
+    public static let cloudStorageTypeKey = "cloudStorageType"
+    public var cloudStorageType: String!
+
+    // The check sum for the file currently stored in cloud storage. The specific meaning of this value depends on the specific cloud storage system. See `cloudStorageType`.
+    public static let checkSumKey = "checkSum"
+    public var checkSum:String!
+    
     public var description: String {
         return "fileUUID: \(fileUUID); deviceUUID: \(String(describing: deviceUUID)); creationDate: \(String(describing: creationDate)); updateDate: \(String(describing: updateDate)); mimeTypeKey: \(String(describing: mimeType)); deleted: \(deleted); fileVersion: \(fileVersion); appMetaDataVersion: \(String(describing: appMetaDataVersion)); fileSizeBytes: \(fileSizeBytes)"
     }
@@ -85,6 +92,9 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
         
         self.owningUserId = Decoder.decode(int64ForKey: FileInfo.owningUserIdKey)(json)
         self.sharingGroupUUID = ServerEndpoint.sharingGroupUUIDKey <~~ json
+        
+        self.cloudStorageType = FileInfo.cloudStorageTypeKey <~~ json
+        self.checkSum = FileInfo.checkSumKey <~~ json
     }
     
     public convenience init?() {
@@ -106,7 +116,9 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
             Encoder.encode(dateForKey: FileInfo.creationDateKey, dateFormatter: dateFormatter)(self.creationDate),
             Encoder.encode(dateForKey: FileInfo.updateDateKey, dateFormatter: dateFormatter)(self.updateDate),
             FileInfo.owningUserIdKey ~~> self.owningUserId,
-            ServerEndpoint.sharingGroupUUIDKey ~~> self.sharingGroupUUID
+            ServerEndpoint.sharingGroupUUIDKey ~~> self.sharingGroupUUID,
+            FileInfo.checkSumKey ~~> self.checkSum,
+            FileInfo.cloudStorageTypeKey ~~> self.cloudStorageType
         ])
     }
 }

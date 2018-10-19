@@ -91,6 +91,13 @@ public class DownloadFileResponse : ResponseMessage {
     public static let fileSizeBytesKey = "fileSizeBytes"
     public var fileSizeBytes:Int64?
     
+    public static let cloudStorageTypeKey = "cloudStorageType"
+    public var cloudStorageType: String!
+
+    // The check sum for the file currently stored in cloud storage. The specific meaning of this value depends on the specific cloud storage system. See `cloudStorageType`.
+    public static let checkSumKey = "checkSum"
+    public var checkSum:String!
+    
     // If the master version for the user on the server has been incremented, this key will be present in the response-- with the new value of the master version. The download was not attempted in this case.
     public static let masterVersionUpdateKey = "masterVersionUpdate"
     public var masterVersionUpdate:MasterVersionInt?
@@ -99,6 +106,8 @@ public class DownloadFileResponse : ResponseMessage {
         self.masterVersionUpdate = Decoder.decode(int64ForKey: DownloadFileResponse.masterVersionUpdateKey)(json)
         self.appMetaData = DownloadFileResponse.appMetaDataKey <~~ json
         self.fileSizeBytes = Decoder.decode(int64ForKey: DownloadFileResponse.fileSizeBytesKey)(json)
+        self.cloudStorageType = DownloadFileResponse.cloudStorageTypeKey <~~ json
+        self.checkSum = DownloadFileResponse.checkSumKey <~~ json
     }
     
     public convenience init?() {
@@ -110,7 +119,9 @@ public class DownloadFileResponse : ResponseMessage {
         return jsonify([
             DownloadFileResponse.masterVersionUpdateKey ~~> self.masterVersionUpdate,
             DownloadFileResponse.appMetaDataKey ~~> self.appMetaData,
-            DownloadFileResponse.fileSizeBytesKey ~~> self.fileSizeBytes
+            DownloadFileResponse.fileSizeBytesKey ~~> self.fileSizeBytes,
+            DownloadFileResponse.checkSumKey ~~> self.checkSum,
+            DownloadFileResponse.cloudStorageTypeKey ~~> self.cloudStorageType
         ])
     }
 }

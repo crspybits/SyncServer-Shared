@@ -79,3 +79,8 @@ public enum UserType : String {
     }
 }
 
+public enum CloudStorageType : String {
+    case Google
+    case Dropbox
+}
+
