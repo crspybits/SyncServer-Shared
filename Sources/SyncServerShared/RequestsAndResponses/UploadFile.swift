@@ -49,13 +49,17 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
     
     public var sharingGroupUUID: String!
     
+    // The check sum for the file on the client *prior* to the upload. The specific meaning of this value depends on the specific cloud storage system. See `cloudStorageType`.
+    public static let checkSumKey = "checkSum"
+    public var checkSum:String!
+    
     // MARK: Properties NOT used in the request message.
     
     public var data = Data()
     public var sizeOfDataInBytes:Int!
     
     public func nonNilKeys() -> [String] {
-        return [UploadFileRequest.fileUUIDKey, UploadFileRequest.mimeTypeKey, UploadFileRequest.fileVersionKey, UploadFileRequest.masterVersionKey, ServerEndpoint.sharingGroupUUIDKey]
+        return [UploadFileRequest.fileUUIDKey, UploadFileRequest.mimeTypeKey, UploadFileRequest.fileVersionKey, UploadFileRequest.masterVersionKey, ServerEndpoint.sharingGroupUUIDKey, UploadFileRequest.checkSumKey]
     }
     
     public func allKeys() -> [String] {
@@ -77,6 +81,7 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
         self.undeleteServerFile = Decoder.decode(int32ForKey:  UploadFileRequest.undeleteServerFileKey)(json)
 
         self.sharingGroupUUID = ServerEndpoint.sharingGroupUUIDKey <~~ json
+        self.checkSum = UploadFileRequest.checkSumKey <~~ json
         
 #if SERVER
         if !nonNilKeysHaveValues(in: json) {
@@ -110,7 +115,8 @@ public class UploadFileRequest : NSObject, RequestMessage, Filenaming {
             UploadFileRequest.fileVersionKey ~~> self.fileVersion,
             UploadFileRequest.masterVersionKey ~~> self.masterVersion,
             UploadFileRequest.undeleteServerFileKey ~~> self.undeleteServerFile,
-            ServerEndpoint.sharingGroupUUIDKey ~~> self.sharingGroupUUID
+            ServerEndpoint.sharingGroupUUIDKey ~~> self.sharingGroupUUID,
+            UploadFileRequest.checkSumKey ~~> self.checkSum
         ]
         
         if let appMetaData = self.appMetaData?.toJSON() {
