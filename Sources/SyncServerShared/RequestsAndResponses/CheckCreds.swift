@@ -42,9 +42,9 @@ public class CheckCredsResponse : ResponseMessage {
     public var userId:UserId!
     
     // For owning users, this just reflects their account type.
-    // For sharing users, this reflects the cloud storage type of their "parent" user-- where their v0 files get stored when uploaded.
+    // For sharing users, this reflects the cloud storage type of their "parent" user-- where their v0 files get stored when uploaded. This is optional because under some circumstances it can be nil.
     public static let cloudStorageTypeKey = "cloudStorageType"
-    public var cloudStorageType: String!
+    public var cloudStorageType: String?
     
     public var responseType: ResponseType {
         return .json
