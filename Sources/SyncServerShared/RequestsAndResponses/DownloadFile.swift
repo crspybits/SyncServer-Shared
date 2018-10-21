@@ -88,9 +88,6 @@ public class DownloadFileResponse : ResponseMessage {
     
     public var data:Data?
     
-    public static let fileSizeBytesKey = "fileSizeBytes"
-    public var fileSizeBytes:Int64?
-    
     public static let cloudStorageTypeKey = "cloudStorageType"
     public var cloudStorageType: String!
 
@@ -105,7 +102,6 @@ public class DownloadFileResponse : ResponseMessage {
     public required init?(json: JSON) {
         self.masterVersionUpdate = Decoder.decode(int64ForKey: DownloadFileResponse.masterVersionUpdateKey)(json)
         self.appMetaData = DownloadFileResponse.appMetaDataKey <~~ json
-        self.fileSizeBytes = Decoder.decode(int64ForKey: DownloadFileResponse.fileSizeBytesKey)(json)
         self.cloudStorageType = DownloadFileResponse.cloudStorageTypeKey <~~ json
         self.checkSum = DownloadFileResponse.checkSumKey <~~ json
     }
@@ -119,7 +115,6 @@ public class DownloadFileResponse : ResponseMessage {
         return jsonify([
             DownloadFileResponse.masterVersionUpdateKey ~~> self.masterVersionUpdate,
             DownloadFileResponse.appMetaDataKey ~~> self.appMetaData,
-            DownloadFileResponse.fileSizeBytesKey ~~> self.fileSizeBytes,
             DownloadFileResponse.checkSumKey ~~> self.checkSum,
             DownloadFileResponse.cloudStorageTypeKey ~~> self.cloudStorageType
         ])
