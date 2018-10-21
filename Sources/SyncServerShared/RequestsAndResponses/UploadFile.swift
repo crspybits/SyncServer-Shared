@@ -127,8 +127,6 @@ public class UploadFileResponse : ResponseMessage {
     }
     
     // On a successful upload, the following fields will be present in the response.
-    public static let sizeKey = "sizeInBytes"
-    public var size:Int64?
     
     // 12/27/17; These two were added to the response. See https://github.com/crspybits/SharedImages/issues/44
     // This is the actual date/time of creation of the file on the server.
@@ -144,7 +142,6 @@ public class UploadFileResponse : ResponseMessage {
     public var masterVersionUpdate:MasterVersionInt?
     
     public required init?(json: JSON) {
-        self.size = Decoder.decode(int64ForKey: UploadFileResponse.sizeKey)(json)
         self.masterVersionUpdate = Decoder.decode(int64ForKey: UploadFileResponse.masterVersionUpdateKey)(json)
         
         let dateFormatter = DateExtras.getDateFormatter(format: .DATETIME)
@@ -161,7 +158,6 @@ public class UploadFileResponse : ResponseMessage {
         let dateFormatter = DateExtras.getDateFormatter(format: .DATETIME)
 
         return jsonify([
-            UploadFileResponse.sizeKey ~~> self.size,
             UploadFileResponse.masterVersionUpdateKey ~~> self.masterVersionUpdate,
             Encoder.encode(dateForKey: UploadFileResponse.creationDateKey, dateFormatter: dateFormatter)(self.creationDate),
             Encoder.encode(dateForKey: UploadFileResponse.updateDateKey, dateFormatter: dateFormatter)(self.updateDate)
