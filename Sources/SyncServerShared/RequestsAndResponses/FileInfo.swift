@@ -57,8 +57,9 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
     public var fileVersion: FileVersionInt!
 
     // The specific meaning of this value depends on the specific cloud storage system. See `cloudStorageType`.
+    // 10/27/18- This may be nil only due to migration issues in production for the SharedImages system in production prior to this date.
     public static let lastUploadedCheckSumKey = "lastUploadedCheckSum"
-    public var lastUploadedCheckSum: String!
+    public var lastUploadedCheckSum: String?
     
     // OWNER
     public static let owningUserIdKey = "owningUserId"
@@ -68,7 +69,7 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
     public var cloudStorageType: String!
     
     public var description: String {
-        return "fileUUID: \(fileUUID); deviceUUID: \(String(describing: deviceUUID)); creationDate: \(String(describing: creationDate)); updateDate: \(String(describing: updateDate)); mimeTypeKey: \(String(describing: mimeType)); deleted: \(deleted); fileVersion: \(fileVersion); appMetaDataVersion: \(String(describing: appMetaDataVersion)); lastUploadedCheckSum: \(lastUploadedCheckSum)"
+        return "fileUUID: \(fileUUID); deviceUUID: \(String(describing: deviceUUID)); creationDate: \(String(describing: creationDate)); updateDate: \(String(describing: updateDate)); mimeTypeKey: \(String(describing: mimeType)); deleted: \(deleted); fileVersion: \(fileVersion); appMetaDataVersion: \(String(describing: appMetaDataVersion)); lastUploadedCheckSum: \(String(describing: lastUploadedCheckSum))"
     }
     
     required public init?(json: JSON) {
