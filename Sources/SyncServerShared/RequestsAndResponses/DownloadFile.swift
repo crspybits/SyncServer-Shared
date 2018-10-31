@@ -95,6 +95,10 @@ public class DownloadFileResponse : ResponseMessage {
     public static let checkSumKey = "checkSum"
     public var checkSum:String!
     
+    // Did the contents of the file change while it was "at rest" in cloud storage? e.g., a user changed their file directly?
+    public static let contentsChangedKey = "contentsChanged"
+    public var contentsChanged:Bool!
+    
     // If the master version for the user on the server has been incremented, this key will be present in the response-- with the new value of the master version. The download was not attempted in this case.
     public static let masterVersionUpdateKey = "masterVersionUpdate"
     public var masterVersionUpdate:MasterVersionInt?
@@ -104,6 +108,7 @@ public class DownloadFileResponse : ResponseMessage {
         self.appMetaData = DownloadFileResponse.appMetaDataKey <~~ json
         self.cloudStorageType = DownloadFileResponse.cloudStorageTypeKey <~~ json
         self.checkSum = DownloadFileResponse.checkSumKey <~~ json
+        self.contentsChanged = DownloadFileResponse.contentsChangedKey <~~ json
     }
     
     public convenience init?() {
@@ -116,7 +121,8 @@ public class DownloadFileResponse : ResponseMessage {
             DownloadFileResponse.masterVersionUpdateKey ~~> self.masterVersionUpdate,
             DownloadFileResponse.appMetaDataKey ~~> self.appMetaData,
             DownloadFileResponse.checkSumKey ~~> self.checkSum,
-            DownloadFileResponse.cloudStorageTypeKey ~~> self.cloudStorageType
+            DownloadFileResponse.cloudStorageTypeKey ~~> self.cloudStorageType,
+            DownloadFileResponse.contentsChangedKey ~~> self.contentsChanged
         ])
     }
 }
