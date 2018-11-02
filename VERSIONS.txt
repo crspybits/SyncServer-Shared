@@ -1,8 +1,9 @@
 SyncServer-Shared
 
-Version 9.3
+Version 9.3 (11/1/18)
 	* Added check sum to download response, upload, and to index.
 	* Removed fileSizeBytes
+	* Added contentsChanged to download response.
 	
 Version 9.2.1 (9/15/18)
 	* Fix issue with Package.swift
