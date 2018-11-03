@@ -69,7 +69,7 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
     public var cloudStorageType: String!
     
     public var description: String {
-        return "fileUUID: \(fileUUID); deviceUUID: \(String(describing: deviceUUID)); creationDate: \(String(describing: creationDate)); updateDate: \(String(describing: updateDate)); mimeTypeKey: \(String(describing: mimeType)); deleted: \(deleted); fileVersion: \(fileVersion); appMetaDataVersion: \(String(describing: appMetaDataVersion)); lastUploadedCheckSum: \(String(describing: lastUploadedCheckSum))"
+        return "fileUUID: \(String(describing: fileUUID)); deviceUUID: \(String(describing: deviceUUID)); creationDate: \(String(describing: creationDate)); updateDate: \(String(describing: updateDate)); mimeTypeKey: \(String(describing: mimeType)); deleted: \(String(describing: deleted)); fileVersion: \(String(describing: fileVersion)); appMetaDataVersion: \(String(describing: appMetaDataVersion)); lastUploadedCheckSum: \(String(describing: lastUploadedCheckSum))"
     }
     
     required public init?(json: JSON) {

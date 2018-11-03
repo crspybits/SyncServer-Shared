@@ -88,10 +88,11 @@ public class DownloadFileResponse : ResponseMessage {
     
     public var data:Data?
     
+    // This can be used by a client to know how to compute the checksum if they upload another version of this file.
     public static let cloudStorageTypeKey = "cloudStorageType"
     public var cloudStorageType: String!
 
-    // The check sum for the file currently stored in cloud storage. The specific meaning of this value depends on the specific cloud storage system. See `cloudStorageType`.
+    // The check sum for the file currently stored in cloud storage. The specific meaning of this value depends on the specific cloud storage system. See `cloudStorageType`. This can be used by clients to assess if there was an error in transmitting the file contents across the network. i.e., does this checksum match what is computed by the client after the file is downloaded?
     public static let checkSumKey = "checkSum"
     public var checkSum:String!
     
