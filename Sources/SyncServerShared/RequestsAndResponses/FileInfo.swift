@@ -55,11 +55,6 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
     
     public static let fileVersionKey = "fileVersion"
     public var fileVersion: FileVersionInt!
-
-    // The specific meaning of this value depends on the specific cloud storage system. See `cloudStorageType`.
-    // 10/27/18- This may be nil only due to migration issues in production for the SharedImages system in production prior to this date.
-    public static let lastUploadedCheckSumKey = "lastUploadedCheckSum"
-    public var lastUploadedCheckSum: String?
     
     // OWNER
     public static let owningUserIdKey = "owningUserId"
@@ -69,7 +64,7 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
     public var cloudStorageType: String!
     
     public var description: String {
-        return "fileUUID: \(String(describing: fileUUID)); deviceUUID: \(String(describing: deviceUUID)); creationDate: \(String(describing: creationDate)); updateDate: \(String(describing: updateDate)); mimeTypeKey: \(String(describing: mimeType)); deleted: \(String(describing: deleted)); fileVersion: \(String(describing: fileVersion)); appMetaDataVersion: \(String(describing: appMetaDataVersion)); lastUploadedCheckSum: \(String(describing: lastUploadedCheckSum))"
+        return "fileUUID: \(String(describing: fileUUID)); deviceUUID: \(String(describing: deviceUUID)); creationDate: \(String(describing: creationDate)); updateDate: \(String(describing: updateDate)); mimeTypeKey: \(String(describing: mimeType)); deleted: \(String(describing: deleted)); fileVersion: \(String(describing: fileVersion)); appMetaDataVersion: \(String(describing: appMetaDataVersion))"
     }
     
     required public init?(json: JSON) {
@@ -82,7 +77,6 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
         self.appMetaDataVersion = Decoder.decode(int32ForKey: FileInfo.appMetaDataVersionKey)(json)
 
         self.fileVersion = Decoder.decode(int32ForKey: FileInfo.fileVersionKey)(json)
-        self.lastUploadedCheckSum = FileInfo.lastUploadedCheckSumKey <~~ json
         
         let dateFormatter = DateExtras.getDateFormatter(format: .DATETIME)
         self.creationDate = Decoder.decode(dateForKey: FileInfo.creationDateKey, dateFormatter: dateFormatter)(json)
@@ -109,7 +103,6 @@ public class FileInfo : Gloss.Encodable, Gloss.Decodable, CustomStringConvertibl
             FileInfo.appMetaDataVersionKey ~~> self.appMetaDataVersion,
             FileInfo.deletedKey ~~> self.deleted,
             FileInfo.fileVersionKey ~~> self.fileVersion,
-            FileInfo.lastUploadedCheckSumKey ~~> self.lastUploadedCheckSum,
             Encoder.encode(dateForKey: FileInfo.creationDateKey, dateFormatter: dateFormatter)(self.creationDate),
             Encoder.encode(dateForKey: FileInfo.updateDateKey, dateFormatter: dateFormatter)(self.updateDate),
             FileInfo.owningUserIdKey ~~> self.owningUserId,

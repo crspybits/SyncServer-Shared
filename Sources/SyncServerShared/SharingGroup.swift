@@ -35,7 +35,7 @@ public class SharingGroup : Gloss.Encodable, Gloss.Decodable {
     public static let sharingGroupUsersKey = "sharingGroupUsers"
     public var sharingGroupUsers:[SharingGroupUser]!
 
-    // When returned from an endpoint, for a sharing user, gives the calling users "owning" users cloud storage type, or null if an owning user.
+    // When returned from an endpoint, for a sharing user, gives the calling users "owning" or "parent" users cloud storage type, or null if an owning user.
     public static let cloudStorageTypeKey = "cloudStorageType"
     public var cloudStorageType: String?
 
