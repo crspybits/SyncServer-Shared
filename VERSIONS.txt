@@ -1,6 +1,6 @@
 SyncServer-Shared
 
-Version 9.3.1
+Version 9.3.1 (11/4/18)
 	* Added conversion from AuthTokenType to CloudStorageType
 	* Removed `lastUploadedCheckSum` from FileInfo. Not needed in return from Index endpoint.
 	
