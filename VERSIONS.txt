@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 9.3.2 (11/10/18)
+	* Added GoneReason type, to explain HTTP status gone.
+
 Version 9.3.1 (11/4/18)
 	* Added conversion from AuthTokenType to CloudStorageType
 	* Removed `lastUploadedCheckSum` from FileInfo. Not needed in return from Index endpoint.
