@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 9.3.3 (11/10/18)
+	* Added goneReasonKey 
+
 Version 9.3.2 (11/10/18)
 	* Added GoneReason type, to explain HTTP status gone.
 

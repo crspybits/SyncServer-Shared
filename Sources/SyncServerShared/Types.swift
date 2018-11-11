@@ -86,6 +86,8 @@ public enum CloudStorageType : String {
 
 // Reasons for an HTTP status "gone"
 public enum GoneReason: String {
+    static let goneReasonKey = "goneReason"
+    
     case userRemoved
     case fileRemovedOrRenamed
     case authTokenExpiredOrRevoked
