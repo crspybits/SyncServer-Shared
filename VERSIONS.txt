@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 9.3.4 (11/11/18)
+	* Added public qualifier to goneReasonKey.
+
 Version 9.3.3 (11/10/18)
 	* Added goneReasonKey 
 
