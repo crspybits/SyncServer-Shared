@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 9.3.5 (11/18/18)
+	* Added new case/reason to GoneReason's.
+
 Version 9.3.4 (11/11/18)
 	* Added public qualifier to goneReasonKey.
 
