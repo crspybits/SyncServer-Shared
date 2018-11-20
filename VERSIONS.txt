@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 9.3.6 (11/19/18)
+	* Moved gone for Download endpoint to its response-- so we can respond with the app meta data as well.
+	
 Version 9.3.5 (11/18/18)
 	* Added new case/reason to GoneReason's.
 
