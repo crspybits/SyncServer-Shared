@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 9.4.0 (11/29/18) 
+	* Added new HTTP status code.
+
 Version 9.3.7 (11/19/18)
 	* Removed case from GoneReason.
 	
