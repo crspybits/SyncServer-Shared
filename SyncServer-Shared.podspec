@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SyncServer-Shared"
-  s.version      = "9.4.0"
+  s.version      = "9.5.0"
   s.summary      = "Swift code shared between the SyncServerII server and iOS client"
   s.description  = <<-DESC
   	Swift code shared between the SyncServerII server and iOS client

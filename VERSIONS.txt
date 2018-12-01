@@ -1,6 +1,6 @@
 SyncServer-Shared
 
-Version 9.5.0
+Version 9.5.0 (12/1/18)
 	* Added new HTTP response header key-- for minimum iOS client app version.
 
 Version 9.4.0 (11/29/18) 
