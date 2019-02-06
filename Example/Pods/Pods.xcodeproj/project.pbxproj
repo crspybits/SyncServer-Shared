@@ -25,6 +25,7 @@
 		834277862112872E00114FE2 /* SharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834277852112872E00114FE2 /* SharingGroup.swift */; };
 		834F90B4212132FA0036E2C0 /* RemoveUserFromSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F90B3212132FA0036E2C0 /* RemoveUserFromSharingGroup.swift */; };
 		83669BCA2112AEB8004CB6EF /* RemoveSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83669BC92112AEB8004CB6EF /* RemoveSharingGroup.swift */; };
+		83ADF970220B9E5B0039FD2F /* RegisterPNToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ADF96F220B9E5B0039FD2F /* RegisterPNToken.swift */; };
 		83D40104211649E9002AEF48 /* UpdateSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D40103211649E9002AEF48 /* UpdateSharingGroup.swift */; };
 		83EA91EF21100BD20095E658 /* CreateSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA91EE21100BD20095E658 /* CreateSharingGroup.swift */; };
 		87055C47E0E7EDCBCDA719420510A1DC /* RequestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EC8A7586C991C3A9945471B825EBF7 /* RequestMessage.swift */; };
@@ -137,6 +138,7 @@
 		834277852112872E00114FE2 /* SharingGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SharingGroup.swift; path = Sources/SyncServerShared/SharingGroup.swift; sourceTree = "<group>"; };
 		834F90B3212132FA0036E2C0 /* RemoveUserFromSharingGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveUserFromSharingGroup.swift; sourceTree = "<group>"; };
 		83669BC92112AEB8004CB6EF /* RemoveSharingGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSharingGroup.swift; sourceTree = "<group>"; };
+		83ADF96F220B9E5B0039FD2F /* RegisterPNToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPNToken.swift; sourceTree = "<group>"; };
 		83D40103211649E9002AEF48 /* UpdateSharingGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSharingGroup.swift; sourceTree = "<group>"; };
 		83EA91EE21100BD20095E658 /* CreateSharingGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSharingGroup.swift; sourceTree = "<group>"; };
 		84BE8167CFDC95D127CF4C8ECD093377 /* JSONExtras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONExtras.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				13F9F44A83725C0FBFE99D69F0374411 /* ResponseMessage.swift */,
 				B2BAC91734F97BEE7F1E4077FF33E7F2 /* UploadAppMetaData.swift */,
 				B54FAF7CD5CD6A45DAD998B86CC26D25 /* UploadDeletion.swift */,
+				83ADF96F220B9E5B0039FD2F /* RegisterPNToken.swift */,
 			);
 			name = RequestsAndResponses;
 			path = Sources/SyncServerShared/RequestsAndResponses;
@@ -565,6 +568,7 @@
 				A3D597D355A60698B7298492198385B6 /* AddUser.swift in Sources */,
 				83669BCA2112AEB8004CB6EF /* RemoveSharingGroup.swift in Sources */,
 				B1FA747741F3E4E4AE4FE6901988C0D0 /* CheckCreds.swift in Sources */,
+				83ADF970220B9E5B0039FD2F /* RegisterPNToken.swift in Sources */,
 				98F74E33A863622ED92B6DA130828B79 /* CheckPrimaryCreds.swift in Sources */,
 				2255C733B80D3A37CE23E20AA31B0867 /* CreateSharingInvitation.swift in Sources */,
 				6126DA7EB4AA6370FA33F16AC652AFAE /* DateExtras.swift in Sources */,
