@@ -1,5 +1,5 @@
 //
-//  RegisterPNToken.swift
+//  RegisterPushNotificationToken.swift
 //  SyncServer-Shared
 //
 //  Created by Christopher G Prince on 2/6/19.
@@ -14,12 +14,12 @@ import Kitura
 
 // Enable an app to register a Push Notification token.
 
-public class RegisterPNTokenRequest : NSObject, RequestMessage {
+public class RegisterPushNotificationTokenRequest : NSObject, RequestMessage {
     public static let pushNotificationTokenKey = "pushNotificationToken"
     public var pushNotificationToken: String!
     
     public func nonNilKeys() -> [String] {
-        return [RegisterPNTokenRequest.pushNotificationTokenKey]
+        return [RegisterPushNotificationTokenRequest.pushNotificationTokenKey]
     }
     
     public func allKeys() -> [String] {
@@ -32,7 +32,7 @@ public class RegisterPNTokenRequest : NSObject, RequestMessage {
     public required init?(json: JSON) {
         super.init()
         
-        self.pushNotificationToken = RegisterPNTokenRequest.pushNotificationTokenKey <~~ json
+        self.pushNotificationToken = RegisterPushNotificationTokenRequest.pushNotificationTokenKey <~~ json
         
         if !nonNilKeysHaveValues(in: json) {
             return nil
@@ -48,13 +48,13 @@ public class RegisterPNTokenRequest : NSObject, RequestMessage {
     public func toJSON() -> JSON? {
         var param:[JSON?] = []
         
-        param += [RegisterPNTokenRequest.pushNotificationTokenKey ~~> self.pushNotificationToken]
+        param += [RegisterPushNotificationTokenRequest.pushNotificationTokenKey ~~> self.pushNotificationToken]
 
         return jsonify(param)
     }
 }
 
-public class RegisterPNTokenResponse : ResponseMessage {
+public class RegisterPushNotificationTokenResponse : ResponseMessage {
     public var responseType: ResponseType {
         return .json
     }

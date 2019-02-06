@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 9.6.0
+	* Added request/response message for push notifications.
+
 Version 9.5.0 (12/1/18)
 	* Added new HTTP response header key-- for minimum iOS client app version.
 
