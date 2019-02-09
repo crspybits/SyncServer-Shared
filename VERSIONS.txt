@@ -1,6 +1,6 @@
 SyncServer-Shared
 
-Version 9.6.0
+Version 9.6.0 (2/8/19)
 	* Added request/response message for push notifications.
 
 Version 9.5.0 (12/1/18)
