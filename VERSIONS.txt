@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 9.7.0
+	* Added parameter to DoneUploads request for push notification message.
+
 Version 9.6.0 (2/8/19)
 	* Added request/response message for push notifications.
 
