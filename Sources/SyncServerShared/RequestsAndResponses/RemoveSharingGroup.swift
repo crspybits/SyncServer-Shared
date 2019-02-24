@@ -17,6 +17,10 @@ public class RemoveSharingGroupRequest : RequestMessage, MasterVersionUpdateRequ
     public func valid() -> Bool {
         return sharingGroupUUID != nil && masterVersion != nil
     }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
+        return try RequestMessageDecoder.decode(RemoveSharingGroupRequest.self, from: dictionary)
+    }
 }
 
 public class RemoveSharingGroupResponse : ResponseMessage, MasterVersionUpdateResponse {

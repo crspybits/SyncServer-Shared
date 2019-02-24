@@ -47,6 +47,10 @@ public class UploadAppMetaDataRequest : RequestMessage {
         
         return true
     }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
+        return try RequestMessageDecoder.decode(UploadAppMetaDataRequest.self, from: dictionary)
+    }
 }
 
 public class UploadAppMetaDataResponse : ResponseMessage {

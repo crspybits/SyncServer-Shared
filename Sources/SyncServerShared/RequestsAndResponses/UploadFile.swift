@@ -67,6 +67,10 @@ public class UploadFileRequest : RequestMessage, Filenaming {
         self.sizeOfDataInBytes = try request.read(into: &self.data)
     }
 #endif
+
+    public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
+        return try RequestMessageDecoder.decode(UploadFileRequest.self, from: dictionary)
+    }
 }
 
 public class UploadFileResponse : ResponseMessage {

@@ -19,6 +19,10 @@ public class CreateSharingInvitationRequest : RequestMessage {
     public func valid() -> Bool {
         return sharingGroupUUID != nil && permission != nil
     }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
+        return try RequestMessageDecoder.decode(CreateSharingInvitationRequest.self, from: dictionary)
+    }
 }
 
 public class CreateSharingInvitationResponse : ResponseMessage {

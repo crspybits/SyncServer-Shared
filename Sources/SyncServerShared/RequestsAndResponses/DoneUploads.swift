@@ -35,6 +35,10 @@ public class DoneUploadsRequest : RequestMessage, MasterVersionUpdateRequest {
     public func valid() -> Bool {
         return sharingGroupUUID != nil && masterVersion != nil
     }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
+        return try RequestMessageDecoder.decode(DoneUploadsRequest.self, from: dictionary)
+    }
 }
 
 public class DoneUploadsResponse : ResponseMessage, MasterVersionUpdateResponse {

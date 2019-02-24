@@ -33,6 +33,10 @@ public class DownloadFileRequest : RequestMessage {
         
         return true
     }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
+        return try RequestMessageDecoder.decode(DownloadFileRequest.self, from: dictionary)
+    }
 }
 
 public class DownloadFileResponse : ResponseMessage {

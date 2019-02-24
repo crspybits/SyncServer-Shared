@@ -23,6 +23,10 @@ public class AddUserRequest : RequestMessage {
     public func valid() -> Bool {
         return sharingGroupUUID != nil
     }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
+        return try RequestMessageDecoder.decode(AddUserRequest.self, from: dictionary)
+    }
 }
 
 public class AddUserResponse : ResponseMessage {

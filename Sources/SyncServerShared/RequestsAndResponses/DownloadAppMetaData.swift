@@ -25,6 +25,10 @@ public class DownloadAppMetaDataRequest : RequestMessage {
     public func valid() -> Bool {
         return fileUUID != nil && appMetaDataVersion != nil && masterVersion != nil && sharingGroupUUID != nil
     }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
+        return try RequestMessageDecoder.decode(DownloadAppMetaDataRequest.self, from: dictionary)
+    }
 }
 
 public class DownloadAppMetaDataResponse : ResponseMessage {

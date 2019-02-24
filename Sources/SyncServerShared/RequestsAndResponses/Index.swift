@@ -26,6 +26,10 @@ public class IndexRequest : RequestMessage {
     public func valid() -> Bool {
         return true
     }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
+        return try RequestMessageDecoder.decode(IndexRequest.self, from: dictionary)
+    }
 }
 
 public class IndexResponse : ResponseMessage {

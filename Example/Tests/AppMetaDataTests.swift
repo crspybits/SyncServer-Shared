@@ -44,17 +44,12 @@ class GlossAppMetaDataTests: XCTestCase {
             return
         }
 
-        let decoder = RequestMessageDecoder() { decoder, data in
-            try decoder.decode(UploadFileRequest.self, from: data)
-        }
-        
-        guard let request = try? decoder.decode(from: dict),
-            let uploadRequest2 = request as? UploadFileRequest else {
+        guard let request = try? RequestMessageDecoder.decode(UploadFileRequest.self, from: dict) else {
             XCTFail()
             return
         }
         
-        XCTAssert(uploadRequest2.valid() == true)
-        XCTAssert(uploadRequest2.appMetaData != nil)
+        XCTAssert(request.valid() == true)
+        XCTAssert(request.appMetaData != nil)
     }
 }

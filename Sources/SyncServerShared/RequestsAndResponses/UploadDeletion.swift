@@ -40,6 +40,10 @@ public class UploadDeletionRequest : RequestMessage, Filenaming {
         
         return true
     }
+
+    public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
+        return try RequestMessageDecoder.decode(UploadDeletionRequest.self, from: dictionary)
+    }
 }
 
 public class UploadDeletionResponse : ResponseMessage {

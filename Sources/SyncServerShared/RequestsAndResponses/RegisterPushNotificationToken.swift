@@ -21,6 +21,10 @@ public class RegisterPushNotificationTokenRequest : RequestMessage {
         
         return true
     }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
+        return try RequestMessageDecoder.decode(RegisterPushNotificationTokenRequest.self, from: dictionary)
+    }
 }
 
 public class RegisterPushNotificationTokenResponse : ResponseMessage {

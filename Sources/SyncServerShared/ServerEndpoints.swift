@@ -10,7 +10,7 @@ import Foundation
 public struct ServerEndpoint {
     public let pathName:String // Doesn't have preceding "/"
     public let method:ServerHTTPMethod
-    public let requestMessageDecoder: RequestMessageDecoder
+    public let requestMessageType: RequestMessage.Type
     public let authenticationLevel:AuthenticationLevel
     
     // MARK: The following are for endpoints operating with respect to a specific sharing group. Their requests must have a sharingGroupUUID.
@@ -24,15 +24,15 @@ public struct ServerEndpoint {
     public let sharing: ServerEndpoints.Sharing?
 
     // Don't put a trailing "/" on the pathName.
-    public init(_ pathName:String, method:ServerHTTPMethod, authenticationLevel:AuthenticationLevel = .secondary, sharing: ServerEndpoints.Sharing? = nil, requestMessageDecoder: RequestMessageDecoder) {
+    public init(_ pathName:String, method:ServerHTTPMethod, requestMessageType: RequestMessage.Type, authenticationLevel:AuthenticationLevel = .secondary, sharing: ServerEndpoints.Sharing? = nil) {
 
         assert(pathName.count > 0 && pathName.last != "/")
         
+        self.requestMessageType = requestMessageType
         self.pathName = pathName
         self.method = method
         self.authenticationLevel = authenticationLevel
         self.sharing = sharing
-        self.requestMessageDecoder = requestMessageDecoder
     }
     
     public var path:String { // With prefix "/"
@@ -66,130 +66,70 @@ public class ServerEndpoints {
     }
     
     // No authentication required because this doesn't do any processing within the server-- just a check to ensure the server is running.
-    public static let healthCheck = ServerEndpoint("HealthCheck", method: .get, authenticationLevel: .none, requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(HealthCheckRequest.self, from: data)
-            })
+    public static let healthCheck = ServerEndpoint("HealthCheck", method: .get, requestMessageType: HealthCheckRequest.self, authenticationLevel: .none)
 
     // MARK: Users
     
 #if DEBUG
-    public static let checkPrimaryCreds = ServerEndpoint("CheckPrimaryCreds", method: .get, authenticationLevel: .primary, requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(CheckPrimaryCredsRequest.self, from: data)
-            })
+    public static let checkPrimaryCreds = ServerEndpoint("CheckPrimaryCreds", method: .get, requestMessageType: CheckPrimaryCredsRequest.self, authenticationLevel: .primary)
 #endif
 
-    public static let checkCreds = ServerEndpoint("CheckCreds", method: .get, requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(CheckCredsRequest.self, from: data)
-            })
+    public static let checkCreds = ServerEndpoint("CheckCreds", method: .get, requestMessageType: CheckCredsRequest.self)
     
     // This creates a "root" owning user account for a sharing group of users. The user must not exist yet on the system.
     // Only primary authentication because this method is used to add a user into the database (i.e., it creates secondary authentication).
-    public static let addUser = ServerEndpoint("AddUser", method: .post, authenticationLevel: .primary, requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(AddUserRequest.self, from: data)
-            })
+    public static let addUser = ServerEndpoint("AddUser", method: .post, requestMessageType: AddUserRequest.self, authenticationLevel: .primary)
 
     // Removes the calling user from the system.
-    public static let removeUser = ServerEndpoint("RemoveUser", method: .post, requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(RemoveUserRequest.self, from: data)
-            })
+    public static let removeUser = ServerEndpoint("RemoveUser", method: .post, requestMessageType: RemoveUserRequest.self)
     
     // MARK: Files
     
     // The Index serves as a kind of snapshot of the files and sharing groups on the server for the calling app. Not specifying a lock is held at this level because caller may not give a sharing group uuid. If the sharing group uuid is given, holds lock within the controller.
-    public static let index = ServerEndpoint("Index", method: .get, requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(IndexRequest.self, from: data)
-            })
+    public static let index = ServerEndpoint("Index", method: .get, requestMessageType: IndexRequest.self)
     
-    public static let uploadFile = ServerEndpoint("UploadFile", method: .post, sharing: Sharing(needsLock: false, minPermission: .write), requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(UploadFileRequest.self, from: data)
-            })
+    public static let uploadFile = ServerEndpoint("UploadFile", method: .post, requestMessageType: UploadFileRequest.self, sharing: Sharing(needsLock: false, minPermission: .write))
     
     // Useful if only the app meta data has changed, so you don't have to re-upload the entire file.
-    public static let uploadAppMetaData = ServerEndpoint("UploadAppMetaData", method: .post, sharing: Sharing(needsLock: false, minPermission: .write), requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(UploadAppMetaDataRequest.self, from: data)
-            })
+    public static let uploadAppMetaData = ServerEndpoint("UploadAppMetaData", method: .post, requestMessageType: UploadAppMetaDataRequest.self, sharing: Sharing(needsLock: false, minPermission: .write))
     
-    public static let uploadDeletion = ServerEndpoint("UploadDeletion", method: .delete, sharing: Sharing(needsLock: false, minPermission: .write), requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(UploadDeletionRequest.self, from: data)
-            })
+    public static let uploadDeletion = ServerEndpoint("UploadDeletion", method: .delete, requestMessageType: UploadDeletionRequest.self, sharing: Sharing(needsLock: false, minPermission: .write))
 
     // TODO: *0* See also [1] in FileControllerTests.swift.
     // Seems unlikely that the collection of uploads will change while we are getting them (because they are specific to the userId and the deviceUUID), but grab the lock just in case.
-    public static let getUploads = ServerEndpoint("GetUploads", method: .get, sharing: Sharing(needsLock: true, minPermission: .write), requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(GetUploadsRequest.self, from: data)
-            })
+    public static let getUploads = ServerEndpoint("GetUploads", method: .get, requestMessageType: GetUploadsRequest.self, sharing: Sharing(needsLock: true, minPermission: .write))
     
     // Not using `needsLock` property here-- but doing the locking internally to the method: Because we have to access cloud storage to deal with upload deletions.
-    public static let doneUploads = ServerEndpoint("DoneUploads", method: .post, sharing: Sharing(needsLock: false, minPermission: .write), requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(DoneUploadsRequest.self, from: data)
-            })
+    public static let doneUploads = ServerEndpoint("DoneUploads", method: .post, requestMessageType: DoneUploadsRequest.self, sharing: Sharing(needsLock: false, minPermission: .write))
 
-    public static let downloadFile = ServerEndpoint("DownloadFile", method: .get, sharing: Sharing(needsLock: false, minPermission: .read), requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(DownloadFileRequest.self, from: data)
-            })
+    public static let downloadFile = ServerEndpoint("DownloadFile", method: .get, requestMessageType: DownloadFileRequest.self, sharing: Sharing(needsLock: false, minPermission: .read))
     
     // Useful if only the app meta data has changed, so you don't have to re-download the entire file.
-    public static let downloadAppMetaData = ServerEndpoint("DownloadAppMetaData", method: .get, sharing: Sharing(needsLock: false, minPermission: .read), requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(DownloadAppMetaDataRequest.self, from: data)
-            })
+    public static let downloadAppMetaData = ServerEndpoint("DownloadAppMetaData", method: .get, requestMessageType: DownloadAppMetaDataRequest.self, sharing: Sharing(needsLock: false, minPermission: .read))
     
     // MARK: Sharing
     
-    public static let createSharingInvitation = ServerEndpoint("CreateSharingInvitation", method: .post, sharing: Sharing(needsLock: true, minPermission: .admin), requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(CreateSharingInvitationRequest.self, from: data)
-            })
+    public static let createSharingInvitation = ServerEndpoint("CreateSharingInvitation", method: .post, requestMessageType: CreateSharingInvitationRequest.self, sharing: Sharing(needsLock: true, minPermission: .admin))
     
     // This creates a sharing user account. The user must not exist yet on the system.
     // Only primary authentication because this method is used to add a user into the database (i.e., it creates secondary authentication).
     // This is locked in the server controller code-- we don't have a sharingGroupUUID in the request parameters.
-    public static let redeemSharingInvitation = ServerEndpoint("RedeemSharingInvitation", method: .post, authenticationLevel: .primary, requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(RedeemSharingInvitationRequest.self, from: data)
-            })
+    public static let redeemSharingInvitation = ServerEndpoint("RedeemSharingInvitation", method: .post, requestMessageType: RedeemSharingInvitationRequest.self, authenticationLevel: .primary)
 
     // This doesn't need a lock-- it's for a new sharing group. However, I'm making sure in the implementation that the user owns cloud storage-- as a form of "permission".
-    public static let createSharingGroup = ServerEndpoint("CreateSharingGroup", method: .post, authenticationLevel: .secondary, requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(CreateSharingGroupRequest.self, from: data)
-            })
+    public static let createSharingGroup = ServerEndpoint("CreateSharingGroup", method: .post, requestMessageType: CreateSharingGroupRequest.self, authenticationLevel: .secondary)
 
-    public static let updateSharingGroup = ServerEndpoint("UpdateSharingGroup", method: .patch, authenticationLevel: .secondary, sharing: Sharing(needsLock: true, minPermission: .admin), requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(UpdateSharingGroupRequest.self, from: data)
-            })
+    public static let updateSharingGroup = ServerEndpoint("UpdateSharingGroup", method: .patch, requestMessageType: UpdateSharingGroupRequest.self, authenticationLevel: .secondary, sharing: Sharing(needsLock: true, minPermission: .admin))
 
     // Remove sharing group from the system.
-    public static let removeSharingGroup = ServerEndpoint("RemoveSharingGroup", method: .post, authenticationLevel: .secondary, sharing: Sharing(needsLock: true, minPermission: .admin), requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(RemoveSharingGroupRequest.self, from: data)
-            })
+    public static let removeSharingGroup = ServerEndpoint("RemoveSharingGroup", method: .post, requestMessageType: RemoveSharingGroupRequest.self, authenticationLevel: .secondary, sharing: Sharing(needsLock: true, minPermission: .admin))
 
     // Removes the calling user from the sharing group given in the request.
-    public static let removeUserFromSharingGroup = ServerEndpoint("RemoveUserFromSharingGroup", method: .post, authenticationLevel: .secondary, sharing: Sharing(needsLock: true, minPermission: nil), requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(RemoveUserFromSharingGroupRequest.self, from: data)
-            })
+    public static let removeUserFromSharingGroup = ServerEndpoint("RemoveUserFromSharingGroup", method: .post, requestMessageType: RemoveUserFromSharingGroupRequest.self, authenticationLevel: .secondary, sharing: Sharing(needsLock: true, minPermission: nil))
     
     // MARK: Push Notifications
     
-    public static let registerPushNotificationToken = ServerEndpoint("RegisterPushNotificationToken", method: .post, authenticationLevel: .secondary, requestMessageDecoder:
-            RequestMessageDecoder() { decoder, data in
-                try decoder.decode(RegisterPushNotificationTokenRequest.self, from: data)
-            })
+    public static let registerPushNotificationToken = ServerEndpoint("RegisterPushNotificationToken", method: .post, requestMessageType: RegisterPushNotificationTokenRequest.self, authenticationLevel: .secondary)
 
     public static let session = ServerEndpoints()
     

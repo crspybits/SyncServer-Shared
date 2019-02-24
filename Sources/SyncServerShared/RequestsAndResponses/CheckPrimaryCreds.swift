@@ -14,6 +14,10 @@ public class CheckPrimaryCredsRequest : RequestMessage {
     public func valid() -> Bool {
         return true
     }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
+        return try RequestMessageDecoder.decode(CheckPrimaryCredsRequest.self, from: dictionary)
+    }
 }
 
 public class CheckPrimaryCredsResponse : ResponseMessage {

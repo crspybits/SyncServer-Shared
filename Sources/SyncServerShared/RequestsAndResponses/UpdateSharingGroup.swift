@@ -20,6 +20,10 @@ public class UpdateSharingGroupRequest : RequestMessage, MasterVersionUpdateRequ
     public func valid() -> Bool {
         return sharingGroupUUID != nil && sharingGroupName != nil && masterVersion != nil
     }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
+        return try RequestMessageDecoder.decode(UpdateSharingGroupRequest.self, from: dictionary)
+    }
 }
 
 public class UpdateSharingGroupResponse : ResponseMessage, MasterVersionUpdateResponse {

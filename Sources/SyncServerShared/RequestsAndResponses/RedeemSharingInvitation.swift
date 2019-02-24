@@ -21,6 +21,10 @@ public class RedeemSharingInvitationRequest : RequestMessage {
     public func valid() -> Bool {
         return sharingInvitationUUID != nil
     }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
+        return try RequestMessageDecoder.decode(RedeemSharingInvitationRequest.self, from: dictionary)
+    }
 }
 
 public class RedeemSharingInvitationResponse : ResponseMessage {
