@@ -10,6 +10,7 @@ import Foundation
 
 #if SERVER
 import Kitura
+import LoggerAPI
 #endif
 
 /* If an attempt is made to upload the same file/version more than once, the second (or third etc.) attempts don't actually upload the file to cloud storage-- if we have an entry in the Uploads repository. The effect from the POV of the caller is same as if the file was uploaded. We don't consider this an error to help in error recovery.
