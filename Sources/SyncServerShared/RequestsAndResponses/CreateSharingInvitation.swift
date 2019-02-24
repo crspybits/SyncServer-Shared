@@ -9,6 +9,8 @@
 import Foundation
 
 public class CreateSharingInvitationRequest : RequestMessage {
+    required public init() {}
+
     public var permission:Permission!
     
     // The sharing group to which a user is being invited. The inviting user must have admin permissions in this group.
@@ -20,6 +22,8 @@ public class CreateSharingInvitationRequest : RequestMessage {
 }
 
 public class CreateSharingInvitationResponse : ResponseMessage {
+    required public init() {}
+
     public var sharingInvitationUUID:String!
 
     public var responseType: ResponseType {

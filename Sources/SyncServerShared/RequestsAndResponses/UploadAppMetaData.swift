@@ -25,6 +25,8 @@ public struct AppMetaData: Codable, Equatable {
 
 // Updating the app meta data using this request doesn't change the update date on the file.
 public class UploadAppMetaDataRequest : RequestMessage {
+    required public init() {}
+
     // MARK: Properties for use in request message.
     
     // Assigned by client.
@@ -48,6 +50,8 @@ public class UploadAppMetaDataRequest : RequestMessage {
 }
 
 public class UploadAppMetaDataResponse : ResponseMessage {
+    required public init() {}
+
     public var responseType: ResponseType {
         return .json
     }

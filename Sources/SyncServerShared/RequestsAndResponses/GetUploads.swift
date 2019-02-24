@@ -11,6 +11,8 @@ import Foundation
 // Request an index of file uploads (UploadFile) and upload deletions (UploadDeleletion) -- queries the meta data on the sync server. The uploads are specific both to the user and the deviceUUID of the user.
 
 public class GetUploadsRequest : RequestMessage {
+    required public init() {}
+
     // MARK: Properties for use in request message.
 
     public var sharingGroupUUID: String!
@@ -21,6 +23,8 @@ public class GetUploadsRequest : RequestMessage {
 }
 
 public class GetUploadsResponse : ResponseMessage {
+    required public init() {}
+
     public var responseType: ResponseType {
         return .json
     }

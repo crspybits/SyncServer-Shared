@@ -9,12 +9,16 @@
 import Foundation
 
 public class HealthCheckRequest : RequestMessage {
+    required public init() {}
+
     public func valid() -> Bool {
         return true
     }
 }
 
 public class HealthCheckResponse : ResponseMessage {
+    required public init() {}
+
     public var responseType: ResponseType {
         return .json
     }

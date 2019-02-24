@@ -8,6 +8,8 @@
 import Foundation
 
 public class RemoveSharingGroupRequest : RequestMessage, MasterVersionUpdateRequest {
+    required public init() {}
+
     public var masterVersion: MasterVersionInt!
     
     public var sharingGroupUUID:String!
@@ -18,6 +20,8 @@ public class RemoveSharingGroupRequest : RequestMessage, MasterVersionUpdateRequ
 }
 
 public class RemoveSharingGroupResponse : ResponseMessage, MasterVersionUpdateResponse {
+    required public init() {}
+
     public var masterVersionUpdate: MasterVersionInt?
     
     public var responseType: ResponseType {

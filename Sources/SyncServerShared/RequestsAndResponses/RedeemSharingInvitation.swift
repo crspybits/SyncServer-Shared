@@ -9,6 +9,8 @@
 import Foundation
 
 public class RedeemSharingInvitationRequest : RequestMessage {
+    required public init() {}
+
     // No master version here: The client doesn't yet have information about relevant sharing group that it needs to keep up to date. So, why bother?
     
     public var sharingInvitationUUID:String!
@@ -22,6 +24,8 @@ public class RedeemSharingInvitationRequest : RequestMessage {
 }
 
 public class RedeemSharingInvitationResponse : ResponseMessage {
+    required public init() {}
+
     // Present only as means to help clients uniquely identify users. This is *never* passed back to the server. This id is unique across all users and is not specific to any sign-in type (e.g., Google).
     public var userId:UserId!
     

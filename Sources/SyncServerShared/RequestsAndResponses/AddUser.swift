@@ -9,6 +9,8 @@
 import Foundation
 
 public class AddUserRequest : RequestMessage {
+    required public init() {}
+
     // A root-level folder in the cloud file service. This is only used by some of the cloud file servces. E.g., Google Drive. It's not used by Dropbox.
     public var cloudFolderName:String?
     public static let maxCloudFolderNameLength = 256
@@ -24,6 +26,8 @@ public class AddUserRequest : RequestMessage {
 }
 
 public class AddUserResponse : ResponseMessage {
+    required public init() {}
+
     // Present only as means to help clients uniquely identify users. This is *never* passed back to the server. This id is unique across all users and is not specific to any sign-in type (e.g., Google).
     public var userId:UserId!
     

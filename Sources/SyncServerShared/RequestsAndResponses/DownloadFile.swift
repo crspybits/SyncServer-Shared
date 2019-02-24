@@ -9,6 +9,8 @@
 import Foundation
 
 public class DownloadFileRequest : RequestMessage {
+    required public init() {}
+
     // MARK: Properties for use in request message.
     
     public var fileUUID:String!
@@ -34,6 +36,8 @@ public class DownloadFileRequest : RequestMessage {
 }
 
 public class DownloadFileResponse : ResponseMessage {
+    required public init() {}
+
     public var responseType: ResponseType {
         return .data(data: data)
     }

@@ -17,6 +17,7 @@ public enum ResponseType {
 }
 
 public protocol ResponseMessage : Codable {
+    init()
     var responseType:ResponseType {get}
 }
 

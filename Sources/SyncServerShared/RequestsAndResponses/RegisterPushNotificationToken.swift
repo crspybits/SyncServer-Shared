@@ -10,6 +10,8 @@ import Foundation
 // Enable an app to register a Push Notification token.
 
 public class RegisterPushNotificationTokenRequest : RequestMessage {
+    required public init() {}
+
     public var pushNotificationToken: String!
     
     public func valid() -> Bool {
@@ -22,6 +24,8 @@ public class RegisterPushNotificationTokenRequest : RequestMessage {
 }
 
 public class RegisterPushNotificationTokenResponse : ResponseMessage {
+    required public init() {}
+
     public var responseType: ResponseType {
         return .json
     }

@@ -12,6 +12,8 @@ import Foundation
 // An upload deletion can be repeated for the same file: This doesn't cause an error and doesn't duplicate rows in the Upload table.
 
 public class UploadDeletionRequest : RequestMessage, Filenaming {
+    required public init() {}
+
     // The use of the Filenaming protocol here is to support the DEBUG `actualDeletion` parameter.
     
     // MARK: Properties for use in request message.
@@ -41,6 +43,8 @@ public class UploadDeletionRequest : RequestMessage, Filenaming {
 }
 
 public class UploadDeletionResponse : ResponseMessage {
+    required public init() {}
+
     public var responseType: ResponseType {
         return .json
     }

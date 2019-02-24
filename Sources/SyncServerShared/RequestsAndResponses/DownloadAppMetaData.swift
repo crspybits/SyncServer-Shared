@@ -8,6 +8,8 @@
 import Foundation
 
 public class DownloadAppMetaDataRequest : RequestMessage {
+    required public init() {}
+
     // MARK: Properties for use in request message.
     
     public var fileUUID:String!
@@ -26,6 +28,8 @@ public class DownloadAppMetaDataRequest : RequestMessage {
 }
 
 public class DownloadAppMetaDataResponse : ResponseMessage {
+    required public init() {}
+
     public var responseType: ResponseType {
         return .json
     }

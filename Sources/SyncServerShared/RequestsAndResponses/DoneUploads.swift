@@ -12,6 +12,8 @@ import Foundation
 // This operation optionally enables a sharing group update. This provides a means for the sharing group update to not to be queued on the server.
 // And it optionally allows for sending a push notification to members of the sharing group.
 public class DoneUploadsRequest : RequestMessage, MasterVersionUpdateRequest {
+    required public init() {}
+
     // MARK: Properties for use in request message.
     
     // Overall version for files for the specific sharing group; assigned by the server.
@@ -36,6 +38,8 @@ public class DoneUploadsRequest : RequestMessage, MasterVersionUpdateRequest {
 }
 
 public class DoneUploadsResponse : ResponseMessage, MasterVersionUpdateResponse {
+    required public init() {}
+
     public var responseType: ResponseType {
         return .json
     }

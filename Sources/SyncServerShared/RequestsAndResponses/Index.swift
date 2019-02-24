@@ -13,6 +13,8 @@ import Foundation
 // When a sharing group has been deleted, you cannot request a file index for that sharing group. Similarly, if a user is not a member of a sharing group, you cannot request a file index for that sharing group.
 
 public class IndexRequest : RequestMessage {
+    required public init() {}
+
 #if DEBUG
     // Give a time value in seconds -- the server for sleep to test failure of API calls.
     public var testServerSleep:Int32?
@@ -27,6 +29,8 @@ public class IndexRequest : RequestMessage {
 }
 
 public class IndexResponse : ResponseMessage {
+    required public init() {}
+
     public var responseType: ResponseType {
         return .json
     }

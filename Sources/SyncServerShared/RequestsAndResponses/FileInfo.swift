@@ -9,6 +9,8 @@
 import Foundation
 
 public class FileInfo : Codable, CustomStringConvertible, Filenaming, Hashable {
+    required public init() {}
+
     public var hashValue: Int {
         return fileUUID.hashValue
     }

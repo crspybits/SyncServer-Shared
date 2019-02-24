@@ -17,6 +17,8 @@ import LoggerAPI
 (We don't actually upload the file more than once to the cloud service because, for example, Google Drive doesn't play well with uploading the same named file more than once, and to help in error recovery, plus the design of the server only makes an Uploads entry if we have successfully uploaded the file to the cloud service.)
 */
 public class UploadFileRequest : RequestMessage, Filenaming {
+    required public init() {}
+
     // MARK: Properties for use in request message.
     
     // Assigned by client.
@@ -68,6 +70,8 @@ public class UploadFileRequest : RequestMessage, Filenaming {
 }
 
 public class UploadFileResponse : ResponseMessage {
+    required public init() {}
+
     public var responseType: ResponseType {
         return .header
     }

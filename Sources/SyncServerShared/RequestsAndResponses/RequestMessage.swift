@@ -14,6 +14,8 @@ import Kitura
 #endif
 
 public protocol RequestMessage : Codable {
+    init()
+    
     func valid() -> Bool
     
 #if SERVER
