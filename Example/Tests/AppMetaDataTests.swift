@@ -25,29 +25,31 @@ class GlossAppMetaDataTests: XCTestCase {
     func testExample() {
         let fileUUID = UUID().uuidString
         let appMetaData = AppMetaData(version: 0, contents: "Stuff")
-        let uploadRequest = UploadFileRequest(json: [
-            UploadFileRequest.fileUUIDKey : fileUUID,
-            UploadFileRequest.mimeTypeKey: "text/plain",
-            UploadFileRequest.fileVersionKey: 0,
-            UploadFileRequest.masterVersionKey: 0
-        ])
-        
-        guard uploadRequest != nil else {
+        let uploadRequest = UploadFileRequest()
+        uploadRequest.fileUUID = fileUUID
+        uploadRequest.mimeType = "text/plain"
+        uploadRequest.fileVersion = 0
+        uploadRequest.masterVersion = 0
+        uploadRequest.appMetaData = appMetaData
+        uploadRequest.checkSum = "abc"
+        uploadRequest.sharingGroupUUID = UUID().uuidString
+
+        guard uploadRequest.valid() else {
             XCTFail()
             return
         }
         
-        uploadRequest!.appMetaData = appMetaData
-                
-        let json = uploadRequest!.toJSON()
-        print("json: \(String(describing: json))")
-        
-        guard json?[AppMetaData.versionKey] != nil && json?[AppMetaData.contentsKey] != nil else {
+        guard let dict = uploadRequest.toDictionary else {
+            XCTFail()
+            return
+        }
+
+        guard let request = try? DictionaryDecoder().decode(UploadFileRequest.self, from: dict) else {
             XCTFail()
             return
         }
         
-        let uploadRequest2 = UploadFileRequest(json: json!)
-        XCTAssert(uploadRequest2?.appMetaData != nil)
+        XCTAssert(request.valid() == true)
+        XCTAssert(request.appMetaData != nil)
     }
 }
