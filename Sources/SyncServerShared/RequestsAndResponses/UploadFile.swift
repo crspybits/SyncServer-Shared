@@ -61,13 +61,8 @@ public class UploadFileRequest : RequestMessage, Filenaming {
     }
 
 #if SERVER
-    public func setup(request: RouterRequest) {
-        do {
-            self.sizeOfDataInBytes = try request.read(into: &self.data)
-        } catch (let error) {
-            Log.error("Could not upload file: \(error)")
-            return nil
-        }
+    public func setup(request: RouterRequest) throws {
+        self.sizeOfDataInBytes = try request.read(into: &self.data)
     }
 #endif
 }

@@ -17,13 +17,13 @@ public protocol RequestMessage : Codable {
     func valid() -> Bool
     
 #if SERVER
-    func setup(request: RouterRequest)
+    func setup(request: RouterRequest) throws
 #endif
 }
 
 public extension RequestMessage {
 #if SERVER
-    public func setup(request: RouterRequest) {
+    public func setup(request: RouterRequest) throws {
     }
 #endif
 
