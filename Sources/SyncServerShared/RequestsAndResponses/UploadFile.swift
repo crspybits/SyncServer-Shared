@@ -65,7 +65,7 @@ public class UploadFileRequest : RequestMessage, Filenaming {
         do {
             self.sizeOfDataInBytes = try request.read(into: &self.data)
         } catch (let error) {
-            Log.error(message: "Could not upload file: \(error)")
+            Log.error("Could not upload file: \(error)")
             return nil
         }
     }
