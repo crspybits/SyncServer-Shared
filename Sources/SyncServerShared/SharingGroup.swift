@@ -13,6 +13,8 @@ import Kitura
 #endif
 
 public class SharingGroup : Codable {
+    public init() {}
+    
     public var sharingGroupUUID: String?
     
     // The sharing group name is just meta data and is not required to be distinct from other sharing group names. Not making it required either-- some app use cases might not need it.
@@ -35,6 +37,8 @@ public class SharingGroup : Codable {
 }
 
 public class SharingGroupUser : Codable {
+    public init() {}
+
     public var name: String!
     
     // Present so that a client call omit themselves from a list of sharing group users presented in the UI.
