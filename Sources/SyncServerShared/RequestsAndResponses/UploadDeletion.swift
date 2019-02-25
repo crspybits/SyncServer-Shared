@@ -30,7 +30,7 @@ public class UploadDeletionRequest : RequestMessage, Filenaming {
 
 #if DEBUG
     // Enable the client to actually delete files-- for testing purposes. The UploadDeletionRequest will not queue the request, but instead deletes from both the FileIndex and from cloud storage.
-    public var actualDeletion:Int32? // Should be 0 or non-0; I haven't been able to get Bool to work with Gloss
+    public var actualDeletion:Bool?
 #endif
 
     public func valid() -> Bool {

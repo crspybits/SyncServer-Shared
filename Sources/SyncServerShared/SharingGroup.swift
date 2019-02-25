@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Gloss
 
 #if SERVER
 import Kitura
