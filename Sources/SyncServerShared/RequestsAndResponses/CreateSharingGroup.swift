@@ -23,7 +23,7 @@ public class CreateSharingGroupRequest : RequestMessage {
     }
     
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(CreateSharingGroupRequest.self, from: dictionary)
+        return try MessageDecoder.decode(CreateSharingGroupRequest.self, from: dictionary)
     }
 }
 
@@ -32,6 +32,10 @@ public class CreateSharingGroupResponse : ResponseMessage {
 
     public var responseType: ResponseType {
         return .json
+    }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> CreateSharingGroupResponse {
+        return try MessageDecoder.decode(CreateSharingGroupResponse.self, from: dictionary)
     }
 }
 

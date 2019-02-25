@@ -22,7 +22,7 @@ public class GetUploadsRequest : RequestMessage {
     }
     
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(GetUploadsRequest.self, from: dictionary)
+        return try MessageDecoder.decode(GetUploadsRequest.self, from: dictionary)
     }
 }
 
@@ -35,4 +35,8 @@ public class GetUploadsResponse : ResponseMessage {
     
     // FileInfo objects don't contain `cloudStorageType`.
     public var uploads:[FileInfo]?
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> GetUploadsResponse {
+        return try MessageDecoder.decode(GetUploadsResponse.self, from: dictionary)
+    }
 }

@@ -35,7 +35,7 @@ public class DownloadFileRequest : RequestMessage {
     }
     
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(DownloadFileRequest.self, from: dictionary)
+        return try MessageDecoder.decode(DownloadFileRequest.self, from: dictionary)
     }
 }
 
@@ -64,4 +64,8 @@ public class DownloadFileResponse : ResponseMessage {
     
     // The file was gone and could not be downloaded. The string gives the GoneReason if non-nil, and the data, contentsChanged, and checkSum fields are not given.
     public var gone: String?
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> DownloadFileResponse {
+        return try MessageDecoder.decode(DownloadFileResponse.self, from: dictionary)
+    }
 }

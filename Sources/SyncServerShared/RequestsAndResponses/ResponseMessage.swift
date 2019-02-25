@@ -21,3 +21,4 @@ public protocol ResponseMessage : Codable {
     var responseType:ResponseType {get}
 }
 
+

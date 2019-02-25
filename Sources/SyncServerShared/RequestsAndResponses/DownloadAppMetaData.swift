@@ -27,7 +27,7 @@ public class DownloadAppMetaDataRequest : RequestMessage {
     }
     
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(DownloadAppMetaDataRequest.self, from: dictionary)
+        return try MessageDecoder.decode(DownloadAppMetaDataRequest.self, from: dictionary)
     }
 }
 
@@ -43,4 +43,8 @@ public class DownloadAppMetaDataResponse : ResponseMessage {
     
     // If the master version for the user on the server has been incremented, this key will be present in the response-- with the new value of the master version. The download was not attempted in this case.
     public var masterVersionUpdate:MasterVersionInt?
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> DownloadAppMetaDataResponse {
+        return try MessageDecoder.decode(DownloadAppMetaDataResponse.self, from: dictionary)
+    }
 }

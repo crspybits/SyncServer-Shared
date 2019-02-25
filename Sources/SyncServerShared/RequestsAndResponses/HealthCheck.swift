@@ -16,7 +16,7 @@ public class HealthCheckRequest : RequestMessage {
     }
     
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(HealthCheckRequest.self, from: dictionary)
+        return try MessageDecoder.decode(HealthCheckRequest.self, from: dictionary)
     }
 }
 
@@ -31,4 +31,8 @@ public class HealthCheckResponse : ResponseMessage {
     public var serverUptime:TimeInterval!
     public var deployedGitTag:String!
     public var diagnostics:String?
+
+    public static func decode(_ dictionary: [String: Any]) throws -> HealthCheckResponse {
+        return try MessageDecoder.decode(HealthCheckResponse.self, from: dictionary)
+    }
 }

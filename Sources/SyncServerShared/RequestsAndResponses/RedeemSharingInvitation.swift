@@ -23,7 +23,7 @@ public class RedeemSharingInvitationRequest : RequestMessage {
     }
     
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(RedeemSharingInvitationRequest.self, from: dictionary)
+        return try MessageDecoder.decode(RedeemSharingInvitationRequest.self, from: dictionary)
     }
 }
 
@@ -37,5 +37,9 @@ public class RedeemSharingInvitationResponse : ResponseMessage {
     
     public var responseType: ResponseType {
         return .json
+    }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> RedeemSharingInvitationResponse {
+        return try MessageDecoder.decode(RedeemSharingInvitationResponse.self, from: dictionary)
     }
 }

@@ -25,7 +25,7 @@ public class AddUserRequest : RequestMessage {
     }
     
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(AddUserRequest.self, from: dictionary)
+        return try MessageDecoder.decode(AddUserRequest.self, from: dictionary)
     }
 }
 
@@ -37,5 +37,9 @@ public class AddUserResponse : ResponseMessage {
     
     public var responseType: ResponseType {
         return .json
+    }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> AddUserResponse {
+        return try MessageDecoder.decode(AddUserResponse.self, from: dictionary)
     }
 }

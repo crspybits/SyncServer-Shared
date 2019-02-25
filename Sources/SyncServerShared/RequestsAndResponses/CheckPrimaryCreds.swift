@@ -16,7 +16,7 @@ public class CheckPrimaryCredsRequest : RequestMessage {
     }
     
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(CheckPrimaryCredsRequest.self, from: dictionary)
+        return try MessageDecoder.decode(CheckPrimaryCredsRequest.self, from: dictionary)
     }
 }
 
@@ -25,5 +25,9 @@ public class CheckPrimaryCredsResponse : ResponseMessage {
 
     public var responseType: ResponseType {
         return .json
+    }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> CheckPrimaryCredsResponse {
+        return try MessageDecoder.decode(CheckPrimaryCredsResponse.self, from: dictionary)
     }
 }

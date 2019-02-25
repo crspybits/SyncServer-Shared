@@ -69,7 +69,7 @@ public class UploadFileRequest : RequestMessage, Filenaming {
 #endif
 
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(UploadFileRequest.self, from: dictionary)
+        return try MessageDecoder.decode(UploadFileRequest.self, from: dictionary)
     }
 }
 
@@ -91,4 +91,8 @@ public class UploadFileResponse : ResponseMessage {
     
     // If the master version for the user on the server has been incremented, this key will be present in the response-- with the new value of the master version. The upload was not attempted in this case.
     public var masterVersionUpdate:MasterVersionInt?
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> UploadFileResponse {
+        return try MessageDecoder.decode(UploadFileResponse.self, from: dictionary)
+    }
 }

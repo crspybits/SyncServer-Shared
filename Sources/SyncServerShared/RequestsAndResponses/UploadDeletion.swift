@@ -42,7 +42,7 @@ public class UploadDeletionRequest : RequestMessage, Filenaming {
     }
 
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(UploadDeletionRequest.self, from: dictionary)
+        return try MessageDecoder.decode(UploadDeletionRequest.self, from: dictionary)
     }
 }
 
@@ -55,4 +55,8 @@ public class UploadDeletionResponse : ResponseMessage {
     
     // If the master version for the user on the server has been incremented, this key will be present in the response-- with the new value of the master version. The upload deletion was not attempted in this case.
     public var masterVersionUpdate:Int64?
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> UploadDeletionResponse {
+        return try MessageDecoder.decode(UploadDeletionResponse.self, from: dictionary)
+    }
 }

@@ -49,7 +49,7 @@ public class UploadAppMetaDataRequest : RequestMessage {
     }
     
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(UploadAppMetaDataRequest.self, from: dictionary)
+        return try MessageDecoder.decode(UploadAppMetaDataRequest.self, from: dictionary)
     }
 }
 
@@ -62,5 +62,9 @@ public class UploadAppMetaDataResponse : ResponseMessage {
     
     // If the master version for the user on the server has been incremented, this key will be present in the response-- with the new value of the master version. The upload was not attempted in this case.
     public var masterVersionUpdate:MasterVersionInt?
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> UploadAppMetaDataResponse {
+        return try MessageDecoder.decode(UploadAppMetaDataResponse.self, from: dictionary)
+    }
 }
 

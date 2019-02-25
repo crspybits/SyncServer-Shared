@@ -22,7 +22,7 @@ public class UpdateSharingGroupRequest : RequestMessage, MasterVersionUpdateRequ
     }
     
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(UpdateSharingGroupRequest.self, from: dictionary)
+        return try MessageDecoder.decode(UpdateSharingGroupRequest.self, from: dictionary)
     }
 }
 
@@ -33,5 +33,9 @@ public class UpdateSharingGroupResponse : ResponseMessage, MasterVersionUpdateRe
     
     public var responseType: ResponseType {
         return .json
+    }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> UpdateSharingGroupResponse {
+        return try MessageDecoder.decode(UpdateSharingGroupResponse.self, from: dictionary)
     }
 }

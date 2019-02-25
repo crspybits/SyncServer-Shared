@@ -28,7 +28,7 @@ public class IndexRequest : RequestMessage {
     }
     
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(IndexRequest.self, from: dictionary)
+        return try MessageDecoder.decode(IndexRequest.self, from: dictionary)
     }
 }
 
@@ -49,5 +49,9 @@ public class IndexResponse : ResponseMessage {
     
     // The sharing groups in which this user is a member.
     public var sharingGroups:[SharingGroup]!
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> IndexResponse {
+        return try MessageDecoder.decode(IndexResponse.self, from: dictionary)
+    }
 }
 

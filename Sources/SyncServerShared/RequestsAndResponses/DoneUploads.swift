@@ -37,7 +37,7 @@ public class DoneUploadsRequest : RequestMessage, MasterVersionUpdateRequest {
     }
     
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(DoneUploadsRequest.self, from: dictionary)
+        return try MessageDecoder.decode(DoneUploadsRequest.self, from: dictionary)
     }
 }
 
@@ -58,4 +58,8 @@ public class DoneUploadsResponse : ResponseMessage, MasterVersionUpdateResponse 
     
     // If present, this reports an error situation on the server. Can only occur if there were pending UploadDeletion's.
     public var numberDeletionErrors:Int32?
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> DoneUploadsResponse {
+        return try MessageDecoder.decode(DoneUploadsResponse.self, from: dictionary)
+    }
 }

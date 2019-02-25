@@ -44,7 +44,7 @@ class GlossAppMetaDataTests: XCTestCase {
             return
         }
 
-        guard let request = try? RequestMessageDecoder.decode(UploadFileRequest.self, from: dict) else {
+        guard let request = try? MessageDecoder.decode(UploadFileRequest.self, from: dict) else {
             XCTFail()
             return
         }

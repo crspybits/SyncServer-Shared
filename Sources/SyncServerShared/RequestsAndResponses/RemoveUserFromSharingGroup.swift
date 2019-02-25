@@ -18,7 +18,7 @@ public class RemoveUserFromSharingGroupRequest : RequestMessage, MasterVersionUp
     }
     
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(RemoveUserFromSharingGroupRequest.self, from: dictionary)
+        return try MessageDecoder.decode(RemoveUserFromSharingGroupRequest.self, from: dictionary)
     }
 }
 
@@ -29,5 +29,9 @@ public class RemoveUserFromSharingGroupResponse : ResponseMessage, MasterVersion
     
     public var responseType: ResponseType {
         return .json
+    }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> RemoveUserFromSharingGroupResponse {
+        return try MessageDecoder.decode(RemoveUserFromSharingGroupResponse.self, from: dictionary)
     }
 }

@@ -23,7 +23,7 @@ public class RegisterPushNotificationTokenRequest : RequestMessage {
     }
     
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(RegisterPushNotificationTokenRequest.self, from: dictionary)
+        return try MessageDecoder.decode(RegisterPushNotificationTokenRequest.self, from: dictionary)
     }
 }
 
@@ -32,5 +32,9 @@ public class RegisterPushNotificationTokenResponse : ResponseMessage {
 
     public var responseType: ResponseType {
         return .json
+    }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> RegisterPushNotificationTokenResponse {
+        return try MessageDecoder.decode(RegisterPushNotificationTokenResponse.self, from: dictionary)
     }
 }

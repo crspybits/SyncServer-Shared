@@ -18,7 +18,7 @@ public class RemoveUserRequest : RequestMessage {
     }
     
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(RemoveUserRequest.self, from: dictionary)
+        return try MessageDecoder.decode(RemoveUserRequest.self, from: dictionary)
     }
 }
 
@@ -27,5 +27,9 @@ public class RemoveUserResponse : ResponseMessage {
 
     public var responseType: ResponseType {
         return .json
+    }
+
+    public static func decode(_ dictionary: [String: Any]) throws -> RemoveUserResponse {
+        return try MessageDecoder.decode(RemoveUserResponse.self, from: dictionary)
     }
 }

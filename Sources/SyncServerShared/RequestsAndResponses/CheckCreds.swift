@@ -18,7 +18,7 @@ public class CheckCredsRequest : RequestMessage {
     }
     
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try RequestMessageDecoder.decode(CheckCredsRequest.self, from: dictionary)
+        return try MessageDecoder.decode(CheckCredsRequest.self, from: dictionary)
     }
 }
 
@@ -30,5 +30,9 @@ public class CheckCredsResponse : ResponseMessage {
     
     public var responseType: ResponseType {
         return .json
+    }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> CheckCredsResponse {
+        return try MessageDecoder.decode(CheckCredsResponse.self, from: dictionary)
     }
 }

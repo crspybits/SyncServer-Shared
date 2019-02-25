@@ -18,7 +18,7 @@ public extension Encodable {
     }
 }
 
-public class RequestMessageDecoder {
+public class MessageDecoder {
     public static func decode<T>(_ type: T.Type, from json: Any) throws -> T where T: Decodable {
         let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
         let decoder = JSONDecoder()
