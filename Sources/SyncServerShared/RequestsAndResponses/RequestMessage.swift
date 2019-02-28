@@ -9,7 +9,6 @@
 import Foundation
 
 #if SERVER
-import PerfectLib
 import Kitura
 import LoggerAPI
 #endif
