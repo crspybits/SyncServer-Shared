@@ -53,7 +53,7 @@ public extension RequestMessage {
                 }
                 else {
 #if SERVER
-                    Log.critical("Failed on escaping new key value: \(newURLParameter)")
+                    Log.error("Failed on escaping new key value: \(newURLParameter)")
 #endif
 #if DEBUG
                     assert(false)
