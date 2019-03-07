@@ -12,8 +12,7 @@ public extension Encodable {
         let encoder = JSONEncoder()
         let formatter = DateExtras.getDateFormatter(format: .DATETIME)
         encoder.dateEncodingStrategy = .formatted(formatter)
-        
-        guard let data = try? JSONEncoder().encode(self) else { return nil }
+        guard let data = try? encoder.encode(self) else { return nil }
         return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
     }
 }
