@@ -40,7 +40,8 @@ public extension RequestMessage {
         }
         
         var result = ""
-        for key in jsonDict.keys {
+        // Sort the keys so I get the key=value pairs in a canonical form, for testing.
+        for key in jsonDict.keys.sorted() {
             if let keyValue = jsonDict[key] {
                 if result.count > 0 {
                     result += "&"
