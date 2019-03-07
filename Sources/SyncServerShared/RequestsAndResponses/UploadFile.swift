@@ -49,7 +49,7 @@ public class UploadFileRequest : RequestMessage, Filenaming {
     
     // MARK: Properties NOT used in the request message.
     
-    public var data = Data()
+    public var data:Data!
     public var sizeOfDataInBytes:Int!
     
     public func valid() -> Bool {
@@ -64,6 +64,7 @@ public class UploadFileRequest : RequestMessage, Filenaming {
 
 #if SERVER
     public func setup(request: RouterRequest) throws {
+        self.data = Data()
         self.sizeOfDataInBytes = try request.read(into: &self.data)
     }
 #endif
