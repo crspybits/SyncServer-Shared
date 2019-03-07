@@ -64,8 +64,8 @@ public class UploadFileRequest : RequestMessage, Filenaming {
 
 #if SERVER
     public func setup(request: RouterRequest) throws {
-        var data = Data()
-        sizeOfDataInBytes = try request.read(into: data)
+        let data = Data()
+        sizeOfDataInBytes = try request.read(into: &data)
         self.data = data
     }
 #endif
