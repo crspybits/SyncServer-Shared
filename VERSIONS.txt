@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 9.8.0 (3/6/19)
+	* Switch away from using Gloss to using Codable.
+
 Version 9.7.0 (2/9/19)
 	* Added parameter to DoneUploads request for push notification message.
 
