@@ -21,6 +21,12 @@ public extension Encodable {
 }
 
 public class MessageDecoder {
+    static func convert<T>(key: String, dictionary: inout [String: Any], fromString: (String) -> T?) {
+        if let str = dictionary[key] as? String {
+            dictionary[key] = fromString(str)
+        }
+    }
+    
     public static func decode<T>(_ type: T.Type, from json: Any) throws -> T where T: Decodable {
         let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
         let decoder = JSONDecoder()

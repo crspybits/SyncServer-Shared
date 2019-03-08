@@ -35,13 +35,16 @@ public class UploadFileRequest : RequestMessage, Filenaming {
     
     // Must be 0 (for a new file) or N+1 where N is the current version of the file on the server.
     public var fileVersion:FileVersionInt!
-
+    private static let fileVersionKey = "fileVersion"
+    
     // Typically this will remain false (or nil). Give it as true only when doing conflict resolution and the client indicates it wants to undelete a file because it's overriding a download deletion with its own file upload.
     public var undeleteServerFile:Bool?
-    
+    private static let undeleteServerFileKey = "undeleteServerFile"
+
     // Overall version for files for the specific owning user; assigned by the server.
     public var masterVersion:MasterVersionInt!
-    
+    private static let masterVersionKey = "masterVersion"
+
     public var sharingGroupUUID: String!
     
     // The check sum for the file on the client *prior* to the upload. The specific meaning of this value depends on the specific cloud storage system. See `cloudStorageType`.
@@ -70,8 +73,17 @@ public class UploadFileRequest : RequestMessage, Filenaming {
     }
 #endif
 
+    // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
+    private static func convertStringsToNumbers(dictionary: [String: Any]) -> [String: Any] {
+        var result = dictionary
+        MessageDecoder.convert(key: fileVersionKey, dictionary: &result) {FileVersionInt($0)}
+        MessageDecoder.convert(key: undeleteServerFileKey, dictionary: &result) {Bool($0)}
+        MessageDecoder.convert(key: masterVersionKey, dictionary: &result) {MasterVersionInt($0)}
+        return result
+    }
+
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try MessageDecoder.decode(UploadFileRequest.self, from: dictionary)
+        return try MessageDecoder.decode(UploadFileRequest.self, from: convertStringsToNumbers(dictionary: dictionary))
     }
 }
 
@@ -93,8 +105,16 @@ public class UploadFileResponse : ResponseMessage {
     
     // If the master version for the user on the server has been incremented, this key will be present in the response-- with the new value of the master version. The upload was not attempted in this case.
     public var masterVersionUpdate:MasterVersionInt?
+    private static let masterVersionUpdateKey = "masterVersionUpdate"
     
-    public static func decode(_ dictionary: [String: Any]) throws -> UploadFileResponse {
-        return try MessageDecoder.decode(UploadFileResponse.self, from: dictionary)
+    // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
+    private static func convertStringsToNumbers(dictionary: [String: Any]) -> [String: Any] {
+        var result = dictionary
+        MessageDecoder.convert(key: masterVersionUpdateKey, dictionary: &result) {MasterVersionInt($0)}
+        return result
+    }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> UploadFileResponse {        
+        return try MessageDecoder.decode(UploadFileResponse.self, from: convertStringsToNumbers(dictionary: dictionary))
     }
 }
