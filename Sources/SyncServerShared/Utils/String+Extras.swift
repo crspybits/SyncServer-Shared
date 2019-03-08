@@ -39,4 +39,8 @@ extension String {
     public func escape() -> String? {
         return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
     }
+    
+    public func unescape() -> String? {
+        return removingPercentEncoding
+    }    
 }

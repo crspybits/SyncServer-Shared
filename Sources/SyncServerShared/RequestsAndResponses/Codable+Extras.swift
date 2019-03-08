@@ -27,6 +27,14 @@ public class MessageDecoder {
         }
     }
     
+    static func unescapeValues(dictionary: inout [String: Any]) {
+        for (key, value) in dictionary {
+            if let str = value as? String {
+                dictionary[key] = str.unescape()
+            }
+        }
+    }
+
     public static func decode<T>(_ type: T.Type, from json: Any) throws -> T where T: Decodable {
         let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
         let decoder = JSONDecoder()

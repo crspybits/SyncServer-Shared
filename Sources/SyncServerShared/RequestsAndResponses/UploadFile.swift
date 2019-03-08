@@ -73,9 +73,12 @@ public class UploadFileRequest : RequestMessage, Filenaming {
     }
 #endif
 
-    // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
-    private static func convertStringsToNumbers(dictionary: [String: Any]) -> [String: Any] {
+    private static func customConversions(dictionary: [String: Any]) -> [String: Any] {
         var result = dictionary
+        
+        MessageDecoder.unescapeValues(dictionary: &result)
+        
+        // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
         MessageDecoder.convert(key: fileVersionKey, dictionary: &result) {FileVersionInt($0)}
         MessageDecoder.convert(key: undeleteServerFileKey, dictionary: &result) {Bool($0)}
         MessageDecoder.convert(key: masterVersionKey, dictionary: &result) {MasterVersionInt($0)}
@@ -83,7 +86,7 @@ public class UploadFileRequest : RequestMessage, Filenaming {
     }
 
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try MessageDecoder.decode(UploadFileRequest.self, from: convertStringsToNumbers(dictionary: dictionary))
+        return try MessageDecoder.decode(UploadFileRequest.self, from: customConversions(dictionary: dictionary))
     }
 }
 
@@ -108,13 +111,13 @@ public class UploadFileResponse : ResponseMessage {
     private static let masterVersionUpdateKey = "masterVersionUpdate"
     
     // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
-    private static func convertStringsToNumbers(dictionary: [String: Any]) -> [String: Any] {
+    private static func customConversions(dictionary: [String: Any]) -> [String: Any] {
         var result = dictionary
         MessageDecoder.convert(key: masterVersionUpdateKey, dictionary: &result) {MasterVersionInt($0)}
         return result
     }
     
-    public static func decode(_ dictionary: [String: Any]) throws -> UploadFileResponse {        
-        return try MessageDecoder.decode(UploadFileResponse.self, from: convertStringsToNumbers(dictionary: dictionary))
+    public static func decode(_ dictionary: [String: Any]) throws -> UploadFileResponse {
+        return try MessageDecoder.decode(UploadFileResponse.self, from: customConversions(dictionary: dictionary))
     }
 }
