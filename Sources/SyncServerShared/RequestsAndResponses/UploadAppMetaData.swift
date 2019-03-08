@@ -21,6 +21,10 @@ public struct AppMetaData: Codable, Equatable {
         self.version = version
         self.contents = contents
     }
+    
+    public static func decode(_ dictionary: [String: Any]) throws -> AppMetaData {
+        return try MessageDecoder.decode(AppMetaData.self, from: dictionary)
+    }
 }
 
 // Updating the app meta data using this request doesn't change the update date on the file.

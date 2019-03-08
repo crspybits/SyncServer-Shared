@@ -32,6 +32,7 @@ public class UploadFileRequest : RequestMessage, Filenaming {
     // If a file is already on the server, and you are uploading a new version, simply setting the appMetaData contents to nil will not reset the appMetaData on the server. It will just ignore the nil field and leave the appMetaData as it was on the last version of the file. To reset the appMetaData, explicitly set its contents to the empty string "".
     // Set this to nil if you are not updating the app meta data.
     public var appMetaData:AppMetaData?
+    private static let appMetaDataKey = "appMetaData"
     
     // Must be 0 (for a new file) or N+1 where N is the current version of the file on the server.
     public var fileVersion:FileVersionInt!
@@ -77,6 +78,12 @@ public class UploadFileRequest : RequestMessage, Filenaming {
         var result = dictionary
         
         MessageDecoder.unescapeValues(dictionary: &result)
+        
+        if let str = result[appMetaDataKey] as? String,
+            var appMetaDataDict = str.toJSONDictionary() {
+            MessageDecoder.convert(key: "version", dictionary: &appMetaDataDict) {AppMetaDataVersionInt($0)}
+            result[appMetaDataKey] = appMetaDataDict
+        }
         
         // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
         MessageDecoder.convert(key: fileVersionKey, dictionary: &result) {FileVersionInt($0)}
