@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if SERVER
+import LoggerAPI
+#endif
 
 public extension Encodable {
     public var toDictionary: [String: Any]? {
@@ -23,6 +26,15 @@ public class MessageDecoder {
         let decoder = JSONDecoder()
         let formatter = DateExtras.getDateFormatter(format: .DATETIME)
         decoder.dateDecodingStrategy = .formatted(formatter)
-        return try decoder.decode(type, from: jsonData)
+        
+        do {
+            let result = try decoder.decode(type, from: jsonData)
+            return result
+        } catch (let error) {
+            #if SERVER
+                Log.error("Error decoding: \(error)")
+            #endif
+            throw error
+        }
     }
 }
