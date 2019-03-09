@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if SERVER
+import LoggerAPI
+#endif
 
 public struct AppMetaData: Codable, Equatable {
     private static let rootKey = "appMetaData"
