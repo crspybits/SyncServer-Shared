@@ -44,9 +44,11 @@ public class UploadAppMetaDataRequest : RequestMessage {
     public var fileUUID:String!
     
     public var appMetaData:AppMetaData!
-    
+    private static let appMetaDataKey = "appMetaData"
+
     // Overall version for files for the specific owning user; assigned by the server.
     public var masterVersion:MasterVersionInt!
+    private static let masterVersionKey = "masterVersion"
     
     public var sharingGroupUUID:String!
     
@@ -59,8 +61,42 @@ public class UploadAppMetaDataRequest : RequestMessage {
         return true
     }
     
+    private static func customConversions(dictionary: [String: Any]) -> [String: Any] {
+        var result = dictionary
+        
+        MessageDecoder.unescapeValues(dictionary: &result)
+        AppMetaData.fromStringToDictionaryValue(dictionary: &result)
+        
+        // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
+        MessageDecoder.convert(key: masterVersionKey, dictionary: &result) {MasterVersionInt($0)}
+
+        return result
+    }
+
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try MessageDecoder.decode(UploadAppMetaDataRequest.self, from: dictionary)
+        return try MessageDecoder.decode(UploadAppMetaDataRequest.self, from: customConversions(dictionary: dictionary))
+    }
+    
+    public func urlParameters() -> String? {
+        guard var jsonDict = toDictionary else {
+#if SERVER
+            Log.error("Could not convert toJSON()!")
+#endif
+            return nil
+        }
+        
+        // It's easier to decode JSON than a string encoded Dictionary.
+        if let appMetaData = appMetaData {
+            let encoder = JSONEncoder()
+            guard let data = try? encoder.encode(appMetaData),
+                let appMetaDataJSONString = String(data: data, encoding: .utf8) else {
+                return nil
+            }
+
+            jsonDict[UploadAppMetaDataRequest.appMetaDataKey] = appMetaDataJSONString
+        }
+
+        return urlParameters(dictionary: jsonDict)
     }
 }
 
@@ -73,9 +109,19 @@ public class UploadAppMetaDataResponse : ResponseMessage {
     
     // If the master version for the user on the server has been incremented, this key will be present in the response-- with the new value of the master version. The upload was not attempted in this case.
     public var masterVersionUpdate:MasterVersionInt?
+    private static let masterVersionUpdateKey = "masterVersionUpdate"
     
+    private static func customConversions(dictionary: [String: Any]) -> [String: Any] {
+        var result = dictionary
+        
+        // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
+        MessageDecoder.convert(key: masterVersionUpdateKey, dictionary: &result) {MasterVersionInt($0)}
+
+        return result
+    }
+
     public static func decode(_ dictionary: [String: Any]) throws -> UploadAppMetaDataResponse {
-        return try MessageDecoder.decode(UploadAppMetaDataResponse.self, from: dictionary)
+        return try MessageDecoder.decode(UploadAppMetaDataResponse.self, from: customConversions(dictionary: dictionary))
     }
 }
 
