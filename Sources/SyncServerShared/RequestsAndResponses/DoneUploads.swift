@@ -18,12 +18,14 @@ public class DoneUploadsRequest : RequestMessage, MasterVersionUpdateRequest {
     
     // Overall version for files for the specific sharing group; assigned by the server.
     public var masterVersion:MasterVersionInt!
-
+    static let masterVersionKey = "masterVersion"
+    
     public var sharingGroupUUID: String!
     
 #if DEBUG
     // Give a time value in seconds -- after the lock is obtained, the server for sleep for this lock to test locking operation.
     public var testLockSync:Int32?
+    static let testLockSyncKey = "testLockSync"
 #endif
 
     // Optionally perform a sharing group update-- i.e., change the sharing group's name as part of DoneUploads.
@@ -36,8 +38,20 @@ public class DoneUploadsRequest : RequestMessage, MasterVersionUpdateRequest {
         return sharingGroupUUID != nil && masterVersion != nil
     }
     
+    private static func customConversions(dictionary: [String: Any]) -> [String: Any] {
+        var result = dictionary
+        
+        MessageDecoder.unescapeValues(dictionary: &result)
+ 
+        MessageDecoder.convert(key: masterVersionKey, dictionary: &result) {MasterVersionInt($0)}
+#if DEBUG
+        MessageDecoder.convert(key: testLockSyncKey, dictionary: &result) {Int32($0)}
+#endif
+        return result
+    }
+
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try MessageDecoder.decode(DoneUploadsRequest.self, from: dictionary)
+        return try MessageDecoder.decode(DoneUploadsRequest.self, from: customConversions(dictionary: dictionary))
     }
 }
 
@@ -52,14 +66,27 @@ public class DoneUploadsResponse : ResponseMessage, MasterVersionUpdateResponse 
     
     // 1) On successful operation, this gives the number of uploads entries transferred to the FileIndex.
     public var numberUploadsTransferred:Int32?
+    private static let numberUploadsTransferredKey = "numberUploadsTransferred"
     
     // 2) If the master version for the sharing group on the server had been previously incremented to a value different than the masterVersion value in the request, this key will be present in the response-- with the new value of the master version. The doneUploads operation was not attempted in this case.
     public var masterVersionUpdate:MasterVersionInt?
-    
+    private static let masterVersionUpdateKey = "masterVersionUpdate"
+
     // If present, this reports an error situation on the server. Can only occur if there were pending UploadDeletion's.
     public var numberDeletionErrors:Int32?
-    
+    private static let numberDeletionErrorsKey = "numberDeletionErrors"
+
+    private static func customConversions(dictionary: [String: Any]) -> [String: Any] {
+        var result = dictionary
+        
+        MessageDecoder.convert(key: numberUploadsTransferredKey, dictionary: &result) {Int32($0)}
+        MessageDecoder.convert(key: masterVersionUpdateKey, dictionary: &result) {MasterVersionInt($0)}
+        MessageDecoder.convert(key: numberDeletionErrorsKey, dictionary: &result) {Int32($0)}
+        
+        return result
+    }
+
     public static func decode(_ dictionary: [String: Any]) throws -> DoneUploadsResponse {
-        return try MessageDecoder.decode(DoneUploadsResponse.self, from: dictionary)
+        return try MessageDecoder.decode(DoneUploadsResponse.self, from: customConversions(dictionary: dictionary))
     }
 }

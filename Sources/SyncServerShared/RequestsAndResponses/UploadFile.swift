@@ -78,12 +78,7 @@ public class UploadFileRequest : RequestMessage, Filenaming {
         var result = dictionary
         
         MessageDecoder.unescapeValues(dictionary: &result)
-        
-        if let str = result[appMetaDataKey] as? String,
-            var appMetaDataDict = str.toJSONDictionary() {
-            MessageDecoder.convert(key: "version", dictionary: &appMetaDataDict) {AppMetaDataVersionInt($0)}
-            result[appMetaDataKey] = appMetaDataDict
-        }
+        AppMetaData.fromStringToDictionaryValue(dictionary: &result)
         
         // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
         MessageDecoder.convert(key: fileVersionKey, dictionary: &result) {FileVersionInt($0)}
