@@ -11,6 +11,7 @@ public class RemoveSharingGroupRequest : RequestMessage, MasterVersionUpdateRequ
     required public init() {}
 
     public var masterVersion: MasterVersionInt!
+    private static let masterVersionKey = "masterVersion"
     
     public var sharingGroupUUID:String!
     
@@ -18,8 +19,16 @@ public class RemoveSharingGroupRequest : RequestMessage, MasterVersionUpdateRequ
         return sharingGroupUUID != nil && masterVersion != nil
     }
     
+   private static func customConversions(dictionary: [String: Any]) -> [String: Any] {
+        var result = dictionary
+    
+        // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
+        MessageDecoder.convert(key: masterVersionKey, dictionary: &result) {MasterVersionInt($0)}
+        return result
+    }
+
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try MessageDecoder.decode(RemoveSharingGroupRequest.self, from: dictionary)
+        return try MessageDecoder.decode(RemoveSharingGroupRequest.self, from: customConversions(dictionary: dictionary))
     }
 }
 

@@ -11,7 +11,8 @@ public class UpdateSharingGroupRequest : RequestMessage, MasterVersionUpdateRequ
     required public init() {}
 
     public var masterVersion:MasterVersionInt!
-
+    private static let masterVersionKey = "masterVersion"
+    
     // I'm having problems uploading complex objects in url parameters. So not sending a SharingGroup object yet. If I need to do this, looks like I'll have to use the request body and am not doing that yet.
     public var sharingGroupUUID:String!
     
@@ -21,8 +22,16 @@ public class UpdateSharingGroupRequest : RequestMessage, MasterVersionUpdateRequ
         return sharingGroupUUID != nil && sharingGroupName != nil && masterVersion != nil
     }
     
+   private static func customConversions(dictionary: [String: Any]) -> [String: Any] {
+        var result = dictionary
+    
+        // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
+        MessageDecoder.convert(key: masterVersionKey, dictionary: &result) {MasterVersionInt($0)}
+        return result
+    }
+
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try MessageDecoder.decode(UpdateSharingGroupRequest.self, from: dictionary)
+        return try MessageDecoder.decode(UpdateSharingGroupRequest.self, from: customConversions(dictionary: dictionary))
     }
 }
 
