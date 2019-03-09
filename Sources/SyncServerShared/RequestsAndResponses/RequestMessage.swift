@@ -31,18 +31,11 @@ public extension RequestMessage {
     }
 #endif
 
-    public func urlParameters() -> String? {
-        guard let jsonDict = toDictionary else {
-#if SERVER
-            Log.error("Could not convert toJSON()!")
-#endif
-            return nil
-        }
-        
+    public func urlParameters(dictionary: [String: Any]) -> String? {
         var result = ""
         // Sort the keys so I get the key=value pairs in a canonical form, for testing.
-        for key in jsonDict.keys.sorted() {
-            if let keyValue = jsonDict[key] {
+        for key in dictionary.keys.sorted() {
+            if let keyValue = dictionary[key] {
                 if result.count > 0 {
                     result += "&"
                 }
@@ -69,6 +62,17 @@ public extension RequestMessage {
         else {
             return result
         }
+    }
+    
+    public func urlParameters() -> String? {
+        guard let jsonDict = toDictionary else {
+#if SERVER
+            Log.error("Could not convert toJSON()!")
+#endif
+            return nil
+        }
+        
+        return urlParameters(dictionary: jsonDict)
     }
 }
 

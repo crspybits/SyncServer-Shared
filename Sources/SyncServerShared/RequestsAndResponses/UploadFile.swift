@@ -90,6 +90,28 @@ public class UploadFileRequest : RequestMessage, Filenaming {
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
         return try MessageDecoder.decode(UploadFileRequest.self, from: customConversions(dictionary: dictionary))
     }
+    
+    public func urlParameters() -> String? {
+        guard var jsonDict = toDictionary else {
+#if SERVER
+            Log.error("Could not convert toJSON()!")
+#endif
+            return nil
+        }
+        
+        // It's easier to decode JSON than a string encoded Dictionary.
+        if let appMetaData = appMetaData {
+            let encoder = JSONEncoder()
+            guard let data = try? encoder.encode(appMetaData),
+                let appMetaDataJSONString = String(data: data, encoding: .utf8) else {
+                return nil
+            }
+
+            jsonDict[UploadFileRequest.appMetaDataKey] = appMetaDataJSONString
+        }
+
+        return urlParameters(dictionary: jsonDict)
+    }
 }
 
 public class UploadFileResponse : ResponseMessage {
