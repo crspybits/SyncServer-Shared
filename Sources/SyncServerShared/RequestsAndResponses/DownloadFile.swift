@@ -17,15 +17,18 @@ public class DownloadFileRequest : RequestMessage {
     
     // This must indicate the current version of the file in the FileIndex.
     public var fileVersion:FileVersionInt!
+    private static let fileVersionKey = "fileVersion"
     
     public var sharingGroupUUID:String!
     
     // This must indicate the current version of the app meta data for the file in the FileIndex (or nil if there is none yet).
     public var appMetaDataVersion:AppMetaDataVersionInt?
-    
+    private static let appMetaDataVersionKey = "appMetaDataVersion"
+
     // Overall version for files for the specific user; assigned by the server.
     public var masterVersion:MasterVersionInt!
-    
+    private static let masterVersionKey = "masterVersion"
+
     public func valid() -> Bool {
         guard fileUUID != nil && fileVersion != nil && masterVersion != nil && sharingGroupUUID != nil, let _ = NSUUID(uuidString: self.fileUUID) else {
             return false
@@ -34,8 +37,19 @@ public class DownloadFileRequest : RequestMessage {
         return true
     }
     
+    private static func customConversions(dictionary: [String: Any]) -> [String: Any] {
+        var result = dictionary
+        
+        // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
+        MessageDecoder.convert(key: fileVersionKey, dictionary: &result) {FileVersionInt($0)}
+        MessageDecoder.convert(key: masterVersionKey, dictionary: &result) {MasterVersionInt($0)}
+        MessageDecoder.convert(key: appMetaDataVersionKey, dictionary: &result) {AppMetaDataVersionInt($0)}
+        
+        return result
+    }
+
     public static func decode(_ dictionary: [String: Any]) throws -> RequestMessage {
-        return try MessageDecoder.decode(DownloadFileRequest.self, from: dictionary)
+        return try MessageDecoder.decode(DownloadFileRequest.self, from: customConversions(dictionary: dictionary))
     }
 }
 
@@ -58,14 +72,26 @@ public class DownloadFileResponse : ResponseMessage {
     
     // Did the contents of the file change while it was "at rest" in cloud storage? e.g., a user changed their file directly?
     public var contentsChanged:Bool!
+    private static let contentsChangedKey = "contentsChanged"
     
     // If the master version for the user on the server has been incremented, this key will be present in the response-- with the new value of the master version. The download was not attempted in this case.
     public var masterVersionUpdate:MasterVersionInt?
-    
+    private static let masterVersionUpdateKey = "masterVersionUpdate"
+
     // The file was gone and could not be downloaded. The string gives the GoneReason if non-nil, and the data, contentsChanged, and checkSum fields are not given.
     public var gone: String?
     
+    private static func customConversions(dictionary: [String: Any]) -> [String: Any] {
+        var result = dictionary
+        
+        // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
+        MessageDecoder.convert(key: masterVersionUpdateKey, dictionary: &result) {MasterVersionInt($0)}
+        MessageDecoder.convert(key: contentsChangedKey, dictionary: &result) {Bool($0)}
+        
+        return result
+    }
+
     public static func decode(_ dictionary: [String: Any]) throws -> DownloadFileResponse {
-        return try MessageDecoder.decode(DownloadFileResponse.self, from: dictionary)
+        return try MessageDecoder.decode(DownloadFileResponse.self, from: customConversions(dictionary: dictionary))
     }
 }
