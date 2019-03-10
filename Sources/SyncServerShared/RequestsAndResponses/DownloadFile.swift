@@ -63,6 +63,7 @@ public class DownloadFileResponse : ResponseMessage {
     public var appMetaData:String?
     
     public var data:Data?
+    private let dataKey = "data"
     
     // This can be used by a client to know how to compute the checksum if they upload another version of this file.
     public var cloudStorageType: String!
@@ -80,6 +81,15 @@ public class DownloadFileResponse : ResponseMessage {
 
     // The file was gone and could not be downloaded. The string gives the GoneReason if non-nil, and the data, contentsChanged, and checkSum fields are not given.
     public var gone: String?
+    
+    public var toDictionary: [String: Any]? {
+        var result = MessageEncoder.toDictionary(encodable: self)
+        
+        // So we don't double up on the data being sent back to the client.
+        result?[dataKey] = nil
+        
+        return result
+    }
     
     private static func customConversions(dictionary: [String: Any]) -> [String: Any] {
         var result = dictionary
