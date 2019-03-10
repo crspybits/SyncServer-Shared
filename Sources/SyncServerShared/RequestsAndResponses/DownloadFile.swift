@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if SERVER
+import LoggerAPI
+#endif
 
 public class DownloadFileRequest : RequestMessage {
     required public init() {}
@@ -63,7 +66,7 @@ public class DownloadFileResponse : ResponseMessage {
     public var appMetaData:String?
     
     public var data:Data?
-    private let dataKey = "data"
+    private static let dataKey = "data"
     
     // This can be used by a client to know how to compute the checksum if they upload another version of this file.
     public var cloudStorageType: String!
@@ -84,9 +87,13 @@ public class DownloadFileResponse : ResponseMessage {
     
     public var toDictionary: [String: Any]? {
         var result = MessageEncoder.toDictionary(encodable: self)
-        
+
+#if SERVER
+            Log.info("DownloadFileResponse: Converting to dictionary")
+#endif
+
         // So we don't double up on the data being sent back to the client.
-        result?[dataKey] = nil
+        result?[DownloadFileResponse.dataKey] = nil
         
         return result
     }
