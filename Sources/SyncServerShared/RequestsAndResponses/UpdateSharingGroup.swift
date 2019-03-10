@@ -39,12 +39,20 @@ public class UpdateSharingGroupResponse : ResponseMessage, MasterVersionUpdateRe
     required public init() {}
 
     public var masterVersionUpdate: MasterVersionInt?
-    
+    private static let masterVersionUpdateKey = "masterVersionUpdate"
+
     public var responseType: ResponseType {
         return .json
     }
     
+    // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
+    private static func customConversions(dictionary: [String: Any]) -> [String: Any] {
+        var result = dictionary
+        MessageDecoder.convert(key: masterVersionUpdateKey, dictionary: &result) {MasterVersionInt($0)}
+        return result
+    }
+    
     public static func decode(_ dictionary: [String: Any]) throws -> UpdateSharingGroupResponse {
-        return try MessageDecoder.decode(UpdateSharingGroupResponse.self, from: dictionary)
+        return try MessageDecoder.decode(UpdateSharingGroupResponse.self, from: customConversions(dictionary: dictionary))
     }
 }

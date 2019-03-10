@@ -36,12 +36,20 @@ public class RemoveUserFromSharingGroupResponse : ResponseMessage, MasterVersion
     required public init() {}
 
     public var masterVersionUpdate: MasterVersionInt?
-    
+    private static let masterVersionUpdateKey = "masterVersionUpdate"
+
     public var responseType: ResponseType {
         return .json
     }
     
+    // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
+    private static func customConversions(dictionary: [String: Any]) -> [String: Any] {
+        var result = dictionary
+        MessageDecoder.convert(key: masterVersionUpdateKey, dictionary: &result) {MasterVersionInt($0)}
+        return result
+    }
+    
     public static func decode(_ dictionary: [String: Any]) throws -> RemoveUserFromSharingGroupResponse {
-        return try MessageDecoder.decode(RemoveUserFromSharingGroupResponse.self, from: dictionary)
+        return try MessageDecoder.decode(RemoveUserFromSharingGroupResponse.self, from: customConversions(dictionary: dictionary))
     }
 }
