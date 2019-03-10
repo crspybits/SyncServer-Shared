@@ -16,6 +16,8 @@ import LoggerAPI
 public protocol RequestMessage : Codable {
     init()
     
+    var toDictionary: [String: Any]? {get}
+
     func valid() -> Bool
     
 #if SERVER
@@ -30,6 +32,10 @@ public extension RequestMessage {
     public func setup(request: RouterRequest) throws {
     }
 #endif
+
+    public var toDictionary: [String: Any]? {
+        return MessageEncoder.toDictionary(encodable: self)
+    }
 
     public func urlParameters(dictionary: [String: Any]) -> String? {
         var result = ""

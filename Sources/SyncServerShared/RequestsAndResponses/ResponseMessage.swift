@@ -19,6 +19,12 @@ public enum ResponseType {
 public protocol ResponseMessage : Codable {
     init()
     var responseType:ResponseType {get}
+    var toDictionary: [String: Any]? {get}
 }
 
+public extension ResponseMessage {
+    public var toDictionary: [String: Any]? {
+        return MessageEncoder.toDictionary(encodable: self)
+    }
+}
 

@@ -10,12 +10,6 @@ import Foundation
 import LoggerAPI
 #endif
 
-public extension Encodable {
-    public var toDictionary: [String: Any]? {
-        return MessageEncoder.toDictionary(encodable: self)
-    }
-}
-
 class MessageEncoder {
     static func toDictionary<T>(encodable: T) -> [String: Any]? where T : Encodable {
         let encoder = JSONEncoder()
