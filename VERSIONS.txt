@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 9.8.2 (3/14/19)
+	* Fix issue with decoding Bool's.
+
 Version 9.8.1 (3/13/19)
 	* Additional codable changes due to server testing.
 

@@ -103,7 +103,7 @@ public class DownloadFileResponse : ResponseMessage {
         
         // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
         MessageDecoder.convert(key: masterVersionUpdateKey, dictionary: &result) {MasterVersionInt($0)}
-        MessageDecoder.convert(key: contentsChangedKey, dictionary: &result) {Bool($0)}
+        MessageDecoder.convertBool(key: contentsChangedKey, dictionary: &result)
         
         return result
     }

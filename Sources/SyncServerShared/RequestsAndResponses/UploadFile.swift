@@ -82,7 +82,7 @@ public class UploadFileRequest : RequestMessage, Filenaming {
         
         // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
         MessageDecoder.convert(key: fileVersionKey, dictionary: &result) {FileVersionInt($0)}
-        MessageDecoder.convert(key: undeleteServerFileKey, dictionary: &result) {Bool($0)}
+        MessageDecoder.convertBool(key: undeleteServerFileKey, dictionary: &result)
         MessageDecoder.convert(key: masterVersionKey, dictionary: &result) {MasterVersionInt($0)}
         return result
     }

@@ -24,4 +24,24 @@ class TestForNilValues: XCTestCase {
         let upload = RedeemSharingInvitationRequest()
         XCTAssert(!upload.valid())
     }
+    
+    func testUploadDeletion() {
+        let uploadDeletion = UploadDeletionRequest()
+        uploadDeletion.fileUUID = UUID().uuidString
+        uploadDeletion.fileVersion = 1
+        uploadDeletion.masterVersion = 1
+        uploadDeletion.sharingGroupUUID = UUID().uuidString
+        uploadDeletion.actualDeletion = true        
+        guard let dict = uploadDeletion.toDictionary else {
+            XCTFail()
+            return
+        }
+
+        guard let output = try? UploadDeletionRequest.decode(dict) as? UploadDeletionRequest else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssert(output?.actualDeletion == true)
+    }
 }

@@ -16,6 +16,8 @@ class MessageEncoder {
         let formatter = DateExtras.getDateFormatter(format: .DATETIME)
         encoder.dateEncodingStrategy = .formatted(formatter)
         guard let data = try? encoder.encode(encodable) else { return nil }
+        let str = String(data: data, encoding: .utf8)
+        print("JSON string: \(String(describing: str))")
         return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
     }
 }
@@ -24,6 +26,27 @@ public class MessageDecoder {
     static func convert<T>(key: String, dictionary: inout [String: Any], fromString: (String) -> T?) {
         if let str = dictionary[key] as? String {
             dictionary[key] = fromString(str)
+        }
+    }
+    
+    // Because our toDictionary method, and I think because JSONSerialization.jsonObject, doesn't respect Bool's. i.e., they get converted to integer strings.
+    static func convertBool(key: String, dictionary: inout [String: Any]) {
+        if let str = dictionary[key] as? String {
+            if let strBool = Bool(str) {
+                dictionary[key] = strBool
+            }
+            else {
+                switch str {
+                case "1":
+                    dictionary[key] = true
+                case "0":
+                    dictionary[key] = false
+                default:
+#if SERVER
+                    Log.error("Error converting bool!")
+#endif
+                }
+            }
         }
     }
     

@@ -51,7 +51,7 @@ public class UploadDeletionRequest : RequestMessage, Filenaming {
         MessageDecoder.convert(key: fileVersionKey, dictionary: &result) {FileVersionInt($0)}
         MessageDecoder.convert(key: masterVersionKey, dictionary: &result) {MasterVersionInt($0)}
 #if DEBUG
-        MessageDecoder.convert(key: actualDeletionKey, dictionary: &result) {Bool($0)}
+        MessageDecoder.convertBool(key: actualDeletionKey, dictionary: &result)
 #endif
         return result
     }
