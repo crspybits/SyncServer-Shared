@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 9.8.3 (3/15/19)
+	* Fix issue with print/log output.
+
 Version 9.8.2 (3/14/19)
 	* Fix issue with decoding Bool's.
 

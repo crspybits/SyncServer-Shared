@@ -16,8 +16,6 @@ class MessageEncoder {
         let formatter = DateExtras.getDateFormatter(format: .DATETIME)
         encoder.dateEncodingStrategy = .formatted(formatter)
         guard let data = try? encoder.encode(encodable) else { return nil }
-        let str = String(data: data, encoding: .utf8)
-        print("JSON string: \(String(describing: str))")
         return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
     }
 }
