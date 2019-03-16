@@ -32,19 +32,15 @@ public class UploadFileRequest : RequestMessage, Filenaming {
     // If a file is already on the server, and you are uploading a new version, simply setting the appMetaData contents to nil will not reset the appMetaData on the server. It will just ignore the nil field and leave the appMetaData as it was on the last version of the file. To reset the appMetaData, explicitly set its contents to the empty string "".
     // Set this to nil if you are not updating the app meta data.
     public var appMetaData:AppMetaData?
-    private static let appMetaDataKey = "appMetaData"
     
     // Must be 0 (for a new file) or N+1 where N is the current version of the file on the server.
     public var fileVersion:FileVersionInt!
-    private static let fileVersionKey = "fileVersion"
     
     // Typically this will remain false (or nil). Give it as true only when doing conflict resolution and the client indicates it wants to undelete a file because it's overriding a download deletion with its own file upload.
     public var undeleteServerFile:Bool?
-    private static let undeleteServerFileKey = "undeleteServerFile"
 
     // Overall version for files for the specific owning user; assigned by the server.
     public var masterVersion:MasterVersionInt!
-    private static let masterVersionKey = "masterVersion"
 
     public var sharingGroupUUID: String!
     
@@ -55,6 +51,20 @@ public class UploadFileRequest : RequestMessage, Filenaming {
     
     public var data:Data!
     public var sizeOfDataInBytes:Int!
+    
+    // Eliminate data and sizeOfDataIn bytes from Codable coding
+    // See also https://stackoverflow.com/questions/44655562/how-to-exclude-properties-from-swift-4s-codable
+    private enum CodingKeys: String, CodingKey {
+        case fileUUID
+        case fileGroupUUID
+        case mimeType
+        case appMetaData
+        case fileVersion
+        case undeleteServerFile
+        case masterVersion
+        case sharingGroupUUID
+        case checkSum
+    }
     
     public func valid() -> Bool {
         guard fileUUID != nil && mimeType != nil && fileVersion != nil && masterVersion != nil && sharingGroupUUID != nil && checkSum != nil,
@@ -81,9 +91,9 @@ public class UploadFileRequest : RequestMessage, Filenaming {
         AppMetaData.fromStringToDictionaryValue(dictionary: &result)
         
         // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
-        MessageDecoder.convert(key: fileVersionKey, dictionary: &result) {FileVersionInt($0)}
-        MessageDecoder.convertBool(key: undeleteServerFileKey, dictionary: &result)
-        MessageDecoder.convert(key: masterVersionKey, dictionary: &result) {MasterVersionInt($0)}
+        MessageDecoder.convert(key: UploadFileRequest.CodingKeys.fileVersion.rawValue, dictionary: &result) {FileVersionInt($0)}
+        MessageDecoder.convertBool(key: UploadFileRequest.CodingKeys.undeleteServerFile.rawValue, dictionary: &result)
+        MessageDecoder.convert(key: UploadFileRequest.CodingKeys.masterVersion.rawValue, dictionary: &result) {MasterVersionInt($0)}
         return result
     }
 
@@ -107,7 +117,7 @@ public class UploadFileRequest : RequestMessage, Filenaming {
                 return nil
             }
 
-            jsonDict[UploadFileRequest.appMetaDataKey] = appMetaDataJSONString
+            jsonDict[UploadFileRequest.CodingKeys.appMetaData.rawValue] = appMetaDataJSONString
         }
 
         return urlParameters(dictionary: jsonDict)

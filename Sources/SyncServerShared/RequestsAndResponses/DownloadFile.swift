@@ -65,9 +65,6 @@ public class DownloadFileResponse : ResponseMessage {
     
     public var appMetaData:String?
     
-    public var data:Data?
-    private static let dataKey = "data"
-    
     // This can be used by a client to know how to compute the checksum if they upload another version of this file.
     public var cloudStorageType: String!
 
@@ -76,34 +73,33 @@ public class DownloadFileResponse : ResponseMessage {
     
     // Did the contents of the file change while it was "at rest" in cloud storage? e.g., a user changed their file directly?
     public var contentsChanged:Bool!
-    private static let contentsChangedKey = "contentsChanged"
     
     // If the master version for the user on the server has been incremented, this key will be present in the response-- with the new value of the master version. The download was not attempted in this case.
     public var masterVersionUpdate:MasterVersionInt?
-    private static let masterVersionUpdateKey = "masterVersionUpdate"
 
     // The file was gone and could not be downloaded. The string gives the GoneReason if non-nil, and the data, contentsChanged, and checkSum fields are not given.
     public var gone: String?
     
-    public var toDictionary: [String: Any]? {
-        var result = MessageEncoder.toDictionary(encodable: self)
-
-#if SERVER
-            Log.info("DownloadFileResponse: Converting to dictionary")
-#endif
-
-        // So we don't double up on the data being sent back to the client.
-        result?[DownloadFileResponse.dataKey] = nil
-        
-        return result
+    // MARK: Property NOT used in the response message.
+    public var data:Data?
+    
+    // Eliminate `data` from Codable coding
+    // See also https://stackoverflow.com/questions/44655562/how-to-exclude-properties-from-swift-4s-codable
+    private enum CodingKeys: String, CodingKey {
+        case appMetaData
+        case cloudStorageType
+        case checkSum
+        case contentsChanged
+        case masterVersionUpdate
+        case gone
     }
     
     private static func customConversions(dictionary: [String: Any]) -> [String: Any] {
         var result = dictionary
         
         // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
-        MessageDecoder.convert(key: masterVersionUpdateKey, dictionary: &result) {MasterVersionInt($0)}
-        MessageDecoder.convertBool(key: contentsChangedKey, dictionary: &result)
+        MessageDecoder.convert(key: DownloadFileResponse.CodingKeys.masterVersionUpdate.rawValue, dictionary: &result) {MasterVersionInt($0)}
+        MessageDecoder.convertBool(key: DownloadFileResponse.CodingKeys.contentsChanged.rawValue, dictionary: &result)
         
         return result
     }
