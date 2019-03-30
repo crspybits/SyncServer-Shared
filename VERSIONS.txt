@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 9.9.0 (3/29/19)
+	* Added two more parameters to sharing invitation request message.
+
 Version 9.8.4 (3/15/19)
 	* Improve `data` field coding on upload and download.
 
