@@ -38,6 +38,7 @@ public class CreateSharingInvitationRequest : RequestMessage {
         
         // Unfortunate customization due to https://bugs.swift.org/browse/SR-5249
         MessageDecoder.convertBool(key: CreateSharingInvitationRequest.CodingKeys.allowSocialAcceptance.rawValue, dictionary: &result)
+        MessageDecoder.convert(key: CreateSharingInvitationRequest.CodingKeys.numberOfAcceptors.rawValue, dictionary: &result) {UInt($0)}
         return result
     }
 

@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 9.9.1 (3/30/19)
+	* Fixed numeric/string conversion issue.
+
 Version 9.9.0 (3/29/19)
 	* Added two more parameters to sharing invitation request message.
 
