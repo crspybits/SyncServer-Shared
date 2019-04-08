@@ -1,6 +1,6 @@
 {
   "name": "SyncServer-Shared",
-  "version": "9.7.0",
+  "version": "10.0.0",
   "summary": "Swift code shared between the SyncServerII server and iOS client",
   "description": "Swift code shared between the SyncServerII server and iOS client",
   "license": {
@@ -16,11 +16,12 @@
   "homepage": "https://github.com/crspybits/SyncServer-Shared",
   "source": {
     "git": "https://github.com/crspybits/SyncServer-Shared.git",
-    "tag": "9.7.0"
+    "tag": "10.0.0"
   },
   "pod_target_xcconfig": {
     "OTHER_SWIFT_FLAGS[config=Debug]": "-DDEBUG"
   },
   "source_files": "Sources/**/*.{swift}",
-  "requires_arc": true
+  "requires_arc": true,
+  "swift_version": "4.2"
 }

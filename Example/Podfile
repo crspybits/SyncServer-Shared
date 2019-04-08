@@ -1,4 +1,5 @@
 use_frameworks!
+platform :ios, '9.0'
 
 target 'SyncServer-Shared_Example' do
 	pod 'SyncServer-Shared', :path => '../'
@@ -11,13 +12,13 @@ target 'SyncServer-Shared_Example' do
 	# 9/14/17; Cocoapods isn't quite ready for Xcode9. This is a workaround:
 	# See also https://github.com/CocoaPods/CocoaPods/issues/6791
 
-	post_install do |installer|	
-		installer.pods_project.targets.each do |target|			
-			if target.name == "SyncServer-Shared"
-				target.build_configurations.each do |config|
-					config.build_settings['OTHER_SWIFT_FLAGS'] = '-DTESTING'
-				end
-			end
-		end
-	end
+# 	post_install do |installer|	
+# 		installer.pods_project.targets.each do |target|			
+# 			if target.name == "SyncServer-Shared"
+# 				target.build_configurations.each do |config|
+# 					config.build_settings['OTHER_SWIFT_FLAGS'] = '-DTESTING'
+# 				end
+# 			end
+# 		end
+# 	end
 end

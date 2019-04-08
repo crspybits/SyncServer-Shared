@@ -273,7 +273,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SyncServer-Shared_Example/Pods-SyncServer-Shared_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SyncServer-Shared_Example/Pods-SyncServer-Shared_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SyncServer-Shared/SyncServer_Shared.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -282,7 +282,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SyncServer-Shared_Example/Pods-SyncServer-Shared_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SyncServer-Shared_Example/Pods-SyncServer-Shared_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		695C94F8F9DCC5B055E11E41 /* [CP] Check Pods Manifest.lock */ = {
@@ -327,7 +327,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SyncServer-Shared_Tests/Pods-SyncServer-Shared_Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SyncServer-Shared_Tests/Pods-SyncServer-Shared_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SyncServer-Shared/SyncServer_Shared.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -336,7 +336,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SyncServer-Shared_Tests/Pods-SyncServer-Shared_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SyncServer-Shared_Tests/Pods-SyncServer-Shared_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
