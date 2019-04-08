@@ -12,10 +12,10 @@ Updating the pod:
 	./Tools/release.sh 10.0.0
 
 	# 4) validate the pod, with downloading
-	pod spec lint --allow-warnings
+	pod spec lint
 
 	# 5) Then, to push my podspec to my Specs repo:
 	# See also: ls ~/.cocoapods/repos/
 
-	pod repo push crspybits-specs SyncServer-Shared.podspec --allow-warnings
+	pod repo push crspybits-specs SyncServer-Shared.podspec
 
