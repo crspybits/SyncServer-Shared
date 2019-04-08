@@ -5,11 +5,11 @@ Updating the pod:
 	# 1) Update the .podspec with the new version number
 
 	# 2) validate the pod, without downloading
-	pod lib lint --sources="https://github.com/crspybits/Specs.git,https://github.com/CocoaPods/Specs.git" --allow-warnings
+	pod lib lint --sources="https://github.com/crspybits/Specs.git,https://github.com/CocoaPods/Specs.git"
 
 	# 3) then push updated revision of pod to its repo
 
-	./Tools/release.sh 9.9.2
+	./Tools/release.sh 10.0.0
 
 	# 4) validate the pod, with downloading
 	pod spec lint --allow-warnings

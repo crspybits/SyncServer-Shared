@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version      = "10.0.0"
   s.summary      = "Swift code shared between the SyncServerII server and iOS client"
   s.description  = <<-DESC
-  	Swift code shared between the SyncServerII server and iOS client
+  	Swift code shared between the SyncServerII server and iOS client.
                    DESC
                    
   s.license      = { :type => "MIT", :file => "LICENSE" }
