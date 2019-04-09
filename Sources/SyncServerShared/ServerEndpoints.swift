@@ -46,7 +46,7 @@ public struct ServerEndpoint {
 
 /* When adding an endpoint:
     a) add it as a `public static let`
-    b) add it in the `all` list in the `init`, and
+    b) add it in the `all` list in the `init` (see bottom of this file), and
     c) add it into ServerRoutes.swift in the Server repo.
 */
 public class ServerEndpoints {
@@ -145,7 +145,9 @@ public class ServerEndpoints {
             ServerEndpoints.index, ServerEndpoints.uploadFile, ServerEndpoints.doneUploads, ServerEndpoints.getUploads, ServerEndpoints.uploadDeletion,
         
             ServerEndpoints.createSharingInvitation,
+            ServerEndpoints.getSharingInvitationInfo,
             ServerEndpoints.redeemSharingInvitation,
+            
             ServerEndpoints.createSharingGroup, ServerEndpoints.removeSharingGroup,
             ServerEndpoints.updateSharingGroup,
             ServerEndpoints.removeUserFromSharingGroup,
