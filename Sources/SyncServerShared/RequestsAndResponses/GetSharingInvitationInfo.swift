@@ -8,6 +8,8 @@
 
 import Foundation
 
+// A 410 HTTP status code (gone) is given as the response if the sharing invitation UUID doesn't exist or has expired.
+
 public class GetSharingInvitationInfoRequest : RequestMessage {
     required public init() {}
 
