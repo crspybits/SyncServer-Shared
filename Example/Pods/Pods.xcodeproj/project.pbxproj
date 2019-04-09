@@ -28,6 +28,7 @@
 		75C7F9A96C1D4388CFEFA024A2ED61A9 /* DoneUploads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F155FA988F6CE95A64D9CD5A440CA1 /* DoneUploads.swift */; };
 		7B2563445B197C9E7CFC9E2DE58317CB /* Codable+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA262DF3F0FADB41C78DC49D762739 /* Codable+Extras.swift */; };
 		8216D5B1669BA06F3AEF81260B0A9D04 /* ServerEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4003E055DE0076595CC36F9A794F7B /* ServerEndpoints.swift */; };
+		8319E095225C5A6200570B2C /* GetSharingInvitationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319E094225C5A6200570B2C /* GetSharingInvitationInfo.swift */; };
 		84B33A31237C322C9AE889443E5AA2A8 /* UpdateSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623DDB9A3DF8C385F2AA2351303E922B /* UpdateSharingGroup.swift */; };
 		857A9687941DFE426D8F24E362F2A8EA /* Pods-SyncServer-Shared_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD5B15EC7BE47424EC9E8EF06516DDE /* Pods-SyncServer-Shared_Example-dummy.m */; };
 		8A99D107F98B808A7B131AC9F33073A8 /* String+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BA6516E42A5A15A3177695C2231F06 /* String+Extras.swift */; };
@@ -77,12 +78,12 @@
 /* Begin PBXFileReference section */
 		0673276F92930F44B5B056D119A4F59A /* Pods-SyncServer-Shared_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SyncServer-Shared_Tests.modulemap"; sourceTree = "<group>"; };
 		08AD1784B258764F3CF89CB1E28F2947 /* SyncServer-Shared-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SyncServer-Shared-dummy.m"; sourceTree = "<group>"; };
-		08DC5F789427A44FDA6CBB4510584B37 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		08DC5F789427A44FDA6CBB4510584B37 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0A8BF1B34CD59FB61FA72B55D0E0878F /* DateExtras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DateExtras.swift; sourceTree = "<group>"; };
-		195BC14DE8B55EB3E25BEAA91B773B7E /* SyncServer_Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SyncServer_Shared.framework; path = "SyncServer-Shared.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		195BC14DE8B55EB3E25BEAA91B773B7E /* SyncServer_Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SyncServer_Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C873BFA608C8ECA9C34640E00F4AF63 /* SyncServer-Shared-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SyncServer-Shared-prefix.pch"; sourceTree = "<group>"; };
 		1D8B5097F1A646F6E9AE43C2F3EF2D2A /* AddUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddUser.swift; sourceTree = "<group>"; };
-		1F2C70D7CA1B7F2B4A110640248F158D /* SyncServer-Shared.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = "SyncServer-Shared.podspec"; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1F2C70D7CA1B7F2B4A110640248F158D /* SyncServer-Shared.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = "SyncServer-Shared.podspec"; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		1F4003E055DE0076595CC36F9A794F7B /* ServerEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerEndpoints.swift; path = Sources/SyncServerShared/ServerEndpoints.swift; sourceTree = "<group>"; };
 		200AAF0F38104BB00EFE2A1E7D062E5B /* SyncServer-Shared-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SyncServer-Shared-umbrella.h"; sourceTree = "<group>"; };
 		23507514CFC62C283E7D96E6D0C71024 /* Pods-SyncServer-Shared_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SyncServer-Shared_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -110,14 +111,15 @@
 		7BC145A7FC3F10B0A6BE4355417FD683 /* Filenaming.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Filenaming.swift; sourceTree = "<group>"; };
 		7BEAE699D4BB02BD80C989CDC9C257AF /* CreateSharingGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateSharingGroup.swift; sourceTree = "<group>"; };
 		7C8783BADEAA613C939676A52893F29D /* SyncServer-Shared.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SyncServer-Shared.xcconfig"; sourceTree = "<group>"; };
+		8319E094225C5A6200570B2C /* GetSharingInvitationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSharingInvitationInfo.swift; sourceTree = "<group>"; };
 		89B8E8CFBB9C179CEEBA48E93EFD14A8 /* Pods-SyncServer-Shared_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SyncServer-Shared_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		8DB18BA4CD4FC37D5D50E311145C289B /* Index.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Index.swift; sourceTree = "<group>"; };
-		928A764AF466FF5D0D6EAEE0266EA9A0 /* Pods_SyncServer_Shared_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SyncServer_Shared_Tests.framework; path = "Pods-SyncServer-Shared_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		928A764AF466FF5D0D6EAEE0266EA9A0 /* Pods_SyncServer_Shared_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SyncServer_Shared_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93D28B3BC00230CC24F91BDD4C613734 /* Pods-SyncServer-Shared_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SyncServer-Shared_Tests-umbrella.h"; sourceTree = "<group>"; };
-		970F92B1C6C2D8481515DE55A5710AEB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		970F92B1C6C2D8481515DE55A5710AEB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		980216C67749F9BEEBEA2A2EAB9F796F /* SharingGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharingGroup.swift; path = Sources/SyncServerShared/SharingGroup.swift; sourceTree = "<group>"; };
 		9D8F5F952734CE7DA2DABF81B578C120 /* FileInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FileInfo.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A13B881CDDFF60546BA88BB4ACBA226C /* UploadDeletion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UploadDeletion.swift; sourceTree = "<group>"; };
 		A1956997A105AD8769DC7C297C1F646C /* Pods-SyncServer-Shared_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SyncServer-Shared_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		A29A9711A3B72AE28D63AAE7528FE26B /* Pods-SyncServer-Shared_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SyncServer-Shared_Example-Info.plist"; sourceTree = "<group>"; };
@@ -138,7 +140,7 @@
 		EFA4BACDAB61FCA669EFBBF2807909C5 /* Pods-SyncServer-Shared_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SyncServer-Shared_Example.release.xcconfig"; sourceTree = "<group>"; };
 		F0305EA88BBF32D147030688990DF8B5 /* Pods-SyncServer-Shared_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SyncServer-Shared_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F474FF5DADA1FEBEE3128747BC86CB4B /* CheckCreds.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckCreds.swift; sourceTree = "<group>"; };
-		F60DCF16B8E91AA7BA3076B0E25B3D89 /* Pods_SyncServer_Shared_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SyncServer_Shared_Example.framework; path = "Pods-SyncServer-Shared_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F60DCF16B8E91AA7BA3076B0E25B3D89 /* Pods_SyncServer_Shared_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SyncServer_Shared_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 				2DBA262DF3F0FADB41C78DC49D762739 /* Codable+Extras.swift */,
 				7BEAE699D4BB02BD80C989CDC9C257AF /* CreateSharingGroup.swift */,
 				D7837BDCCB8E2DEA086C26D6094036EA /* CreateSharingInvitation.swift */,
+				8319E094225C5A6200570B2C /* GetSharingInvitationInfo.swift */,
 				66F155FA988F6CE95A64D9CD5A440CA1 /* DoneUploads.swift */,
 				BD131F2470528CC6843386286126B394 /* DownloadAppMetaData.swift */,
 				7AE989BADBD9BEE2F6FA51A4350ECEAB /* DownloadFile.swift */,
@@ -519,6 +522,7 @@
 				EA011DEB8F3264FCD4F83FC5FD6181B7 /* JSONExtras.swift in Sources */,
 				B6E8434DEB8593636692CAD7A5AA3DC1 /* RedeemSharingInvitation.swift in Sources */,
 				5E6CA76268BEFB25E3BE5113BD37A37D /* RegisterPushNotificationToken.swift in Sources */,
+				8319E095225C5A6200570B2C /* GetSharingInvitationInfo.swift in Sources */,
 				2F1DF4FEBB9EB4CA9961AE803CD9EEEF /* RemoveSharingGroup.swift in Sources */,
 				F823D86B407A45DDB4F12EF8A8D75C71 /* RemoveUser.swift in Sources */,
 				353F009E6A278100F3F91A3389B79DAC /* RemoveUserFromSharingGroup.swift in Sources */,
@@ -808,8 +812,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				SYMROOT = "${SRCROOT}/../build";
 			};

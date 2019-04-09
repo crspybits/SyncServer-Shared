@@ -110,9 +110,12 @@ public class ServerEndpoints {
     // MARK: Sharing
     
     public static let createSharingInvitation = ServerEndpoint("CreateSharingInvitation", method: .post, requestMessageType: CreateSharingInvitationRequest.self, sharing: Sharing(needsLock: true, minPermission: .admin))
+
+    // No authentication is required for this endpoint because (a) the information returned is not sensitive and (b) because it can be called before a user is signed in (when they would create an account by redeeming a sharing invitation). Note that there is a race condition between getting the info for a sharing invitation, and one or more other users potentially redeeming it. i.e., just because you can get its info doesn't mean you can actually redeem the sharing invitation.
+    public static let getSharingInvitationInfo = ServerEndpoint("GetSharingInvitationInfo", method: .get, requestMessageType: GetSharingInvitationInfoRequest.self, authenticationLevel: .none)
     
-    // This creates a sharing user account. The user must not exist yet on the system.
-    // Only primary authentication because this method is used to add a user into the database (i.e., it creates secondary authentication).
+    // This either (a) creates a sharing user account where the user does not exist yet on the system, or (b) redeems an invitation to join a sharing group for an existing user.
+    // Only primary authentication because this method is used for case (a) to add a user into the database (i.e., it creates secondary authentication).
     // This is locked in the server controller code-- we don't have a sharingGroupUUID in the request parameters.
     public static let redeemSharingInvitation = ServerEndpoint("RedeemSharingInvitation", method: .post, requestMessageType: RedeemSharingInvitationRequest.self, authenticationLevel: .primary)
 
