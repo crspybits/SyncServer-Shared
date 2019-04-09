@@ -1,6 +1,6 @@
 SyncServer-Shared
 
-Version 10.1.0
+Version 10.1.0 (4/9/19)
 	* Added new endpoint description-- to get info about a sharing invitation.
 
 Version 10.0.0 (4/7/19)
