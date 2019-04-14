@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 10.2.0 (4/13/19)
+	* Added mime type for url.
+
 Version 10.1.0 (4/9/19)
 	* Added new endpoint description-- to get info about a sharing invitation.
 
