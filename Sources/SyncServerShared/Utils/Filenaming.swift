@@ -70,7 +70,7 @@ public protocol Filenaming {
 public extension Filenaming {
     /* We are not going to use just the file UUID to name the file in the cloud service. This is because we are not going to hold a lock across multiple file uploads, and we need to make sure that we don't have a conflict when two or more devices attempt to concurrently upload the same file. The file name structure we're going to use is given by this method.
     */
-    public func cloudFileName(deviceUUID:String, mimeType:String) -> String {
+    func cloudFileName(deviceUUID:String, mimeType:String) -> String {
         let ext = Extension.forMimeType(mimeType: mimeType)
         return "\(fileUUID!).\(deviceUUID).\(fileVersion!).\(ext)"
     }

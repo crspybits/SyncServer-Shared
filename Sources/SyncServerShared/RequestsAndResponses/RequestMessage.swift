@@ -29,7 +29,7 @@ public protocol RequestMessage : Codable {
 
 public extension RequestMessage {
 #if SERVER
-    public func setup(request: RouterRequest) throws {
+    func setup(request: RouterRequest) throws {
     }
 #endif
 
