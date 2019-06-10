@@ -8,47 +8,47 @@
 
 /* Begin PBXBuildFile section */
 		062ADB5A5173270AA2F7AA1A4CDF329F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
-		081ECB3B8D5BF27ADC0543C75BDB0E01 /* SharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980216C67749F9BEEBEA2A2EAB9F796F /* SharingGroup.swift */; };
-		0F9C2287BAA4FFC220F2963984B29372 /* UploadAppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28939ADFBBD4926B223F36969B2E97CE /* UploadAppMetaData.swift */; };
-		13EC606377771DA361227FA9E10A0A94 /* CheckPrimaryCreds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A4443AC9AF7613E906A5E985F58ED2 /* CheckPrimaryCreds.swift */; };
+		0904FE7B47250A55FDD2EE51D905B0B9 /* Codable+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C640E5C656FADBA6B440CEEBEF9E4 /* Codable+Extras.swift */; };
+		1410D31603EED06ECD70E12DE1F7B64A /* JSONExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17A0D7BA85A330CCB4485C7BAE206A0 /* JSONExtras.swift */; };
+		14AD72FFDA83892ADDFE467AF214109F /* CreateSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F5697B2F83A30221AD0B439E814903 /* CreateSharingGroup.swift */; };
 		1660D953F0FF3546314B11B456274594 /* Pods-SyncServer-Shared_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DE79372B9DCB9661E2BE1C0298930692 /* Pods-SyncServer-Shared_Tests-dummy.m */; };
+		1ADEF81BC0124BF58005797DAF839A61 /* DoneUploads.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA47A9744DF1CED0EAC41853A599ABBA /* DoneUploads.swift */; };
 		1F3D67091E526685F53359DC7E6B13D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
-		2052EFF5E1D519B44D68C7AAA34E237B /* GetUploads.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF1A35F56A707F82323196955F177DB /* GetUploads.swift */; };
-		2625E0DBDFF006EEA30A7F0953180023 /* UploadDeletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B881CDDFF60546BA88BB4ACBA226C /* UploadDeletion.swift */; };
+		1F8C83C998A302118FBA93D05BA4E327 /* ResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B440013571C06892E0605A4D0B09868C /* ResponseMessage.swift */; };
+		2D7242FC646FA457134732D7EB83E16E /* UploadAppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64612E848B8A244A8EF7BF487CB00C6 /* UploadAppMetaData.swift */; };
 		2F0556AB4D932138F4833CA1753DC84F /* Pods-SyncServer-Shared_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 93D28B3BC00230CC24F91BDD4C613734 /* Pods-SyncServer-Shared_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2F1DF4FEBB9EB4CA9961AE803CD9EEEF /* RemoveSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD596567CCC8EFE570F4537634DE98DA /* RemoveSharingGroup.swift */; };
-		353F009E6A278100F3F91A3389B79DAC /* RemoveUserFromSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2935D601E788FEE47BC0BFDC55C9151A /* RemoveUserFromSharingGroup.swift */; };
-		359D37389CA4E970E759461FAA35813E /* Filenaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC145A7FC3F10B0A6BE4355417FD683 /* Filenaming.swift */; };
-		4E1E1B0ADFE64F52DC598883252843EE /* HealthCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4379B260F8465D5F80AEB16BD5536AF /* HealthCheck.swift */; };
-		53A4EE04119E91FBB544DED842FE2B48 /* CheckCreds.swift in Sources */ = {isa = PBXBuildFile; fileRef = F474FF5DADA1FEBEE3128747BC86CB4B /* CheckCreds.swift */; };
-		5E6CA76268BEFB25E3BE5113BD37A37D /* RegisterPushNotificationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC8062B54836DF6009B0DFAE3E9F43 /* RegisterPushNotificationToken.swift */; };
-		674EBC9240768048DA324FAB1C01FBFE /* DownloadAppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD131F2470528CC6843386286126B394 /* DownloadAppMetaData.swift */; };
-		6AD9CC46D68460FE8AA7E705FDCFBE5F /* ResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA8443D71D1CAF7C4F93B75449BAFDE /* ResponseMessage.swift */; };
-		741EADDC98AF7AF5E76B1BE27F2B3A88 /* FileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8F5F952734CE7DA2DABF81B578C120 /* FileInfo.swift */; };
-		75C7F9A96C1D4388CFEFA024A2ED61A9 /* DoneUploads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F155FA988F6CE95A64D9CD5A440CA1 /* DoneUploads.swift */; };
-		7B2563445B197C9E7CFC9E2DE58317CB /* Codable+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA262DF3F0FADB41C78DC49D762739 /* Codable+Extras.swift */; };
-		8216D5B1669BA06F3AEF81260B0A9D04 /* ServerEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4003E055DE0076595CC36F9A794F7B /* ServerEndpoints.swift */; };
-		8319E095225C5A6200570B2C /* GetSharingInvitationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319E094225C5A6200570B2C /* GetSharingInvitationInfo.swift */; };
-		84B33A31237C322C9AE889443E5AA2A8 /* UpdateSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623DDB9A3DF8C385F2AA2351303E922B /* UpdateSharingGroup.swift */; };
+		39DBEB82B4BACAF5A0527ADF99D68996 /* GetSharingInvitationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E14283CA853F19A3E836E2DB6F5676D /* GetSharingInvitationInfo.swift */; };
+		459DF9E9257485B0D31B2996932029E9 /* FileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5464DC3AC47937F1FE53AB1D77D40D /* FileInfo.swift */; };
+		55284A55E06133E53C2B63541DA4BBBF /* ServerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD8234139D5831883E73F18412EC8E /* ServerConstants.swift */; };
+		58306E0BA9DF69B87D293FD4540671E3 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBE2E5317BC536D158539F27CBBF090 /* Types.swift */; };
+		588D44A67B6E3DD25030E5E3266E50C2 /* DateExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD26CFFF4C594DC3A213076045C4FA0 /* DateExtras.swift */; };
+		5A5C271DCAA58BEC219527F54B7CF71E /* HealthCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D7DE2F7FA17F255356044CBD21E1A0 /* HealthCheck.swift */; };
+		60441D6FF0723BD7BE7523A8984E635C /* SyncServer-Shared-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 658EED24EDBFBEEE968ABBFF27A1F6A2 /* SyncServer-Shared-dummy.m */; };
+		615544C0FEA43BA1107E4C90F6AD5FC1 /* UploadFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784DA695E559A606854C2CBDEBF8EF53 /* UploadFile.swift */; };
+		6EB56E7A6100A2DE47452F02BA170599 /* SharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D906E452C3B16BDD50F342F38ECC4CA /* SharingGroup.swift */; };
+		706A7DA1C6867BB7B715F0E17F934239 /* ServerEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826ADE61CC30F9AE37BFBC2B2A6E38E5 /* ServerEndpoints.swift */; };
+		84D8BCCBBAC6D015E3A789404DB704FA /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A7F8A1FDAFA0D23DB93468CCF0925C /* Index.swift */; };
 		857A9687941DFE426D8F24E362F2A8EA /* Pods-SyncServer-Shared_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD5B15EC7BE47424EC9E8EF06516DDE /* Pods-SyncServer-Shared_Example-dummy.m */; };
-		8A99D107F98B808A7B131AC9F33073A8 /* String+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BA6516E42A5A15A3177695C2231F06 /* String+Extras.swift */; };
-		9BD07BA5CD5D22EA3E5B1C23ED13D9F2 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F4D006BA68499CBE12FA1A517E4CC0 /* Types.swift */; };
-		B6E8434DEB8593636692CAD7A5AA3DC1 /* RedeemSharingInvitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FAA14042B217ECE80E0076184F0977 /* RedeemSharingInvitation.swift */; };
-		B7595612FD77EB582C9A20C139DA6B89 /* SyncServer-Shared-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 200AAF0F38104BB00EFE2A1E7D062E5B /* SyncServer-Shared-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		85974B34173884E17170B5FB4B3F01A5 /* GetUploads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F5B95BB264C98FBA0F57F7AD2A28D6 /* GetUploads.swift */; };
+		88B76445BF1DD8280C264794647C6D76 /* CheckCreds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B1C9EE91C433F46216D18377CB1A18 /* CheckCreds.swift */; };
+		8BCD7A6DEAB620B24892D0ABDEEEAD44 /* RequestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5024BFB2B1A42479D5B2396AE8850517 /* RequestMessage.swift */; };
+		92F53F0464C08BAF40A11AC8CB038C9A /* DownloadFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7114A2A74984388AA9D9ECF7379A17A1 /* DownloadFile.swift */; };
+		965BA918304FC510CF55B2086B94F4F2 /* CheckPrimaryCreds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4E278DC35FA692F7B941D3AEDA45E /* CheckPrimaryCreds.swift */; };
+		9DFCD075EAB28E0F4FA84DA052F02626 /* String+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA75FC4225CA0CA79715EC6A6B1ADD /* String+Extras.swift */; };
+		A63E3A46EB1354B9F3B983EE67761E17 /* DownloadAppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B76870F2A592DC1DF89045A1559337A /* DownloadAppMetaData.swift */; };
+		AE5C883CBB32DBB44B20E5E97151BFEA /* RegisterPushNotificationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7418EE27649190FFDDBF86FBCF5B34 /* RegisterPushNotificationToken.swift */; };
+		B7595612FD77EB582C9A20C139DA6B89 /* SyncServer-Shared-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2403CCDE9B6657208D5E9C1DCF5F8CFD /* SyncServer-Shared-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BAB205E7A05D106FCCC0FD8CE0E5D2F2 /* Pods-SyncServer-Shared_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CF477659756E3881B03E5F3583DD79DB /* Pods-SyncServer-Shared_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BE3B36C4286B7B85220DD63BAC5EC98C /* RequestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82A4F459006252AA20F82FAD436CE9 /* RequestMessage.swift */; };
-		BFC81E9891069A57D832C22F9423F3E9 /* UploadFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9BC4CF04538DC901523B5EB88F895A /* UploadFile.swift */; };
+		C0CB7A8597FC532F68B251A078AAE5DC /* UpdateSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF17DDDFD6397E9BED1EB17E0340094 /* UpdateSharingGroup.swift */; };
+		C13B3AC7D5A7A0407C93111C576DD658 /* CreateSharingInvitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFDFFD9596122AD9D2149944F0A0B8D /* CreateSharingInvitation.swift */; };
+		C229D8B7854F64E56BE425CBC7A4F8B3 /* RedeemSharingInvitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA40E4C98C6DAF5AD797BC9BEB6DE5F4 /* RedeemSharingInvitation.swift */; };
 		C2682FCB2E95F45C7A8BA305FDEF8E99 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
-		C5F54929A08DBC2B832B71CFFDFB8AA2 /* CreateSharingInvitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7837BDCCB8E2DEA086C26D6094036EA /* CreateSharingInvitation.swift */; };
-		D71650DDECB121CECDD1DF99AD789663 /* AddUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8B5097F1A646F6E9AE43C2F3EF2D2A /* AddUser.swift */; };
-		D7DAF019CEC27FDDE6CC25B4C5B8EC41 /* DateExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BF1B34CD59FB61FA72B55D0E0878F /* DateExtras.swift */; };
-		E0DF3DA8D758D1EE49E6F6026CA05187 /* ServerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532F5E8F1B0A4FA0B288736E0D5D2D93 /* ServerConstants.swift */; };
-		E88E1F0643417DF39B2ED592B2458358 /* CreateSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEAE699D4BB02BD80C989CDC9C257AF /* CreateSharingGroup.swift */; };
-		EA011DEB8F3264FCD4F83FC5FD6181B7 /* JSONExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26CF58E56DC26F0EFE1372EAA2F8A2D /* JSONExtras.swift */; };
-		F14F7673EE5684E80A386EA320133193 /* DownloadFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE989BADBD9BEE2F6FA51A4350ECEAB /* DownloadFile.swift */; };
-		F280211E88BA648D60BB68FE1F8963CF /* SyncServer-Shared-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AD1784B258764F3CF89CB1E28F2947 /* SyncServer-Shared-dummy.m */; };
-		F823D86B407A45DDB4F12EF8A8D75C71 /* RemoveUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF80973DB1E2C57FA95F0A64FB1E73BE /* RemoveUser.swift */; };
-		FD950779C02F09FFE39B167800F47BC4 /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB18BA4CD4FC37D5D50E311145C289B /* Index.swift */; };
+		C8B2894C4B34F2AFD752996DB163178F /* Filenaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E9F3A1FF780EEC03603912636836D6 /* Filenaming.swift */; };
+		CB33DB67BC5F8AD835D624788A617369 /* UploadDeletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EEA2BF7FB9DAFAC23F64E5FE75841D /* UploadDeletion.swift */; };
+		DB1522437F073DA3F63907C273CA6EE1 /* RemoveUserFromSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C826FF84984A227D966FBA59D8811A4 /* RemoveUserFromSharingGroup.swift */; };
+		DD6521CA56239F0E304DDBB656159C48 /* AddUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199E31C377DA64A7E3C4BDAC4D0F31E6 /* AddUser.swift */; };
+		F032955092AA82403061EAA0D85C0296 /* RemoveUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35A6A6B2AF389E96AAF68CA88BED3C2 /* RemoveUser.swift */; };
+		F96C48377F7FBBACB22C7C7081427467 /* RemoveSharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007F68D44710FD0CB6F6FE1FCCB5824 /* RemoveSharingGroup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,70 +77,70 @@
 
 /* Begin PBXFileReference section */
 		0673276F92930F44B5B056D119A4F59A /* Pods-SyncServer-Shared_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SyncServer-Shared_Tests.modulemap"; sourceTree = "<group>"; };
-		08AD1784B258764F3CF89CB1E28F2947 /* SyncServer-Shared-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SyncServer-Shared-dummy.m"; sourceTree = "<group>"; };
-		08DC5F789427A44FDA6CBB4510584B37 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		0A8BF1B34CD59FB61FA72B55D0E0878F /* DateExtras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DateExtras.swift; sourceTree = "<group>"; };
 		195BC14DE8B55EB3E25BEAA91B773B7E /* SyncServer_Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SyncServer_Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1C873BFA608C8ECA9C34640E00F4AF63 /* SyncServer-Shared-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SyncServer-Shared-prefix.pch"; sourceTree = "<group>"; };
-		1D8B5097F1A646F6E9AE43C2F3EF2D2A /* AddUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddUser.swift; sourceTree = "<group>"; };
-		1F2C70D7CA1B7F2B4A110640248F158D /* SyncServer-Shared.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = "SyncServer-Shared.podspec"; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		1F4003E055DE0076595CC36F9A794F7B /* ServerEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerEndpoints.swift; path = Sources/SyncServerShared/ServerEndpoints.swift; sourceTree = "<group>"; };
-		200AAF0F38104BB00EFE2A1E7D062E5B /* SyncServer-Shared-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SyncServer-Shared-umbrella.h"; sourceTree = "<group>"; };
+		199E31C377DA64A7E3C4BDAC4D0F31E6 /* AddUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddUser.swift; sourceTree = "<group>"; };
+		1B7418EE27649190FFDDBF86FBCF5B34 /* RegisterPushNotificationToken.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterPushNotificationToken.swift; sourceTree = "<group>"; };
+		1C000DDFFD30EB2679960E1B78AF5481 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1EFDFFD9596122AD9D2149944F0A0B8D /* CreateSharingInvitation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateSharingInvitation.swift; sourceTree = "<group>"; };
 		23507514CFC62C283E7D96E6D0C71024 /* Pods-SyncServer-Shared_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SyncServer-Shared_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		2403CCDE9B6657208D5E9C1DCF5F8CFD /* SyncServer-Shared-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SyncServer-Shared-umbrella.h"; sourceTree = "<group>"; };
+		26AD8234139D5831883E73F18412EC8E /* ServerConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerConstants.swift; path = Sources/SyncServerShared/ServerConstants.swift; sourceTree = "<group>"; };
 		2797E3315136198C471CF54C3A405B6B /* Pods-SyncServer-Shared_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SyncServer-Shared_Example.modulemap"; sourceTree = "<group>"; };
-		28939ADFBBD4926B223F36969B2E97CE /* UploadAppMetaData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UploadAppMetaData.swift; sourceTree = "<group>"; };
+		28B1C9EE91C433F46216D18377CB1A18 /* CheckCreds.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckCreds.swift; sourceTree = "<group>"; };
 		28FF30193BCA903140D3E538BF403926 /* Pods-SyncServer-Shared_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SyncServer-Shared_Example-frameworks.sh"; sourceTree = "<group>"; };
-		2935D601E788FEE47BC0BFDC55C9151A /* RemoveUserFromSharingGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemoveUserFromSharingGroup.swift; sourceTree = "<group>"; };
-		2DBA262DF3F0FADB41C78DC49D762739 /* Codable+Extras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Codable+Extras.swift"; sourceTree = "<group>"; };
+		2A5464DC3AC47937F1FE53AB1D77D40D /* FileInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FileInfo.swift; sourceTree = "<group>"; };
+		2E14283CA853F19A3E836E2DB6F5676D /* GetSharingInvitationInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GetSharingInvitationInfo.swift; sourceTree = "<group>"; };
+		33F5B95BB264C98FBA0F57F7AD2A28D6 /* GetUploads.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GetUploads.swift; sourceTree = "<group>"; };
 		357ED219F9031820B16E525D87ED3457 /* Pods-SyncServer-Shared_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SyncServer-Shared_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		36FE6617DB43CF154E8225340F4F626F /* Pods-SyncServer-Shared_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SyncServer-Shared_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		3C9BC4CF04538DC901523B5EB88F895A /* UploadFile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UploadFile.swift; sourceTree = "<group>"; };
-		40BA6516E42A5A15A3177695C2231F06 /* String+Extras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+Extras.swift"; sourceTree = "<group>"; };
-		43649404E130FD49FAFD1202E9606FF7 /* SyncServer-Shared.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "SyncServer-Shared.modulemap"; sourceTree = "<group>"; };
-		45A4443AC9AF7613E906A5E985F58ED2 /* CheckPrimaryCreds.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckPrimaryCreds.swift; sourceTree = "<group>"; };
+		3E0C640E5C656FADBA6B440CEEBEF9E4 /* Codable+Extras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Codable+Extras.swift"; sourceTree = "<group>"; };
+		4007F68D44710FD0CB6F6FE1FCCB5824 /* RemoveSharingGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemoveSharingGroup.swift; sourceTree = "<group>"; };
+		44EEA2BF7FB9DAFAC23F64E5FE75841D /* UploadDeletion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UploadDeletion.swift; sourceTree = "<group>"; };
 		47034A2785138E4FF983B41406A22B7E /* Pods-SyncServer-Shared_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SyncServer-Shared_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		532F5E8F1B0A4FA0B288736E0D5D2D93 /* ServerConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerConstants.swift; path = Sources/SyncServerShared/ServerConstants.swift; sourceTree = "<group>"; };
-		5AACE6395B631C3000C3D02E78943D68 /* SyncServer-Shared-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SyncServer-Shared-Info.plist"; sourceTree = "<group>"; };
-		5EA8443D71D1CAF7C4F93B75449BAFDE /* ResponseMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResponseMessage.swift; sourceTree = "<group>"; };
+		4D906E452C3B16BDD50F342F38ECC4CA /* SharingGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharingGroup.swift; path = Sources/SyncServerShared/SharingGroup.swift; sourceTree = "<group>"; };
+		5024BFB2B1A42479D5B2396AE8850517 /* RequestMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestMessage.swift; sourceTree = "<group>"; };
+		52F5697B2F83A30221AD0B439E814903 /* CreateSharingGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateSharingGroup.swift; sourceTree = "<group>"; };
+		56B3045B2F105A0D9ADB60154F784870 /* SyncServer-Shared.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SyncServer-Shared.xcconfig"; sourceTree = "<group>"; };
+		5B588AF01D5435D7E97BB1C2B0F2A41D /* SyncServer-Shared.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = "SyncServer-Shared.podspec"; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		5BD26CFFF4C594DC3A213076045C4FA0 /* DateExtras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DateExtras.swift; sourceTree = "<group>"; };
+		5EBE2E5317BC536D158539F27CBBF090 /* Types.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Types.swift; path = Sources/SyncServerShared/Types.swift; sourceTree = "<group>"; };
 		604630AB894986FBA1652E35F41B6883 /* Pods-SyncServer-Shared_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SyncServer-Shared_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		623DDB9A3DF8C385F2AA2351303E922B /* UpdateSharingGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UpdateSharingGroup.swift; sourceTree = "<group>"; };
-		66F155FA988F6CE95A64D9CD5A440CA1 /* DoneUploads.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DoneUploads.swift; sourceTree = "<group>"; };
+		6266223AFB16E4E0D6147360FBCF8797 /* SyncServer-Shared-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SyncServer-Shared-prefix.pch"; sourceTree = "<group>"; };
+		63C4E278DC35FA692F7B941D3AEDA45E /* CheckPrimaryCreds.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckPrimaryCreds.swift; sourceTree = "<group>"; };
+		658EED24EDBFBEEE968ABBFF27A1F6A2 /* SyncServer-Shared-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SyncServer-Shared-dummy.m"; sourceTree = "<group>"; };
 		6CD5B15EC7BE47424EC9E8EF06516DDE /* Pods-SyncServer-Shared_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SyncServer-Shared_Example-dummy.m"; sourceTree = "<group>"; };
+		7114A2A74984388AA9D9ECF7379A17A1 /* DownloadFile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DownloadFile.swift; sourceTree = "<group>"; };
+		71F58A199CF33E7AEE079EBD578A4F56 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		73AEBE68BF378A17E623EC94D4385C23 /* Pods-SyncServer-Shared_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SyncServer-Shared_Tests-Info.plist"; sourceTree = "<group>"; };
-		7AE989BADBD9BEE2F6FA51A4350ECEAB /* DownloadFile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DownloadFile.swift; sourceTree = "<group>"; };
-		7BC145A7FC3F10B0A6BE4355417FD683 /* Filenaming.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Filenaming.swift; sourceTree = "<group>"; };
-		7BEAE699D4BB02BD80C989CDC9C257AF /* CreateSharingGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateSharingGroup.swift; sourceTree = "<group>"; };
-		7C8783BADEAA613C939676A52893F29D /* SyncServer-Shared.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SyncServer-Shared.xcconfig"; sourceTree = "<group>"; };
-		8319E094225C5A6200570B2C /* GetSharingInvitationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSharingInvitationInfo.swift; sourceTree = "<group>"; };
+		784DA695E559A606854C2CBDEBF8EF53 /* UploadFile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UploadFile.swift; sourceTree = "<group>"; };
+		7B76870F2A592DC1DF89045A1559337A /* DownloadAppMetaData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DownloadAppMetaData.swift; sourceTree = "<group>"; };
+		826ADE61CC30F9AE37BFBC2B2A6E38E5 /* ServerEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerEndpoints.swift; path = Sources/SyncServerShared/ServerEndpoints.swift; sourceTree = "<group>"; };
+		86D7DE2F7FA17F255356044CBD21E1A0 /* HealthCheck.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HealthCheck.swift; sourceTree = "<group>"; };
 		89B8E8CFBB9C179CEEBA48E93EFD14A8 /* Pods-SyncServer-Shared_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SyncServer-Shared_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		8DB18BA4CD4FC37D5D50E311145C289B /* Index.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Index.swift; sourceTree = "<group>"; };
+		8B119AB00F4C957C67CA0DE83419A12A /* SyncServer-Shared-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SyncServer-Shared-Info.plist"; sourceTree = "<group>"; };
 		928A764AF466FF5D0D6EAEE0266EA9A0 /* Pods_SyncServer_Shared_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SyncServer_Shared_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93D28B3BC00230CC24F91BDD4C613734 /* Pods-SyncServer-Shared_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SyncServer-Shared_Tests-umbrella.h"; sourceTree = "<group>"; };
-		970F92B1C6C2D8481515DE55A5710AEB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		980216C67749F9BEEBEA2A2EAB9F796F /* SharingGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharingGroup.swift; path = Sources/SyncServerShared/SharingGroup.swift; sourceTree = "<group>"; };
-		9D8F5F952734CE7DA2DABF81B578C120 /* FileInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FileInfo.swift; sourceTree = "<group>"; };
+		95A7F8A1FDAFA0D23DB93468CCF0925C /* Index.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Index.swift; sourceTree = "<group>"; };
+		9C826FF84984A227D966FBA59D8811A4 /* RemoveUserFromSharingGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemoveUserFromSharingGroup.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A13B881CDDFF60546BA88BB4ACBA226C /* UploadDeletion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UploadDeletion.swift; sourceTree = "<group>"; };
 		A1956997A105AD8769DC7C297C1F646C /* Pods-SyncServer-Shared_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SyncServer-Shared_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		A29A9711A3B72AE28D63AAE7528FE26B /* Pods-SyncServer-Shared_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SyncServer-Shared_Example-Info.plist"; sourceTree = "<group>"; };
-		B3FAA14042B217ECE80E0076184F0977 /* RedeemSharingInvitation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RedeemSharingInvitation.swift; sourceTree = "<group>"; };
-		BD131F2470528CC6843386286126B394 /* DownloadAppMetaData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DownloadAppMetaData.swift; sourceTree = "<group>"; };
-		BD596567CCC8EFE570F4537634DE98DA /* RemoveSharingGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemoveSharingGroup.swift; sourceTree = "<group>"; };
-		BF80973DB1E2C57FA95F0A64FB1E73BE /* RemoveUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemoveUser.swift; sourceTree = "<group>"; };
-		C4379B260F8465D5F80AEB16BD5536AF /* HealthCheck.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HealthCheck.swift; sourceTree = "<group>"; };
-		C8AC8062B54836DF6009B0DFAE3E9F43 /* RegisterPushNotificationToken.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterPushNotificationToken.swift; sourceTree = "<group>"; };
-		C8F4D006BA68499CBE12FA1A517E4CC0 /* Types.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Types.swift; path = Sources/SyncServerShared/Types.swift; sourceTree = "<group>"; };
+		AA40E4C98C6DAF5AD797BC9BEB6DE5F4 /* RedeemSharingInvitation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RedeemSharingInvitation.swift; sourceTree = "<group>"; };
+		B440013571C06892E0605A4D0B09868C /* ResponseMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResponseMessage.swift; sourceTree = "<group>"; };
+		C17A0D7BA85A330CCB4485C7BAE206A0 /* JSONExtras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONExtras.swift; sourceTree = "<group>"; };
+		C6FA75FC4225CA0CA79715EC6A6B1ADD /* String+Extras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+Extras.swift"; sourceTree = "<group>"; };
 		CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CCF17DDDFD6397E9BED1EB17E0340094 /* UpdateSharingGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UpdateSharingGroup.swift; sourceTree = "<group>"; };
 		CF477659756E3881B03E5F3583DD79DB /* Pods-SyncServer-Shared_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SyncServer-Shared_Example-umbrella.h"; sourceTree = "<group>"; };
-		D7837BDCCB8E2DEA086C26D6094036EA /* CreateSharingInvitation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateSharingInvitation.swift; sourceTree = "<group>"; };
+		D0C8F0EBE1FED0F1B9F3E249253682E4 /* SyncServer-Shared.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "SyncServer-Shared.modulemap"; sourceTree = "<group>"; };
 		DE79372B9DCB9661E2BE1C0298930692 /* Pods-SyncServer-Shared_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SyncServer-Shared_Tests-dummy.m"; sourceTree = "<group>"; };
-		DF82A4F459006252AA20F82FAD436CE9 /* RequestMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestMessage.swift; sourceTree = "<group>"; };
-		E26CF58E56DC26F0EFE1372EAA2F8A2D /* JSONExtras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONExtras.swift; sourceTree = "<group>"; };
-		EAF1A35F56A707F82323196955F177DB /* GetUploads.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GetUploads.swift; sourceTree = "<group>"; };
+		E35A6A6B2AF389E96AAF68CA88BED3C2 /* RemoveUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemoveUser.swift; sourceTree = "<group>"; };
 		EFA4BACDAB61FCA669EFBBF2807909C5 /* Pods-SyncServer-Shared_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SyncServer-Shared_Example.release.xcconfig"; sourceTree = "<group>"; };
 		F0305EA88BBF32D147030688990DF8B5 /* Pods-SyncServer-Shared_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SyncServer-Shared_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		F474FF5DADA1FEBEE3128747BC86CB4B /* CheckCreds.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckCreds.swift; sourceTree = "<group>"; };
+		F5E9F3A1FF780EEC03603912636836D6 /* Filenaming.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Filenaming.swift; sourceTree = "<group>"; };
 		F60DCF16B8E91AA7BA3076B0E25B3D89 /* Pods_SyncServer_Shared_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SyncServer_Shared_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F64612E848B8A244A8EF7BF487CB00C6 /* UploadAppMetaData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UploadAppMetaData.swift; sourceTree = "<group>"; };
+		FA47A9744DF1CED0EAC41853A599ABBA /* DoneUploads.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DoneUploads.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,69 +188,40 @@
 			path = "Target Support Files/Pods-SyncServer-Shared_Tests";
 			sourceTree = "<group>";
 		};
-		00175DEB8A7735F18BEB3E0358F94D56 /* SyncServer-Shared */ = {
+		2BDC356DC7F20DC1A9E695480F5003F0 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				532F5E8F1B0A4FA0B288736E0D5D2D93 /* ServerConstants.swift */,
-				1F4003E055DE0076595CC36F9A794F7B /* ServerEndpoints.swift */,
-				980216C67749F9BEEBEA2A2EAB9F796F /* SharingGroup.swift */,
-				C8F4D006BA68499CBE12FA1A517E4CC0 /* Types.swift */,
-				08E6961B0F8D5ED1CDA63BC941EE6BE1 /* Pod */,
-				5DAA5A413720E05BB47A86818BB5E503 /* RequestsAndResponses */,
-				AC15F32D0431DC7DF78BB86DB0EAF354 /* Support Files */,
-				90B76559392521759CCFAE1309A9B6B5 /* Utils */,
+				D0C8F0EBE1FED0F1B9F3E249253682E4 /* SyncServer-Shared.modulemap */,
+				56B3045B2F105A0D9ADB60154F784870 /* SyncServer-Shared.xcconfig */,
+				658EED24EDBFBEEE968ABBFF27A1F6A2 /* SyncServer-Shared-dummy.m */,
+				8B119AB00F4C957C67CA0DE83419A12A /* SyncServer-Shared-Info.plist */,
+				6266223AFB16E4E0D6147360FBCF8797 /* SyncServer-Shared-prefix.pch */,
+				2403CCDE9B6657208D5E9C1DCF5F8CFD /* SyncServer-Shared-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/SyncServer-Shared";
+			sourceTree = "<group>";
+		};
+		4C1576F9B2632999C62680E22D691B65 /* SyncServer-Shared */ = {
+			isa = PBXGroup;
+			children = (
+				26AD8234139D5831883E73F18412EC8E /* ServerConstants.swift */,
+				826ADE61CC30F9AE37BFBC2B2A6E38E5 /* ServerEndpoints.swift */,
+				4D906E452C3B16BDD50F342F38ECC4CA /* SharingGroup.swift */,
+				5EBE2E5317BC536D158539F27CBBF090 /* Types.swift */,
+				CEBAC0AC44E165C29F0CF618376B4B25 /* Pod */,
+				8CCD34165B28B873D538E1A4B13097C0 /* RequestsAndResponses */,
+				2BDC356DC7F20DC1A9E695480F5003F0 /* Support Files */,
+				C888B09877A00EC8DE3FB4F91AB2FF57 /* Utils */,
 			);
 			name = "SyncServer-Shared";
 			path = ../..;
 			sourceTree = "<group>";
 		};
-		08E6961B0F8D5ED1CDA63BC941EE6BE1 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				970F92B1C6C2D8481515DE55A5710AEB /* LICENSE */,
-				08DC5F789427A44FDA6CBB4510584B37 /* README.md */,
-				1F2C70D7CA1B7F2B4A110640248F158D /* SyncServer-Shared.podspec */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		5DAA5A413720E05BB47A86818BB5E503 /* RequestsAndResponses */ = {
-			isa = PBXGroup;
-			children = (
-				1D8B5097F1A646F6E9AE43C2F3EF2D2A /* AddUser.swift */,
-				F474FF5DADA1FEBEE3128747BC86CB4B /* CheckCreds.swift */,
-				45A4443AC9AF7613E906A5E985F58ED2 /* CheckPrimaryCreds.swift */,
-				2DBA262DF3F0FADB41C78DC49D762739 /* Codable+Extras.swift */,
-				7BEAE699D4BB02BD80C989CDC9C257AF /* CreateSharingGroup.swift */,
-				D7837BDCCB8E2DEA086C26D6094036EA /* CreateSharingInvitation.swift */,
-				8319E094225C5A6200570B2C /* GetSharingInvitationInfo.swift */,
-				66F155FA988F6CE95A64D9CD5A440CA1 /* DoneUploads.swift */,
-				BD131F2470528CC6843386286126B394 /* DownloadAppMetaData.swift */,
-				7AE989BADBD9BEE2F6FA51A4350ECEAB /* DownloadFile.swift */,
-				9D8F5F952734CE7DA2DABF81B578C120 /* FileInfo.swift */,
-				EAF1A35F56A707F82323196955F177DB /* GetUploads.swift */,
-				C4379B260F8465D5F80AEB16BD5536AF /* HealthCheck.swift */,
-				8DB18BA4CD4FC37D5D50E311145C289B /* Index.swift */,
-				B3FAA14042B217ECE80E0076184F0977 /* RedeemSharingInvitation.swift */,
-				C8AC8062B54836DF6009B0DFAE3E9F43 /* RegisterPushNotificationToken.swift */,
-				BD596567CCC8EFE570F4537634DE98DA /* RemoveSharingGroup.swift */,
-				BF80973DB1E2C57FA95F0A64FB1E73BE /* RemoveUser.swift */,
-				2935D601E788FEE47BC0BFDC55C9151A /* RemoveUserFromSharingGroup.swift */,
-				DF82A4F459006252AA20F82FAD436CE9 /* RequestMessage.swift */,
-				5EA8443D71D1CAF7C4F93B75449BAFDE /* ResponseMessage.swift */,
-				623DDB9A3DF8C385F2AA2351303E922B /* UpdateSharingGroup.swift */,
-				28939ADFBBD4926B223F36969B2E97CE /* UploadAppMetaData.swift */,
-				A13B881CDDFF60546BA88BB4ACBA226C /* UploadDeletion.swift */,
-				3C9BC4CF04538DC901523B5EB88F895A /* UploadFile.swift */,
-			);
-			name = RequestsAndResponses;
-			path = Sources/SyncServerShared/RequestsAndResponses;
-			sourceTree = "<group>";
-		};
 		65AE1A9E21DC37D431C4C1B11DDBEA5C /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				00175DEB8A7735F18BEB3E0358F94D56 /* SyncServer-Shared */,
+				4C1576F9B2632999C62680E22D691B65 /* SyncServer-Shared */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -265,16 +236,37 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		90B76559392521759CCFAE1309A9B6B5 /* Utils */ = {
+		8CCD34165B28B873D538E1A4B13097C0 /* RequestsAndResponses */ = {
 			isa = PBXGroup;
 			children = (
-				0A8BF1B34CD59FB61FA72B55D0E0878F /* DateExtras.swift */,
-				7BC145A7FC3F10B0A6BE4355417FD683 /* Filenaming.swift */,
-				E26CF58E56DC26F0EFE1372EAA2F8A2D /* JSONExtras.swift */,
-				40BA6516E42A5A15A3177695C2231F06 /* String+Extras.swift */,
+				199E31C377DA64A7E3C4BDAC4D0F31E6 /* AddUser.swift */,
+				28B1C9EE91C433F46216D18377CB1A18 /* CheckCreds.swift */,
+				63C4E278DC35FA692F7B941D3AEDA45E /* CheckPrimaryCreds.swift */,
+				3E0C640E5C656FADBA6B440CEEBEF9E4 /* Codable+Extras.swift */,
+				52F5697B2F83A30221AD0B439E814903 /* CreateSharingGroup.swift */,
+				1EFDFFD9596122AD9D2149944F0A0B8D /* CreateSharingInvitation.swift */,
+				FA47A9744DF1CED0EAC41853A599ABBA /* DoneUploads.swift */,
+				7B76870F2A592DC1DF89045A1559337A /* DownloadAppMetaData.swift */,
+				7114A2A74984388AA9D9ECF7379A17A1 /* DownloadFile.swift */,
+				2A5464DC3AC47937F1FE53AB1D77D40D /* FileInfo.swift */,
+				2E14283CA853F19A3E836E2DB6F5676D /* GetSharingInvitationInfo.swift */,
+				33F5B95BB264C98FBA0F57F7AD2A28D6 /* GetUploads.swift */,
+				86D7DE2F7FA17F255356044CBD21E1A0 /* HealthCheck.swift */,
+				95A7F8A1FDAFA0D23DB93468CCF0925C /* Index.swift */,
+				AA40E4C98C6DAF5AD797BC9BEB6DE5F4 /* RedeemSharingInvitation.swift */,
+				1B7418EE27649190FFDDBF86FBCF5B34 /* RegisterPushNotificationToken.swift */,
+				4007F68D44710FD0CB6F6FE1FCCB5824 /* RemoveSharingGroup.swift */,
+				E35A6A6B2AF389E96AAF68CA88BED3C2 /* RemoveUser.swift */,
+				9C826FF84984A227D966FBA59D8811A4 /* RemoveUserFromSharingGroup.swift */,
+				5024BFB2B1A42479D5B2396AE8850517 /* RequestMessage.swift */,
+				B440013571C06892E0605A4D0B09868C /* ResponseMessage.swift */,
+				CCF17DDDFD6397E9BED1EB17E0340094 /* UpdateSharingGroup.swift */,
+				F64612E848B8A244A8EF7BF487CB00C6 /* UploadAppMetaData.swift */,
+				44EEA2BF7FB9DAFAC23F64E5FE75841D /* UploadDeletion.swift */,
+				784DA695E559A606854C2CBDEBF8EF53 /* UploadFile.swift */,
 			);
-			name = Utils;
-			path = Sources/SyncServerShared/Utils;
+			name = RequestsAndResponses;
+			path = Sources/SyncServerShared/RequestsAndResponses;
 			sourceTree = "<group>";
 		};
 		91CA360FFB09ADF4AE4CA94580DBADA3 /* Targets Support Files */ = {
@@ -294,20 +286,6 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		AC15F32D0431DC7DF78BB86DB0EAF354 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				43649404E130FD49FAFD1202E9606FF7 /* SyncServer-Shared.modulemap */,
-				7C8783BADEAA613C939676A52893F29D /* SyncServer-Shared.xcconfig */,
-				08AD1784B258764F3CF89CB1E28F2947 /* SyncServer-Shared-dummy.m */,
-				5AACE6395B631C3000C3D02E78943D68 /* SyncServer-Shared-Info.plist */,
-				1C873BFA608C8ECA9C34640E00F4AF63 /* SyncServer-Shared-prefix.pch */,
-				200AAF0F38104BB00EFE2A1E7D062E5B /* SyncServer-Shared-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/SyncServer-Shared";
-			sourceTree = "<group>";
-		};
 		BA3EA41B1FFB4933823B3256242D97EE /* Pods-SyncServer-Shared_Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +301,28 @@
 			);
 			name = "Pods-SyncServer-Shared_Example";
 			path = "Target Support Files/Pods-SyncServer-Shared_Example";
+			sourceTree = "<group>";
+		};
+		C888B09877A00EC8DE3FB4F91AB2FF57 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5BD26CFFF4C594DC3A213076045C4FA0 /* DateExtras.swift */,
+				F5E9F3A1FF780EEC03603912636836D6 /* Filenaming.swift */,
+				C17A0D7BA85A330CCB4485C7BAE206A0 /* JSONExtras.swift */,
+				C6FA75FC4225CA0CA79715EC6A6B1ADD /* String+Extras.swift */,
+			);
+			name = Utils;
+			path = Sources/SyncServerShared/Utils;
+			sourceTree = "<group>";
+		};
+		CEBAC0AC44E165C29F0CF618376B4B25 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				1C000DDFFD30EB2679960E1B78AF5481 /* LICENSE */,
+				71F58A199CF33E7AEE079EBD578A4F56 /* README.md */,
+				5B588AF01D5435D7E97BB1C2B0F2A41D /* SyncServer-Shared.podspec */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -418,7 +418,7 @@
 			buildConfigurationList = 5E7B75420D34F027338FF14A306D6EC0 /* Build configuration list for PBXNativeTarget "SyncServer-Shared" */;
 			buildPhases = (
 				7221C9C337F4A49E46205D5630E7878D /* Headers */,
-				FA3741C73BA4466F3DF879DCA2573804 /* Sources */,
+				0B696352F75D399CB930DA4C9339425F /* Sources */,
 				CCD61849E7FFC332E7AC02132FDF8C90 /* Frameworks */,
 				D7076A90AA6E6DA036E15BB456C56E49 /* Resources */,
 			);
@@ -438,14 +438,15 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1020;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = 69EC2695025F29251153BCAC1F09E36C /* Products */;
@@ -484,6 +485,47 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0B696352F75D399CB930DA4C9339425F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD6521CA56239F0E304DDBB656159C48 /* AddUser.swift in Sources */,
+				88B76445BF1DD8280C264794647C6D76 /* CheckCreds.swift in Sources */,
+				965BA918304FC510CF55B2086B94F4F2 /* CheckPrimaryCreds.swift in Sources */,
+				0904FE7B47250A55FDD2EE51D905B0B9 /* Codable+Extras.swift in Sources */,
+				14AD72FFDA83892ADDFE467AF214109F /* CreateSharingGroup.swift in Sources */,
+				C13B3AC7D5A7A0407C93111C576DD658 /* CreateSharingInvitation.swift in Sources */,
+				588D44A67B6E3DD25030E5E3266E50C2 /* DateExtras.swift in Sources */,
+				1ADEF81BC0124BF58005797DAF839A61 /* DoneUploads.swift in Sources */,
+				A63E3A46EB1354B9F3B983EE67761E17 /* DownloadAppMetaData.swift in Sources */,
+				92F53F0464C08BAF40A11AC8CB038C9A /* DownloadFile.swift in Sources */,
+				459DF9E9257485B0D31B2996932029E9 /* FileInfo.swift in Sources */,
+				C8B2894C4B34F2AFD752996DB163178F /* Filenaming.swift in Sources */,
+				39DBEB82B4BACAF5A0527ADF99D68996 /* GetSharingInvitationInfo.swift in Sources */,
+				85974B34173884E17170B5FB4B3F01A5 /* GetUploads.swift in Sources */,
+				5A5C271DCAA58BEC219527F54B7CF71E /* HealthCheck.swift in Sources */,
+				84D8BCCBBAC6D015E3A789404DB704FA /* Index.swift in Sources */,
+				1410D31603EED06ECD70E12DE1F7B64A /* JSONExtras.swift in Sources */,
+				C229D8B7854F64E56BE425CBC7A4F8B3 /* RedeemSharingInvitation.swift in Sources */,
+				AE5C883CBB32DBB44B20E5E97151BFEA /* RegisterPushNotificationToken.swift in Sources */,
+				F96C48377F7FBBACB22C7C7081427467 /* RemoveSharingGroup.swift in Sources */,
+				F032955092AA82403061EAA0D85C0296 /* RemoveUser.swift in Sources */,
+				DB1522437F073DA3F63907C273CA6EE1 /* RemoveUserFromSharingGroup.swift in Sources */,
+				8BCD7A6DEAB620B24892D0ABDEEEAD44 /* RequestMessage.swift in Sources */,
+				1F8C83C998A302118FBA93D05BA4E327 /* ResponseMessage.swift in Sources */,
+				55284A55E06133E53C2B63541DA4BBBF /* ServerConstants.swift in Sources */,
+				706A7DA1C6867BB7B715F0E17F934239 /* ServerEndpoints.swift in Sources */,
+				6EB56E7A6100A2DE47452F02BA170599 /* SharingGroup.swift in Sources */,
+				9DFCD075EAB28E0F4FA84DA052F02626 /* String+Extras.swift in Sources */,
+				60441D6FF0723BD7BE7523A8984E635C /* SyncServer-Shared-dummy.m in Sources */,
+				58306E0BA9DF69B87D293FD4540671E3 /* Types.swift in Sources */,
+				C0CB7A8597FC532F68B251A078AAE5DC /* UpdateSharingGroup.swift in Sources */,
+				2D7242FC646FA457134732D7EB83E16E /* UploadAppMetaData.swift in Sources */,
+				CB33DB67BC5F8AD835D624788A617369 /* UploadDeletion.swift in Sources */,
+				615544C0FEA43BA1107E4C90F6AD5FC1 /* UploadFile.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4BD2F7BDE2DB8B9A0FB5FF52254DCCC1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -497,47 +539,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				857A9687941DFE426D8F24E362F2A8EA /* Pods-SyncServer-Shared_Example-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FA3741C73BA4466F3DF879DCA2573804 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D71650DDECB121CECDD1DF99AD789663 /* AddUser.swift in Sources */,
-				53A4EE04119E91FBB544DED842FE2B48 /* CheckCreds.swift in Sources */,
-				13EC606377771DA361227FA9E10A0A94 /* CheckPrimaryCreds.swift in Sources */,
-				7B2563445B197C9E7CFC9E2DE58317CB /* Codable+Extras.swift in Sources */,
-				E88E1F0643417DF39B2ED592B2458358 /* CreateSharingGroup.swift in Sources */,
-				C5F54929A08DBC2B832B71CFFDFB8AA2 /* CreateSharingInvitation.swift in Sources */,
-				D7DAF019CEC27FDDE6CC25B4C5B8EC41 /* DateExtras.swift in Sources */,
-				75C7F9A96C1D4388CFEFA024A2ED61A9 /* DoneUploads.swift in Sources */,
-				674EBC9240768048DA324FAB1C01FBFE /* DownloadAppMetaData.swift in Sources */,
-				F14F7673EE5684E80A386EA320133193 /* DownloadFile.swift in Sources */,
-				741EADDC98AF7AF5E76B1BE27F2B3A88 /* FileInfo.swift in Sources */,
-				359D37389CA4E970E759461FAA35813E /* Filenaming.swift in Sources */,
-				2052EFF5E1D519B44D68C7AAA34E237B /* GetUploads.swift in Sources */,
-				4E1E1B0ADFE64F52DC598883252843EE /* HealthCheck.swift in Sources */,
-				FD950779C02F09FFE39B167800F47BC4 /* Index.swift in Sources */,
-				EA011DEB8F3264FCD4F83FC5FD6181B7 /* JSONExtras.swift in Sources */,
-				B6E8434DEB8593636692CAD7A5AA3DC1 /* RedeemSharingInvitation.swift in Sources */,
-				5E6CA76268BEFB25E3BE5113BD37A37D /* RegisterPushNotificationToken.swift in Sources */,
-				8319E095225C5A6200570B2C /* GetSharingInvitationInfo.swift in Sources */,
-				2F1DF4FEBB9EB4CA9961AE803CD9EEEF /* RemoveSharingGroup.swift in Sources */,
-				F823D86B407A45DDB4F12EF8A8D75C71 /* RemoveUser.swift in Sources */,
-				353F009E6A278100F3F91A3389B79DAC /* RemoveUserFromSharingGroup.swift in Sources */,
-				BE3B36C4286B7B85220DD63BAC5EC98C /* RequestMessage.swift in Sources */,
-				6AD9CC46D68460FE8AA7E705FDCFBE5F /* ResponseMessage.swift in Sources */,
-				E0DF3DA8D758D1EE49E6F6026CA05187 /* ServerConstants.swift in Sources */,
-				8216D5B1669BA06F3AEF81260B0A9D04 /* ServerEndpoints.swift in Sources */,
-				081ECB3B8D5BF27ADC0543C75BDB0E01 /* SharingGroup.swift in Sources */,
-				8A99D107F98B808A7B131AC9F33073A8 /* String+Extras.swift in Sources */,
-				F280211E88BA648D60BB68FE1F8963CF /* SyncServer-Shared-dummy.m in Sources */,
-				9BD07BA5CD5D22EA3E5B1C23ED13D9F2 /* Types.swift in Sources */,
-				84B33A31237C322C9AE889443E5AA2A8 /* UpdateSharingGroup.swift in Sources */,
-				0F9C2287BAA4FFC220F2963984B29372 /* UploadAppMetaData.swift in Sources */,
-				2625E0DBDFF006EEA30A7F0953180023 /* UploadDeletion.swift in Sources */,
-				BFC81E9891069A57D832C22F9423F3E9 /* UploadFile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +570,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -696,73 +698,11 @@
 			};
 			name = Release;
 		};
-		58D7F811C25147EDF4B18900311D5B59 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C8783BADEAA613C939676A52893F29D /* SyncServer-Shared.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SyncServer-Shared/SyncServer-Shared-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SyncServer-Shared/SyncServer-Shared-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SyncServer-Shared/SyncServer-Shared.modulemap";
-				PRODUCT_MODULE_NAME = SyncServer_Shared;
-				PRODUCT_NAME = SyncServer_Shared;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		661E884BBD31A22747E9858FEC311934 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C8783BADEAA613C939676A52893F29D /* SyncServer-Shared.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SyncServer-Shared/SyncServer-Shared-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SyncServer-Shared/SyncServer-Shared-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SyncServer-Shared/SyncServer-Shared.modulemap";
-				PRODUCT_MODULE_NAME = SyncServer_Shared;
-				PRODUCT_NAME = SyncServer_Shared;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		A1962E6FF39BBAC201A2E5DDF99557DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -851,6 +791,37 @@
 			};
 			name = Debug;
 		};
+		AE1865A2CB4AB58317913B9AA3A84CF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56B3045B2F105A0D9ADB60154F784870 /* SyncServer-Shared.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SyncServer-Shared/SyncServer-Shared-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SyncServer-Shared/SyncServer-Shared-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SyncServer-Shared/SyncServer-Shared.modulemap";
+				PRODUCT_MODULE_NAME = SyncServer_Shared;
+				PRODUCT_NAME = SyncServer_Shared;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		E1B8A33D336C9C14A4857206F37684EB /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EFA4BACDAB61FCA669EFBBF2807909C5 /* Pods-SyncServer-Shared_Example.release.xcconfig */;
@@ -885,6 +856,38 @@
 			};
 			name = Release;
 		};
+		FCC6A83D82571C4EF0DBD2017D8AD51D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56B3045B2F105A0D9ADB60154F784870 /* SyncServer-Shared.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SyncServer-Shared/SyncServer-Shared-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SyncServer-Shared/SyncServer-Shared-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SyncServer-Shared/SyncServer-Shared.modulemap";
+				PRODUCT_MODULE_NAME = SyncServer_Shared;
+				PRODUCT_NAME = SyncServer_Shared;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -900,8 +903,8 @@
 		5E7B75420D34F027338FF14A306D6EC0 /* Build configuration list for PBXNativeTarget "SyncServer-Shared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				58D7F811C25147EDF4B18900311D5B59 /* Debug */,
-				661E884BBD31A22747E9858FEC311934 /* Release */,
+				AE1865A2CB4AB58317913B9AA3A84CF4 /* Debug */,
+				FCC6A83D82571C4EF0DBD2017D8AD51D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

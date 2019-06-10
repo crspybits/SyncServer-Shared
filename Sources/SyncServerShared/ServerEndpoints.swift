@@ -88,8 +88,7 @@ public class ServerEndpoints {
     // The Index serves as a kind of snapshot of the files and sharing groups on the server for the calling app. Not specifying a lock is held at this level because caller may not give a sharing group uuid. If the sharing group uuid is given, holds lock within the controller.
     public static let index = ServerEndpoint("Index", method: .get, requestMessageType: IndexRequest.self)
     
-    // 6/3/19; Up until today I wasn't requiring a lock for this endpoint. However, I ran into issues with interactions with DoneUploads, for example. The upload can finish with one master version, but finish with another which just seems odd. Plus, I was getting race conditions leading to mySQL deadlocks.
-    public static let uploadFile = ServerEndpoint("UploadFile", method: .post, requestMessageType: UploadFileRequest.self, sharing: Sharing(needsLock: true, minPermission: .write))
+    public static let uploadFile = ServerEndpoint("UploadFile", method: .post, requestMessageType: UploadFileRequest.self, sharing: Sharing(needsLock: false, minPermission: .write))
     
     // Useful if only the app meta data has changed, so you don't have to re-upload the entire file.
     public static let uploadAppMetaData = ServerEndpoint("UploadAppMetaData", method: .post, requestMessageType: UploadAppMetaDataRequest.self, sharing: Sharing(needsLock: false, minPermission: .write))

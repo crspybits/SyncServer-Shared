@@ -11,8 +11,8 @@ import Foundation
 public class FileInfo : Codable, CustomStringConvertible, Filenaming, Hashable {
     required public init() {}
 
-    public var hashValue: Int {
-        return fileUUID.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(fileUUID)
     }
     
     public static func ==(lhs: FileInfo, rhs: FileInfo) -> Bool {

@@ -1,5 +1,5 @@
 PODS:
-  - SyncServer-Shared (10.0.0)
+  - SyncServer-Shared (10.2.0)
 
 DEPENDENCIES:
   - SyncServer-Shared (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SyncServer-Shared: 6ee91667856acd726a323b35718c5a3aad0dc3a0
+  SyncServer-Shared: 3782d1ff244d05ee8c79c5d863a3562074787dee
 
 PODFILE CHECKSUM: b3be565d6b3636793b16d09a0e228cb8c113ab08
 

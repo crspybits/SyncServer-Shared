@@ -42,6 +42,6 @@ class TestForNilValues: XCTestCase {
             return
         }
         
-        XCTAssert(output?.actualDeletion == true)
+        XCTAssert(output.actualDeletion == true)
     }
 }

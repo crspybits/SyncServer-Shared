@@ -23,7 +23,7 @@ public protocol ResponseMessage : Codable {
 }
 
 public extension ResponseMessage {
-    public var toDictionary: [String: Any]? {
+    var toDictionary: [String: Any]? {
         return MessageEncoder.toDictionary(encodable: self)
     }
 }

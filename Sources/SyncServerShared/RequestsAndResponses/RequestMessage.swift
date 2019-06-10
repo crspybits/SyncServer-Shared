@@ -33,11 +33,11 @@ public extension RequestMessage {
     }
 #endif
 
-    public var toDictionary: [String: Any]? {
+    var toDictionary: [String: Any]? {
         return MessageEncoder.toDictionary(encodable: self)
     }
 
-    public func urlParameters(dictionary: [String: Any]) -> String? {
+    func urlParameters(dictionary: [String: Any]) -> String? {
         var result = ""
         // Sort the keys so I get the key=value pairs in a canonical form, for testing.
         for key in dictionary.keys.sorted() {
@@ -70,7 +70,7 @@ public extension RequestMessage {
         }
     }
     
-    public func urlParameters() -> String? {
+    func urlParameters() -> String? {
         guard let jsonDict = toDictionary else {
 #if SERVER
             Log.error("Could not convert toJSON()!")
