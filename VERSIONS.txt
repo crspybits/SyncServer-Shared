@@ -1,6 +1,6 @@
 SyncServer-Shared
 
-Version 10.3.0 (6/9/19)
+Version 10.3.1 (6/9/19)
 	* Updated to Swift 5.
 
 Version 10.2.0 (4/13/19)
