@@ -19,7 +19,7 @@ class MessageEncoder {
         return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
     }
     
-    static func toJSONString<T>(encodable: T) -> String? where T : Encodable {
+    public static func toJSONString<T>(encodable: T) -> String? where T : Encodable {
         let encoder = JSONEncoder()
         let formatter = DateExtras.getDateFormatter(format: .DATETIME)
         encoder.dateEncodingStrategy = .formatted(formatter)
