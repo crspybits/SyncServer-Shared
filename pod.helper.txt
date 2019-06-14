@@ -9,7 +9,7 @@ Updating the pod:
 
 	# 3) then push updated revision of pod to its repo
 
-	./Tools/release.sh 10.4.1
+	./Tools/release.sh 10.4.2
 
 	# 4) validate the pod, with downloading
 	pod spec lint

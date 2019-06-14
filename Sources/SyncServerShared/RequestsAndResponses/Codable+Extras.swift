@@ -10,7 +10,7 @@ import Foundation
 import LoggerAPI
 #endif
 
-class MessageEncoder {
+public class MessageEncoder {
     static func toDictionary<T>(encodable: T) -> [String: Any]? where T : Encodable {
         let encoder = JSONEncoder()
         let formatter = DateExtras.getDateFormatter(format: .DATETIME)

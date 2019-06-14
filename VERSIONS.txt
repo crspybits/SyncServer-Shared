@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 10.4.2 (6/13/19)
+	* Fixed public qualifier issue.
+
 Version 10.4.1 (6/13/19)
 	* Fixed public qualifier issue.
 	
