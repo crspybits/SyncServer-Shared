@@ -18,6 +18,14 @@ class MessageEncoder {
         guard let data = try? encoder.encode(encodable) else { return nil }
         return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
     }
+    
+    static func toJSONString<T>(encodable: T) -> String? where T : Encodable {
+        let encoder = JSONEncoder()
+        let formatter = DateExtras.getDateFormatter(format: .DATETIME)
+        encoder.dateEncodingStrategy = .formatted(formatter)
+        guard let data = try? encoder.encode(encodable) else { return nil }
+        return String(data: data, encoding: .utf8)
+    }
 }
 
 public class MessageDecoder {

@@ -46,7 +46,8 @@ public extension RequestMessage {
                     result += "&"
                 }
                 
-                let newURLParameter = "\(key)=\(keyValue)"
+                let keyValueString = String(describing: keyValue)
+                let newURLParameter = "\(key)=\(keyValueString)"
                 
                 if let escapedNewKeyValue = newURLParameter.escape() {
                     result += escapedNewKeyValue

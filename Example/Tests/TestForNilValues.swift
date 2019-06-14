@@ -44,4 +44,27 @@ class TestForNilValues: XCTestCase {
         
         XCTAssert(output.actualDeletion == true)
     }
+    
+    func testDownloadFileResponse() {
+        let response = DownloadFileResponse()
+        response.contentsChanged = false
+        let jsonEncoder = JSONEncoder()
+        guard let jsonData = try? jsonEncoder.encode(response) else {
+            XCTFail()
+            return
+        }
+        let json = String(data: jsonData, encoding: .utf8)
+        print("\(String(describing: json))")
+    }
+    
+    func testEncodeToJsonString() {
+        let response = DownloadFileResponse()
+        response.contentsChanged = false
+        guard let result = MessageEncoder.toJSONString(encodable: response) else {
+            XCTFail()
+            return
+        }
+        
+        print("\(result)")
+    }
 }

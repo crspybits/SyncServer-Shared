@@ -1,5 +1,5 @@
 //
-//  GlossAppMetaDataTests.swift
+//  RequestResponseTests.swift
 //  SyncServer-Shared_Tests
 //
 //  Created by Christopher G Prince on 3/25/18.
@@ -10,7 +10,7 @@ import XCTest
 import Foundation
 @testable import SyncServer_Shared
 
-class GlossAppMetaDataTests: XCTestCase {
+class RequestResponseTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -22,7 +22,7 @@ class GlossAppMetaDataTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func testUploadFileRequest() {
         let fileUUID = UUID().uuidString
         let appMetaData = AppMetaData(version: 0, contents: "Stuff")
         let uploadRequest = UploadFileRequest()
@@ -51,5 +51,29 @@ class GlossAppMetaDataTests: XCTestCase {
         
         XCTAssert(request.valid() == true)
         XCTAssert(request.appMetaData != nil)
+    }
+    
+    func testURLParametersForUploadDeletion() {
+        let uuidString = Foundation.UUID().uuidString
+
+        let sharingGroupUUID = UUID().uuidString
+        
+        let uploadDeletionRequest = UploadDeletionRequest()
+        uploadDeletionRequest.fileUUID = uuidString
+        uploadDeletionRequest.fileVersion = FileVersionInt(99)
+        uploadDeletionRequest.masterVersion = MasterVersionInt(23)
+        uploadDeletionRequest.actualDeletion = true
+        uploadDeletionRequest.sharingGroupUUID = sharingGroupUUID
+        
+        let result = uploadDeletionRequest.urlParameters()
+
+        let expectedURLParams =
+            "actualDeletion=1&" +
+            "fileUUID=\(uuidString)&" +
+            "fileVersion=99&" +
+            "masterVersion=23&" +
+            "sharingGroupUUID=\(sharingGroupUUID)"
+        
+        XCTAssert(result == expectedURLParams, "Expected: \(String(describing: expectedURLParams)); actual: \(String(describing: result))")
     }
 }
