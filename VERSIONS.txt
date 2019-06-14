@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 10.4.3 (6/13/19)
+	* Fix another issue with json encoding method.
+	
 Version 10.4.2 (6/13/19)
 	* Fixed public qualifier issue.
 

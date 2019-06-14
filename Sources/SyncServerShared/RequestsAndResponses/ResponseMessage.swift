@@ -20,11 +20,16 @@ public protocol ResponseMessage : Codable {
     init()
     var responseType:ResponseType {get}
     var toDictionary: [String: Any]? {get}
+    var jsonString: String? { get }
 }
 
 public extension ResponseMessage {
     var toDictionary: [String: Any]? {
         return MessageEncoder.toDictionary(encodable: self)
+    }
+    
+    var jsonString: String? {
+        return MessageEncoder.toJSONString(encodable: self)
     }
 }
 
