@@ -53,14 +53,10 @@ public class ServerEndpoints {
     public private(set) var all = [ServerEndpoint]()
     
     public struct Sharing {
-        // Needs a short duration lock on the sharing group for the endpoint operation?
-        public let needsLock:Bool
-        
         // Does the user have the mimimum required permissions on the sharing group to perform the endpoint action? Set this to nil if no permissions are required.
         public let minPermission:Permission?
         
-        init(needsLock:Bool, minPermission:Permission? = .read) {
-            self.needsLock = needsLock
+        init(minPermission:Permission? = .read) {
             self.minPermission = minPermission
         }
     }
@@ -88,28 +84,28 @@ public class ServerEndpoints {
     // The Index serves as a kind of snapshot of the files and sharing groups on the server for the calling app. Not specifying a lock is held at this level because caller may not give a sharing group uuid. If the sharing group uuid is given, holds lock within the controller.
     public static let index = ServerEndpoint("Index", method: .get, requestMessageType: IndexRequest.self)
     
-    public static let uploadFile = ServerEndpoint("UploadFile", method: .post, requestMessageType: UploadFileRequest.self, sharing: Sharing(needsLock: false, minPermission: .write))
+    public static let uploadFile = ServerEndpoint("UploadFile", method: .post, requestMessageType: UploadFileRequest.self, sharing: Sharing(minPermission: .write))
     
     // Useful if only the app meta data has changed, so you don't have to re-upload the entire file.
-    public static let uploadAppMetaData = ServerEndpoint("UploadAppMetaData", method: .post, requestMessageType: UploadAppMetaDataRequest.self, sharing: Sharing(needsLock: false, minPermission: .write))
+    public static let uploadAppMetaData = ServerEndpoint("UploadAppMetaData", method: .post, requestMessageType: UploadAppMetaDataRequest.self, sharing: Sharing(minPermission: .write))
     
-    public static let uploadDeletion = ServerEndpoint("UploadDeletion", method: .delete, requestMessageType: UploadDeletionRequest.self, sharing: Sharing(needsLock: false, minPermission: .write))
+    public static let uploadDeletion = ServerEndpoint("UploadDeletion", method: .delete, requestMessageType: UploadDeletionRequest.self, sharing: Sharing(minPermission: .write))
 
     // TODO: *0* See also [1] in FileControllerTests.swift.
     // Seems unlikely that the collection of uploads will change while we are getting them (because they are specific to the userId and the deviceUUID), but grab the lock just in case.
-    public static let getUploads = ServerEndpoint("GetUploads", method: .get, requestMessageType: GetUploadsRequest.self, sharing: Sharing(needsLock: true, minPermission: .write))
+    public static let getUploads = ServerEndpoint("GetUploads", method: .get, requestMessageType: GetUploadsRequest.self, sharing: Sharing(minPermission: .write))
     
     // Not using `needsLock` property here-- but doing the locking internally to the method: Because we have to access cloud storage to deal with upload deletions.
-    public static let doneUploads = ServerEndpoint("DoneUploads", method: .post, requestMessageType: DoneUploadsRequest.self, sharing: Sharing(needsLock: false, minPermission: .write))
+    public static let doneUploads = ServerEndpoint("DoneUploads", method: .post, requestMessageType: DoneUploadsRequest.self, sharing: Sharing(minPermission: .write))
 
-    public static let downloadFile = ServerEndpoint("DownloadFile", method: .get, requestMessageType: DownloadFileRequest.self, sharing: Sharing(needsLock: false, minPermission: .read))
+    public static let downloadFile = ServerEndpoint("DownloadFile", method: .get, requestMessageType: DownloadFileRequest.self, sharing: Sharing(minPermission: .read))
     
     // Useful if only the app meta data has changed, so you don't have to re-download the entire file.
-    public static let downloadAppMetaData = ServerEndpoint("DownloadAppMetaData", method: .get, requestMessageType: DownloadAppMetaDataRequest.self, sharing: Sharing(needsLock: false, minPermission: .read))
+    public static let downloadAppMetaData = ServerEndpoint("DownloadAppMetaData", method: .get, requestMessageType: DownloadAppMetaDataRequest.self, sharing: Sharing(minPermission: .read))
     
     // MARK: Sharing
     
-    public static let createSharingInvitation = ServerEndpoint("CreateSharingInvitation", method: .post, requestMessageType: CreateSharingInvitationRequest.self, sharing: Sharing(needsLock: true, minPermission: .admin))
+    public static let createSharingInvitation = ServerEndpoint("CreateSharingInvitation", method: .post, requestMessageType: CreateSharingInvitationRequest.self, sharing: Sharing(minPermission: .admin))
 
     // No authentication is required for this endpoint because (a) the information returned is not sensitive and (b) because it can be called before a user is signed in (when they would create an account by redeeming a sharing invitation). Note that there is a race condition between getting the info for a sharing invitation, and one or more other users potentially redeeming it. i.e., just because you can get its info doesn't mean you can actually redeem the sharing invitation. ALSO: The invitation could expire in the interval between when you call this method and you attempt to redeem it.
     public static let getSharingInvitationInfo = ServerEndpoint("GetSharingInvitationInfo", method: .get, requestMessageType: GetSharingInvitationInfoRequest.self, authenticationLevel: .none)
@@ -122,13 +118,13 @@ public class ServerEndpoints {
     // This doesn't need a lock-- it's for a new sharing group. However, I'm making sure in the implementation that the user owns cloud storage-- as a form of "permission".
     public static let createSharingGroup = ServerEndpoint("CreateSharingGroup", method: .post, requestMessageType: CreateSharingGroupRequest.self, authenticationLevel: .secondary)
 
-    public static let updateSharingGroup = ServerEndpoint("UpdateSharingGroup", method: .patch, requestMessageType: UpdateSharingGroupRequest.self, authenticationLevel: .secondary, sharing: Sharing(needsLock: true, minPermission: .admin))
+    public static let updateSharingGroup = ServerEndpoint("UpdateSharingGroup", method: .patch, requestMessageType: UpdateSharingGroupRequest.self, authenticationLevel: .secondary, sharing: Sharing(minPermission: .admin))
 
     // Remove sharing group from the system.
-    public static let removeSharingGroup = ServerEndpoint("RemoveSharingGroup", method: .post, requestMessageType: RemoveSharingGroupRequest.self, authenticationLevel: .secondary, sharing: Sharing(needsLock: true, minPermission: .admin))
+    public static let removeSharingGroup = ServerEndpoint("RemoveSharingGroup", method: .post, requestMessageType: RemoveSharingGroupRequest.self, authenticationLevel: .secondary, sharing: Sharing(minPermission: .admin))
 
     // Removes the calling user from the sharing group given in the request.
-    public static let removeUserFromSharingGroup = ServerEndpoint("RemoveUserFromSharingGroup", method: .post, requestMessageType: RemoveUserFromSharingGroupRequest.self, authenticationLevel: .secondary, sharing: Sharing(needsLock: true, minPermission: nil))
+    public static let removeUserFromSharingGroup = ServerEndpoint("RemoveUserFromSharingGroup", method: .post, requestMessageType: RemoveUserFromSharingGroupRequest.self, authenticationLevel: .secondary, sharing: Sharing(minPermission: nil))
     
     // MARK: Push Notifications
     

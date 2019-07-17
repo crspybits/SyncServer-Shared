@@ -1,5 +1,8 @@
 SyncServer-Shared
 
+Version 11.0.0 (7/16/19)
+	* Removed locking from server endpoints
+
 Version 10.4.3 (6/13/19)
 	* Fix another issue with json encoding method.
 	
