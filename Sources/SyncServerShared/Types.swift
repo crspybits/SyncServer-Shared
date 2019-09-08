@@ -81,11 +81,6 @@ public enum UserType : String {
     }
 }
 
-public enum CloudStorageType : String {
-    case Google
-    case Dropbox
-}
-
 public enum GoneReason: String {
     public static let goneReasonKey = "goneReason"
     

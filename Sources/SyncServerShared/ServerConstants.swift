@@ -48,23 +48,6 @@ public class ServerConstants {
 
     // If present, the value of this key is a "X.Y.Z" version string. This is intended to be the minimum version of the *client* app not the SyncServer iOS client interface (i.e., not https://github.com/crspybits/SyncServer-iOSClient).
     public static let httpResponseMinimumIOSClientAppVersion = "syncserver-minimum-ios-client-app-version"
-
-    public enum AuthTokenType : String {
-        case GoogleToken
-        case FacebookToken
-        case DropboxToken
-        
-        public func toCloudStorageType() -> CloudStorageType? {
-            switch self {
-            case .DropboxToken:
-                return .Dropbox
-            case .GoogleToken:
-                return .Google
-            case .FacebookToken:
-                return nil
-            }
-        }
-    }
     
     public static let maxNumberSharingInvitationAcceptors:UInt = 10
     
