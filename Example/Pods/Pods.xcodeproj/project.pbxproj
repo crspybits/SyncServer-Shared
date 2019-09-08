@@ -27,6 +27,7 @@
 		615544C0FEA43BA1107E4C90F6AD5FC1 /* UploadFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784DA695E559A606854C2CBDEBF8EF53 /* UploadFile.swift */; };
 		6EB56E7A6100A2DE47452F02BA170599 /* SharingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D906E452C3B16BDD50F342F38ECC4CA /* SharingGroup.swift */; };
 		706A7DA1C6867BB7B715F0E17F934239 /* ServerEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826ADE61CC30F9AE37BFBC2B2A6E38E5 /* ServerEndpoints.swift */; };
+		8315C90923255E1B005EBBBB /* AccountScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8315C90823255E1B005EBBBB /* AccountScheme.swift */; };
 		84D8BCCBBAC6D015E3A789404DB704FA /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A7F8A1FDAFA0D23DB93468CCF0925C /* Index.swift */; };
 		857A9687941DFE426D8F24E362F2A8EA /* Pods-SyncServer-Shared_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD5B15EC7BE47424EC9E8EF06516DDE /* Pods-SyncServer-Shared_Example-dummy.m */; };
 		85974B34173884E17170B5FB4B3F01A5 /* GetUploads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F5B95BB264C98FBA0F57F7AD2A28D6 /* GetUploads.swift */; };
@@ -115,6 +116,7 @@
 		784DA695E559A606854C2CBDEBF8EF53 /* UploadFile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UploadFile.swift; sourceTree = "<group>"; };
 		7B76870F2A592DC1DF89045A1559337A /* DownloadAppMetaData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DownloadAppMetaData.swift; sourceTree = "<group>"; };
 		826ADE61CC30F9AE37BFBC2B2A6E38E5 /* ServerEndpoints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerEndpoints.swift; path = Sources/SyncServerShared/ServerEndpoints.swift; sourceTree = "<group>"; };
+		8315C90823255E1B005EBBBB /* AccountScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountScheme.swift; path = Sources/SyncServerShared/AccountScheme.swift; sourceTree = "<group>"; };
 		86D7DE2F7FA17F255356044CBD21E1A0 /* HealthCheck.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HealthCheck.swift; sourceTree = "<group>"; };
 		89B8E8CFBB9C179CEEBA48E93EFD14A8 /* Pods-SyncServer-Shared_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SyncServer-Shared_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		8B119AB00F4C957C67CA0DE83419A12A /* SyncServer-Shared-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SyncServer-Shared-Info.plist"; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				826ADE61CC30F9AE37BFBC2B2A6E38E5 /* ServerEndpoints.swift */,
 				4D906E452C3B16BDD50F342F38ECC4CA /* SharingGroup.swift */,
 				5EBE2E5317BC536D158539F27CBBF090 /* Types.swift */,
+				8315C90823255E1B005EBBBB /* AccountScheme.swift */,
 				CEBAC0AC44E165C29F0CF618376B4B25 /* Pod */,
 				8CCD34165B28B873D538E1A4B13097C0 /* RequestsAndResponses */,
 				2BDC356DC7F20DC1A9E695480F5003F0 /* Support Files */,
@@ -495,6 +498,7 @@
 				0904FE7B47250A55FDD2EE51D905B0B9 /* Codable+Extras.swift in Sources */,
 				14AD72FFDA83892ADDFE467AF214109F /* CreateSharingGroup.swift in Sources */,
 				C13B3AC7D5A7A0407C93111C576DD658 /* CreateSharingInvitation.swift in Sources */,
+				8315C90923255E1B005EBBBB /* AccountScheme.swift in Sources */,
 				588D44A67B6E3DD25030E5E3266E50C2 /* DateExtras.swift in Sources */,
 				1ADEF81BC0124BF58005797DAF839A61 /* DoneUploads.swift in Sources */,
 				A63E3A46EB1354B9F3B983EE67761E17 /* DownloadAppMetaData.swift in Sources */,
