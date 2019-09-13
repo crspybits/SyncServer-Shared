@@ -25,6 +25,9 @@ public class ServerConstants {
     // Necessary for some authorization systems, e.g., Dropbox.
     public static let HTTPAccountIdKey = "X-account-id"
 
+    // Microsoft has something, from iOS MSAL, they call an access token, but it's not a JWT.
+    public static let HTTPMicrosoftAccessToken = "X-microsoft-access-token"
+
 #if DEBUG
     // Give this key any string value to test failing of an endpoint.
     public static let httpRequestEndpointFailureTestKey = "SyncServer-FailureTest"
