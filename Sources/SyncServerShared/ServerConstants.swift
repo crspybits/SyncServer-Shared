@@ -23,7 +23,12 @@ public class ServerConstants {
     public static let HTTPOAuth2AuthorizationCodeKey = "SyncServer-authorization-code"
     
     // Necessary for some authorization systems, e.g., Dropbox.
+    @available(*, deprecated, message: "Use: HTTPAccountDetailsKey")
     public static let HTTPAccountIdKey = "X-account-id"
+
+    /// Used by Apple Sign In. Should convert Dropbox over to using this too.
+    /// Content is a JSON structure.
+    public static let HTTPAccountDetailsKey = "X-account-details"
 
     // Microsoft has something, from iOS MSAL, they call an access token, but it's not a JWT.
     public static let HTTPMicrosoftAccessToken = "X-microsoft-access-token"

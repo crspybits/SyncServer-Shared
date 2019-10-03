@@ -1,5 +1,11 @@
 SyncServer-Shared
 
+Version 11.1.0 (10/2/19)
+	* Added AccountScheme
+	* Added OneDrive/Microsoft
+	* Added Apple Sign In
+	* Added HTTP header keys
+
 Version 11.0.0 (7/16/19)
 	* Removed locking from server endpoints
 
