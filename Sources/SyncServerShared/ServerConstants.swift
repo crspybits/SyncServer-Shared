@@ -22,8 +22,8 @@ public class ServerConstants {
     // OAuth2 authorization code, e.g., from Google
     public static let HTTPOAuth2AuthorizationCodeKey = "SyncServer-authorization-code"
     
-    // Necessary for some authorization systems, e.g., Dropbox.
-    @available(*, deprecated, message: "Use: HTTPAccountDetailsKey")
+    /// Necessary for some authorization systems, e.g., Dropbox.
+    /// DEPRECATED: Use: HTTPAccountDetailsKey
     public static let HTTPAccountIdKey = "X-account-id"
 
     /// Used by Apple Sign In. Should convert Dropbox over to using this too.
